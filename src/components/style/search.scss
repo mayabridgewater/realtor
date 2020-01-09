@@ -1,0 +1,126 @@
+.filters {
+  white-space: nowrap;
+}
+.citySearch input {
+  border: 1px solid grey;
+  border-right: none;
+  padding: 6px 10px;
+  @include formRadius('left');
+}
+.searchIcon {
+  padding: 11px;
+  background: $darkGold;
+  @include formRadius('right');
+  &:hover {
+    cursor: pointer;
+  }
+}
+.searchBtn {
+  position: relative;
+  h3 {
+    font-size: 15px;
+    background: lightgrey;
+    padding: 5px;
+    padding-right: 100px;
+  }
+}
+.priceFilter, .beds, .property {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  z-index: 999;
+  padding-bottom: 20px;
+}
+.priceFilter input {
+  width: 80px;
+  margin-left: 5px;
+}
+.btn {
+  border: 1px solid grey;
+}
+.searchResults {
+  padding-top: 10px;
+  align-items: baseline;
+  h4 {
+    margin: 0
+  }
+  p {
+    margin: 0;
+    padding-left: 5px;
+    font-size: 18px;
+  }
+}
+.radiobtn {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.beds input[type='radio']:checked + p {
+  border: 1px solid $purple-color;
+  color: $purple-color;
+}
+.beds p {
+  padding: 10px;
+  margin: 0 5px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  text-align: center;
+  &:hover {
+    border: 1px solid $purple-color;
+    color: $purple-color;
+  }
+}
+.filterText {
+  text-align: center;
+  display: block;
+  padding: 15px 0;
+}
+.priceFilter label {
+  display: flex;
+  flex-direction: column;
+  height: 30px;
+  color: grey;
+  &:hover {
+    color: $purple-color;
+  }
+}
+.priceFilter input[type='radio']:checked + p {
+  color: $purple-color;
+}
+.search {
+  border-radius: 10px;
+  color: $purple-color;
+  border: 1px solid $purple-color;
+  margin-right: 10px;
+}
+.property img {
+  width: 60px;
+  border: 2px solid;
+  border-radius: 50%;
+  padding: 7px;
+}
+.property {
+  width: 400px;
+  .propertyTypes {
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  label {
+    margin: 10px 0;
+    &:hover img {
+      border: 2px solid $purple-color;
+    }
+    &:hover {
+      color: $purple-color;
+    }
+  }
+}
+.property input[type='checkbox']:checked + img {
+  border: 2px solid $purple-color;
+}
+.property input[type='checkbox']:checked + span {
+  color: $purple-color;
+}

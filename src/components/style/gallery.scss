@@ -1,0 +1,108 @@
+#apartmentBox {
+  min-height: calc(100vh - 410px);
+  box-sizing: border-box;
+  margin: 20px 0;
+  a {
+    text-decoration: none;
+    color: black
+  }
+}
+#container {
+  padding-bottom: 30px;
+}
+.galleryHeader {
+  padding-bottom: 15px;
+}
+.box {
+  box-shadow: 0 4px 11px -5px rgba(0,0,0,0.96);
+  &:hover {
+    box-shadow: 0 4px 12px -2px rgba(0,0,0,0.96);
+  }
+}
+.imageBox {
+  padding: 100px 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  //animation: imageHover ease-in 2s;
+}
+.infoBox {
+  white-space: nowrap;
+  padding: 7px 0;
+  p {
+    padding: 0 10px;
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .agentBtn {
+    background: transparent;
+    border: 1px solid $darkGold;
+    color: $darkGold;
+    border-radius: 15px;
+    margin: 5px 8px;
+    padding: 4px 10px;
+    &:hover {
+      border: 1px solid transparent;
+    }
+  }
+}
+.absTopBox {
+  position: absolute;
+  top: $overImageTextPosition;
+  left: $overImageTextPosition;
+  font-size: $overImageTextSize;
+  padding: 3px;
+  background: $overImageTextBgrnd;
+  color: white;
+}
+.absBottomBox {
+  position: absolute;
+  bottom: $overImageTextPosition;
+  left: $overImageTextPosition;
+  color: white;
+  p {
+    margin: 0;
+    font-size: 13px;
+  }
+  .price {
+    font-size: $priceFontSize;
+    font-weight: bold;
+  }
+}
+.icon {
+  font-size: 25px;
+  color: rgba(70, 10, 92, 0.62);
+  position: absolute;
+  top: $overImageTextPosition;
+  right: $overImageTextPosition + 10px;
+  cursor: grab;
+  &:hover {
+    color: rgba(70, 10, 92, 0.91);
+  }
+}
+.cityBtn {
+  text-align: center;
+  button {
+    border: none;
+    background: $purple-color;
+    color: white;
+    font-size: 18px;
+    padding: 5px 15px;
+    border-radius: 5px;
+
+  }
+}
+  @keyframes imageHover {
+    from {opacity: 0}
+    to {opacity: 1}
+  }
+
+.cityBox {
+  padding-top: 15px;
+}

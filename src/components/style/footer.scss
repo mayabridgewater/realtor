@@ -1,0 +1,73 @@
+.topFoot {
+  background: #340e2d;
+  padding: 15px 0;
+  .social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .media {
+      padding-bottom: 10px;
+      @media (min-width: 768px) {
+        padding-bottom: 0;
+      }
+      img {
+        width: 45px;
+        border-radius: 10px;
+        margin: 0 4px;
+      }
+    }
+    .ads {
+      img {
+        width: 100px;
+        height: 45px;
+        border-radius: 10px;
+        margin: 0 4px;
+      }
+    }
+  }
+}
+.bottomFoot {
+  background: #3e1037;
+  color: white;
+  white-space: nowrap;
+  font-size: 14px;
+  padding: 10px 0;
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    width: 50%;
+    @media (min-width: 650px) {
+      width: 33%;
+    }
+    @media (min-width: 768px) {
+      width: 25%;
+    }
+    @media (min-width: 1024px) {
+      width: auto;
+    }
+  }
+  a {
+    text-decoration: none;
+    font-size: 13px;
+    color: white;
+    padding-right: 10px;
+    &:hover {
+      color: $darkGold;
+    }
+  }
+  .rights {
+    color: grey;
+    white-space: normal;
+    a {
+      padding: 0;
+    }
+  }
+}

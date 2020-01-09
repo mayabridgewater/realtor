@@ -1,0 +1,50 @@
+.citySearch input {
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding: 6px 10px; }
+
+.searchBtn {
+  position: relative; }
+  .searchBtn h3 {
+    font-size: 15px;
+    background: lightgrey;
+    padding: 5px;
+    padding-right: 100px; }
+
+.priceFilter, .beds, .property {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  background: white;
+  z-index: 999;
+  padding-bottom: 20px; }
+  .priceFilter ul, .beds ul, .property ul {
+    list-style: none; }
+
+.priceFilter input {
+  width: 80px;
+  margin-left: 5px; }
+
+.btn {
+  border: 1px solid grey; }
+
+.searchResults {
+  padding-top: 10px;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline; }
+  .searchResults h4 {
+    margin: 0; }
+  .searchResults p {
+    margin: 0;
+    padding-left: 5px;
+    font-size: 18px; }
+
+.radiobtn {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0; }
+
+.beds input[type='radio']:checked + p {
+  background: purple; }
