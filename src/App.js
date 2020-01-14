@@ -32,8 +32,13 @@ class App extends React.Component {
             updatedApartments: []
         }
     }
-    componentDidMount = () => {
-        getApartmentsFromServer(this.handleSuccess)
+    async componentDidMount() {
+        try {
+            const data = await getApartmentsFromServer();
+            this.handleSuccess(data)
+        } catch (error) {
+            this.handleSuccess(error)
+        }
     };
 
     handleSuccess = (success) => {
@@ -44,71 +49,8 @@ class App extends React.Component {
         })
     };
 
-    apartmentsByCity = (id) => {
-      const newList = this.state.apartments.filter(apartment => apartment.cityId === id);
-      this.setState({
-          apartments: newList,
-          loading: false
-      })
-    };
-
-    filtered = (apartments) => {
-        this.setState({
-            updatedApartments: apartments
-        })
-    };
-
-    resetSearch = () => {
-        this.setState({
-            updatedApartments: this.state.apartments
-        })
-    };
-
-    filterSearch = (data) => {
-        const {updatedApartments} = this.state;
-        let filteredArray = updatedApartments;
-
-        cityFilter(
-            data.city,
-            filteredArray,
-            (ap) => {filteredArray = ap}).then(
-                () => priceFilter(
-                    data.minprice,
-                    data.maxprice,
-                    filteredArray,
-                    (ap) => {filteredArray = ap})).then(
-                        () => bedsFilter(
-                            data.beds,
-                            data.minbeds,
-                            data.maxbeds,
-                            filteredArray,
-                            (ap) => {filteredArray = ap})).then(
-                                () => bathsFilter(
-                                    data.baths,
-                                    data.minbaths,
-                                    data.maxbaths,
-                                    filteredArray,
-                                    (ap) => {filteredArray = ap})).then(
-                                        () => this.filtered(filteredArray));
-        // const dataProperty = [data.pAll, data.pSingle, data.pMulti, data.pCondo, data.pMobile, data.pFarm, data.pLand];
-        // let properties = propertyFilter(dataProperty);
-    };
-
-    returnFavorites = (apartmentId, isFavorite) => {
-        let updatedArray;
-        if (isFavorite) {
-            updatedArray = [...this.state.favorites, this.state.apartments.find(apartment => apartment.id === apartmentId)]
-        } else {
-            updatedArray = this.state.favorites.filter(apartment => apartment.id !== apartmentId)
-        }
-        this.setState({
-            favorites: updatedArray
-        })
-    };
-
     render() {
         const {updatedApartments} = this.state;
-        console.log(updatedApartments.length);
         return (
             <Router>
                 {this.state.loading ? <div className="loader"/> :
