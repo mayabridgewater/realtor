@@ -35,7 +35,6 @@ class App extends React.Component {
     };
 
     handleSuccess = (success) => {
-        console.log(success);
         this.setState({
             apartments: success,
             updatedApartments: success,

@@ -5,7 +5,6 @@ import {Link} from "react-router-dom";
 class Gallery extends React.Component {
     render() {
         const {apartments, returnFavorites} = this.props;
-        console.log(apartments);
         return (
             <div id={'apartmentBox'} className={'container-fluid'}>
                 <div className={'galleryHeader'}>
