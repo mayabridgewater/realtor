@@ -3,13 +3,6 @@ import './components/style/style.css';
 import Gallery from "./components/gallery/gallery";
 import Header from "./components/header/header";
 import Search from "./components/filters/search";
-// import {apartments} from "./components/gallery/apartments";
-// import {cities} from "./components/gallery/cities";
-import {cityFilter} from "./components/filters/functions/cityFilter";
-import {priceFilter} from "./components/filters/functions/priceFilter";
-import {bedsFilter} from "./components/filters/functions/bedsFilter";
-import {bathsFilter} from "./components/filters/functions/bathsFilter";
-// import {propertyFilter} from "./components/filters/functions/propertyFilter";
 import {
     BrowserRouter as Router,
     Switch,
@@ -42,6 +35,7 @@ class App extends React.Component {
     };
 
     handleSuccess = (success) => {
+        console.log(success);
         this.setState({
             apartments: success,
             updatedApartments: success,
