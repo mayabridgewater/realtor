@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import LoginSignup from "../header/loginSignup";
+import Login from "../header/login";
+import Signup from "../header/signup";
 
 class ApartmentHeader extends React.Component {
     constructor() {
@@ -34,9 +35,9 @@ class ApartmentHeader extends React.Component {
                     </div>
                     <div className={'d-flex align-items-center'}>
                         <p onClick={() => this.handleForm(1)} style={{padding: '0 5px'}}>Log In</p>
-                        {this.state.showForm === 1 && <LoginSignup id={1} handleForm={this.handleForm}/>}
+                        {this.state.showForm === 1 && <Login handleForm={this.handleForm}/>}
                         <p onClick={() => this.handleForm(2)} style={{padding: '0 5px'}}>Sign Up</p>
-                        {this.state.showForm === 2 && <LoginSignup id={2} handleForm={this.handleForm} check={this.unCheck}/>}
+                        {this.state.showForm === 2 && <Signup handleForm={this.handleForm} check={this.unCheck}/>}
                     </div>
                 </div>
             </div>

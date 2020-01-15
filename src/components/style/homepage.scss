@@ -21,7 +21,7 @@
   width: 100%;
   color: white;
   h1 {
-    font-size: $h1-small;
+    font-size: $h1-small; 
     padding-left: 10px;
     @media (min-width: 850px) {
       font-size: $h1-large;
