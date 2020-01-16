@@ -38,9 +38,19 @@ async function getCountries() {
     }
 }
 
+async function getCitiesByCountry(country_id) {
+    try {
+        const cities = await fetcher.get(`/cities/${country_id}`);
+        return cities.data;
+    } catch {
+
+    }
+}
+
 export {
     getApartmentsFromServer, 
     registerUser,
     loginUser,
     getCountries,
+    getCitiesByCountry
 }
