@@ -1,6 +1,6 @@
 import React from 'react';
 import CityBox from "./cityBox";
-import {getCitiesFromServer} from "../dataFromServer";
+import {getCitiesFromServer} from "../dataFromToServer";
 
 class CityGallery extends React.Component {
     constructor(){
@@ -11,7 +11,7 @@ class CityGallery extends React.Component {
     }
 
     componentDidMount() {
-        getCitiesFromServer(this.handleSuccess)
+        // getCitiesFromServer(this.handleSuccess)
     }
 
     handleSuccess = (success) => {

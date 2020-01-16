@@ -2,7 +2,7 @@ import React from 'react';
 import ApartmentHeader from "./apartmentheader";
 import Carousel from "./carousel";
 import Details from "./details";
-import {getApartmentsFromServer} from "../dataFromServer";
+import {getApartmentsFromServer} from "../dataFromToServer";
 import ExtraDetails from "./extraDetails";
 import DropDown from "./dropDown";
 import Footer from "../footer/footer";
