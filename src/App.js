@@ -10,10 +10,11 @@ import {
 } from "react-router-dom";
 import Homepage from "./components/homepage/homePage";
 import Apartment from "./components/singleapartment/apartment";
-import {getApartmentsFromServer} from "./components/dataFromServer";
+import {getApartmentsFromServer} from "./components/dataFromToServer";
 import CityGallery from "./components/gallery/cityGallery";
 import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
+import AddApartment from './components/addApartment';
 
 class App extends React.Component {
     constructor() {
@@ -59,12 +60,15 @@ class App extends React.Component {
                         </Route>
                         <Route path={'/cities'}>
                             <Header/>
-                            <CityGallery apartmentsByCity={this.apartmentsByCity}/>
+                            {/* <CityGallery apartmentsByCity={this.apartmentsByCity}/> */}
                         </Route>
                         <Route path={'/apartment/:id'} component={Apartment}/>
                         <Route path={'/favorites'}>
                             <Favorites favorites={this.state.favorites} returnFavorites={this.returnFavorites}/>
                             <Footer id={4}/>
+                        </Route>
+                        <Route path={'/addapartment'}>
+                            <AddApartment/>
                         </Route>
                         <Route path={'/'}>
                             <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>

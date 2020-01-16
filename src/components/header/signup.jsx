@@ -1,13 +1,19 @@
 import React from 'react';
 
 import validate from '../forms/validation';
+import InputErrors from '../forms/inputErrors';
+import {registerUser} from '../dataFromToServer';
 
 class Signup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: {value: '', errors: [], validations: {required: true, pattern: ''}},
-            password: {value: '', errors: [], validations: {required: true, minLength: 8}}
+            email: {value: '', errors: [], validations: {required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/}},
+            password: {value: '', errors: [], validations: {required: true, minLength: 8}},
+            first_name: {value: '', errors: [], validations: {required: true, minLength: 2}},
+            last_name: {value: '', errors: [], validations:{required: false}},
+            phone: {value: '', errors:[], validations:{required:false}},
+
         }
         this.inputChange = this.inputChange.bind(this);
     }
@@ -25,6 +31,7 @@ class Signup extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
+        const role = document.querySelector("form").className;
 
         let results = {};
         let isValid = true;
@@ -35,7 +42,7 @@ class Signup extends React.Component {
                 isValid = false;
                 this.setState({
                     [prop]: {
-                        ...this.state,
+                        ...this.state[prop],
                         errors
                     }
                 })
@@ -44,29 +51,42 @@ class Signup extends React.Component {
             }
         }
         if (isValid) {
-            console.log(results)
+            if (role === 'user') {
+                results.role_id = 2
+            } else {
+                results.role_id = 1
+            }
+            registerUser(results)
         }
     }
 
 
     render() {
-        const {handleForm, check} = this.props;
+        const {handleForm} = this.props;
         return (
             <div className={'openForm'}>
                 <div className={'formLeft'}>
-                    <h3>Welcome to realtor.com</h3>
-                    <span>Sign up to get property updates, home search tips and local insights via email.</span>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type={'text'} placeholder={'Email Address'} name="email" onBlur={this.inputChange}/>
+                    <h3>Sign Up</h3>
+                    <form onSubmit={this.handleSubmit} className='user'>
+                        <input type='text' placeholder="First Name" name='first_name' onBlur={this.inputChange}/>
+                        <InputErrors errors={this.state.first_name.errors}/>
+                        
+                        <input type='text' placeholder="Last Name" name='last_name' onBlur={this.inputChange}/>
+                        <InputErrors errors={this.state.last_name.errors}/>
+                        
+                        <input type={'email'} placeholder={'Email Address'} name="email" onBlur={this.inputChange}/>
+                        <InputErrors errors={this.state.email.errors}/>
+                        
                         <input type={'text'} placeholder={'Password'} name="password" onBlur={this.inputChange}/>
-                            <div>
-                                <input type={'radio'} id={'radio'} name={'send'} checked onClick={check}/>Send me news, tips and promos from Move and realtor.com® using my email address.
-                            </div>
-    
-                            <div className={'signUp'}>
-                                <input type="submit" className="submit" value="Sign Up"/>
-                                <span className={'toAccount'} onClick={() => handleForm(1)}>Registered? Log In</span>
-                            </div>
+                        <InputErrors errors={this.state.password.errors}/>
+                        
+                        <input type='text' placeholder='Phone Number' name='phone' onBlur={this.inputChange}/>   
+                        <InputErrors errors={this.state.phone.errors}/>
+                        
+                        <div className={'signUp'}>
+                            <input type="submit" className="submit" value="Sign Up"/>
+                            <span className={'toAccount'} onClick={() => handleForm(1)}>Registered? Log In</span>
+                        </div>
                     </form>
                   
                     <span>By creating an account you agree to our <a href={'/'} style={{color: 'grey'}}>Terms of Use</a> and <a href={"/"} style={{color: 'grey'}}>Privacy Policy</a>.</span>

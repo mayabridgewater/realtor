@@ -1,6 +1,66 @@
 import React from 'react';
 
+
+import validate from '../forms/validation';
+import InputErrors from '../forms/inputErrors';
+import {loginUser} from '../dataFromToServer';
+
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: {value: '', errors: [], validations: {required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/}},
+            password: {value: '', errors: [], validations: {required: true}}
+        }
+        this.inputChange = this.inputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    inputChange({target: {name, value}}) {
+        const errors = validate(name, value, this.state[name].validations);
+        this.setState({
+            [name]: {
+                ...this.state[name],
+                value,
+                errors
+            }
+        });
+    }
+
+    async handleSubmit(e) {
+        e.preventDefault();
+
+        let results = {};
+        let isValid = true;
+        for (let prop in this.state) {
+            const value = this.state[prop].value;
+            const errors = validate(prop, value, this.state[prop].validations);
+            if (errors.length > 0) {
+                isValid = false;
+                this.setState({
+                    [prop]: {
+                        ...this.state[prop],
+                        errors
+                    }
+                })
+            } else {
+                results[prop] = value
+            }
+        }
+        if (isValid) {
+            const login = await loginUser(results);
+            for (let prop in this.state) {
+                this.setState({
+                    [prop]: {
+                        ...this.state[prop],
+                        value: '',
+                    }
+                })
+            };
+            console.log(login)
+        }
+    }
+
     render() {
         const {handleForm} = this.props;
         return (
@@ -8,9 +68,12 @@ class Login extends React.Component {
                 <div className={'formLeft'}>
                     <h3>Log in to your account</h3>
                     <span>Access all your saved properties, searches, notes and more.</span> 
-                    <form>
-                        <input type={'text'} placeholder={'Email Address'}/>
-                        <input type={'text'} placeholder={'Password'}/>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type={'email'} placeholder={'Email Address'} name='email' onBlur={this.inputChange}/>
+                        <InputErrors errors={this.state.email.errors}/>
+
+                        <input type={'text'} placeholder={'Password'} name='password' onBlur={this.inputChange}/>
+                        <InputErrors errors={this.state.password.errors}/>
                             <span><a href={'/'}>Forgot Password?</a></span>
                     
                             <div>
@@ -19,10 +82,7 @@ class Login extends React.Component {
                             </div>
                            
                     </form>
-                    <div className={'options'}>
-                        <button style={{border: '1px solid #3b5998', background: '#3b5998', color: 'white'}}>Or, Log in with Facebook</button>
-                        <button>Log in with Google</button>
-                    </div>
+                  
                     
                 </div>
                 <div className={'formRight'}>
