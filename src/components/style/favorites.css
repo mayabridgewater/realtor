@@ -1,0 +1,6 @@
+.favorites {
+  min-height: calc(100vh - 263px);
+  margin: 20px 0; }
+  .favorites a {
+    color: black;
+    text-decoration: none; }
