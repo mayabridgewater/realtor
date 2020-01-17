@@ -45,6 +45,15 @@ async function getCitiesByCountry(country_id) {
     } catch {
 
     }
+};
+
+async function addApartment(data) {
+    try {
+        const success = await fetcher.post('/apartments', data);
+        return success
+    } catch(error) {
+        return error
+    }
 }
 
 export {
@@ -52,5 +61,6 @@ export {
     registerUser,
     loginUser,
     getCountries,
-    getCitiesByCountry
+    getCitiesByCountry, 
+    addApartment
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 class InfoBox extends React.Component {
     render() {
-        const {beds, baths, sqft, address, label, city, country, code, description} = this.props;
+        const {beds, baths, sqft, address, label, city, country, description} = this.props;
         return (
             <div className={'infoBox'}>
                 <div className={'d-flex'}>
@@ -11,8 +11,7 @@ class InfoBox extends React.Component {
                     <p><span className={'bold'}>{sqft}</span> Sqft</p>
                 </div>
                 <div className={'d-flex justify-content-between'}>
-                    <p>{address}</p> <p>{city}, {country}, {code}</p>
-                    <button className={'agentBtn'}>Email Agent</button>
+                    <p>{address}</p> <p>{city}, {country}</p>
                 </div>
             </div>
         )

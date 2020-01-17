@@ -11,7 +11,7 @@ class Gallery extends React.Component {
                     <h3>New York Real Estate & Homes for Sale</h3>
                 </div>
                 <div className={'row'}>
-                    {apartments.map((item, i) => <ApartmentBox {...item} key={i} apartments={apartments} returnFavorites={returnFavorites}/>)}
+                    {apartments.map((item, i) => <ApartmentBox {...item} key={i} apartments={apartments}/>)}
                 </div>
             </div>
         )
