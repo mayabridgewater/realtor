@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getCountries, getCitiesByCountry} from './dataFromToServer';
+import {getCountries, getCitiesByCountry, addApartment} from './dataFromToServer';
 import validate from './forms/validation';
 import InputErrors from './forms/inputErrors';
 
@@ -11,16 +11,17 @@ class AddApartment extends React.Component {
             countries: [],
             cities: [],
             fields: {
-                address: {value:'', errors: [], validations: {required: true, minLength: 10}},
-                city: {value: '', errors: [], validations: {required: true}},
-                price: {value: '', errors: [], validations: {required: true}},
+                address: {value:'', errors: [], validations: {required: false, minLength: 0}},
+                city: {value: '', errors: [], validations: {required: false}},
+                price: {value: '', errors: [], validations: {required: false}},
                 number_of_room: {value: '', errors: [], validations: {required: false}},
                 number_of_bath: {value: '', errors: [], validations: {required: false}},
-                sqft: {value: '', errors: [], validations: {required: true}},
+                sqft: {value: '', errors: [], validations: {required: false}},
                 description: {value: '', errors: [], validations: {required: false}},
-                sale_status: {value: '', errors: [], validations: {required: true}},
-                property_type: {value: '', errors: [], validations: {required: true}},
-                main_image: {value: '', errors: [], validations: {required: false}}
+                sale_status: {value: '', errors: [], validations: {required: false}},
+                property_type: {value: '', errors: [], validations: {required: false}},
+                main_image: {value: '', errors: [], validations: {required: false}},
+                // images: {value: '', errors: [], validations: {required: false}}
             }
         }
         this.getCities = this.getCities.bind(this)
@@ -36,49 +37,51 @@ class AddApartment extends React.Component {
 
     async getCities(e) {
         const country_id = e.target.value;
-        const cities = await getCitiesByCountry(country_id);
+        const selection = await getCitiesByCountry(country_id);
         this.setState({
             ...this.state,
-            cities
+            cities: selection ? selection : []
         })
     }
   
     inputChange = ({target: {name, value}}) => {
         const errors = validate(name, value, this.state.fields[name].validations);
-        if (name === 'main_image') {
-            let imgData = new FormData();
-            const main_image = document.querySelector('input[type="file"]').files[0];
-            imgData.append('main_image', main_image);
-            this.setState({
-                    main_image: {
-                        ...this.state.fields.main_image,
-                        value: imgData,
-                        errors
-                    }
-            })
-        } else {
-            this.setState({
-                fields: {
-                    ...this.state.fields,
-                    [name]: {
-                        ...this.state.fields[name],
-                        value,
-                        errors
-                    }
+        this.setState({
+            fields: {
+                ...this.state.fields,
+                [name]: {
+                    ...this.state.fields[name],
+                    value,
+                    errors
                 }
-            });
-        }
+            }
+        });
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let data = {};
         let isValid = true;
+        let data = new FormData();
 
         for (let prop in this.state.fields) {
             const value = this.state.fields[prop].value;
             const errors = validate(prop, value, this.state.fields[prop].validations);
-            if (errors.length > 0) {
+            if (prop === 'main_image') {
+                const main_image = document.querySelector('input[type="file"]').files[0];
+                data.append('main_image', main_image);
+                this.setState({
+                        main_image: {
+                            ...this.state.fields.main_image,
+                            value: data,
+                            errors
+                        }
+                });
+            } else if (prop === 'images') {
+                const images = (document.querySelector('#multipleImages').files);
+                for (let i = 0; i < images.length; i++) {
+                    data.append('images', images[i])
+                }
+            } else if (errors.length > 0) {
                 isValid = false;
                 this.setState({
                     fields: {
@@ -90,27 +93,27 @@ class AddApartment extends React.Component {
                     }
                 });
             } else {
-                data[prop] = value
+                data.append(`${prop}`, value)
             }
         }
         if (isValid) {
-            console.log(data)
+            const success = addApartment(data);
+            console.log(success);
         }
     }
 
     render() {
-        console.log(this.state)
         return (
             <div>
                 <h1>Add New Apartment</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} enctype="multipart/form-data" action='/apartments'>
                     <div class="form-group">
                         <label>Address</label>
                         <textarea class="form-control" rows="3" name='address' onBlur={this.inputChange}></textarea>
                         <InputErrors errors={this.state.fields.address.errors}/>
 
                         <label for="inputState">Country</label>
-                        <select id="inputState" class="form-control" onClick={this.getCities}>
+                        <select id="inputState" class="form-control" onChange={this.getCities}>
                             {this.state.countries.map((country, c) => (
                                 <option key={c} value={country.id}>{country.name}</option>
                             ))}
@@ -160,8 +163,12 @@ class AddApartment extends React.Component {
                                 <option value='land'>Land</option> 
                             </select>
                             <InputErrors errors={this.state.fields.property_type.errors}/>
+                            
+                            <label>Main Image</label>
+                            <input type="file" name="main_image"/>
 
-                            <input type="file" name="main_image" onBlur={this.inputChange}/>
+                            {/* <label>Extra Pictures</label>
+                            <input type="file" id='multipleImages' name="images" multiple/> */}
                         </div>
                     </div>
                     <input type='submit'></input>

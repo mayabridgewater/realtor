@@ -11,7 +11,6 @@ import {
 import Homepage from "./components/homepage/homePage";
 import Apartment from "./components/singleapartment/apartment";
 import {getApartmentsFromServer} from "./components/dataFromToServer";
-import CityGallery from "./components/gallery/cityGallery";
 import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
 import AddApartment from './components/addApartment';
@@ -57,10 +56,6 @@ class App extends React.Component {
                                 <Gallery apartments={updatedApartments} returnFavorites={this.returnFavorites}/>
                                 <Footer id={2}/>
                             </div>
-                        </Route>
-                        <Route path={'/cities'}>
-                            <Header/>
-                            {/* <CityGallery apartmentsByCity={this.apartmentsByCity}/> */}
                         </Route>
                         <Route path={'/apartment/:id'} component={Apartment}/>
                         <Route path={'/favorites'}>

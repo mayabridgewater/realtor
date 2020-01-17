@@ -52,9 +52,9 @@ class Signup extends React.Component {
         }
         if (isValid) {
             if (role === 'user') {
-                results.role_id = 2
+                results.role_id = 4
             } else {
-                results.role_id = 1
+                results.role_id = 3
             }
             registerUser(results)
         }
