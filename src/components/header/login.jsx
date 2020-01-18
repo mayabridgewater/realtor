@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Cookies from 'js-cookie';
 
 import validate from '../forms/validation';
 import InputErrors from '../forms/inputErrors';
@@ -49,15 +49,8 @@ class Login extends React.Component {
         }
         if (isValid) {
             const login = await loginUser(results);
-            for (let prop in this.state) {
-                this.setState({
-                    [prop]: {
-                        ...this.state[prop],
-                        value: '',
-                    }
-                })
-            };
-            console.log(login)
+            const currentCookie = JSON.parse(Cookies.get('user'));
+            this.props.login(currentCookie.role_id)
         }
     }
 

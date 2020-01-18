@@ -66,6 +66,9 @@ class App extends React.Component {
                         <Route path={'/addapartment'}>
                             <AddApartment/>
                         </Route>
+                        {/* <Route path={'/admin'}>
+                            <AdminMain/>
+                        </Route> */}
                         <Route path={'/'}>
                             <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>
                         </Route>
