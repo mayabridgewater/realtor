@@ -1,6 +1,7 @@
 
 import fetcher from '../api/fetcher';
 
+
 async function getApartmentsFromServer() {
     try {
         const result = await fetcher.get(`/apartments`);

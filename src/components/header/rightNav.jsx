@@ -8,7 +8,7 @@ class RightNav extends React.Component {
         super();
         this.state = {
             display: false,
-            showForm: null
+            showForm: 2//null
         }
     }
 
