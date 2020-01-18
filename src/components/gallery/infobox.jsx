@@ -2,7 +2,7 @@ import React from 'react';
 
 class InfoBox extends React.Component {
     render() {
-        const {beds, baths, sqft, address, label, city, country, description} = this.props;
+        const {beds, baths, sqft, address, city, country, description} = this.props;
         return (
             <div className={'infoBox'}>
                 <div className={'d-flex'}>
