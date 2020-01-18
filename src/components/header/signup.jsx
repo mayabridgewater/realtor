@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import validate from '../forms/validation';
 import InputErrors from '../forms/inputErrors';
@@ -8,42 +9,61 @@ class Signup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: {value: '', errors: [], validations: {required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/}},
-            password: {value: '', errors: [], validations: {required: true, minLength: 8}},
-            first_name: {value: '', errors: [], validations: {required: true, minLength: 2}},
-            last_name: {value: '', errors: [], validations:{required: false}},
-            phone: {value: '', errors:[], validations:{required:false}},
+            userSignup: true,
+            fields: {
+                email: {value: '', errors: [], validations: {required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/}},
+                password: {value: '', errors: [], validations: {required: true, minLength: 8}},
+                first_name: {value: '', errors: [], validations: {required: true, minLength: 2}},
+                last_name: {value: '', errors: [], validations:{required: false}},
+                phone: {value: '', errors:[], validations:{required:false}}
+            }
 
         }
         this.inputChange = this.inputChange.bind(this);
+        this.changeUser = this.changeUser.bind(this);
+    }
+
+    changeUser() {
+        this.setState({
+            ...this.state,
+            userSignup: !this.state.userSignup
+        })
     }
 
     inputChange({target: {name, value}}) {
-        const errors = validate(name, value, this.state[name].validations);
+        const errors = validate(name, value, this.state.fields[name].validations);
         this.setState({
-            [name]: {
-                ...this.state[name],
-                value,
-                errors
+            fields: {
+                ...this.state.fields,
+                [name]: {
+                    ...this.state.fields[name],
+                    value,
+                    errors
+                }
+
             }
         });
     }
 
     handleSubmit = e => {
         e.preventDefault();
-        const role = document.querySelector("form").className;
+        const {fields} = this.state;
 
         let results = {};
         let isValid = true;
-        for (let prop in this.state) {
-            const value = this.state[prop].value;
-            const errors = validate(prop, value, this.state[prop].validations);
+        for (let prop in fields) {
+            const value = fields[prop].value;
+            const errors = validate(prop, value, fields[prop].validations);
             if (errors.length > 0) {
                 isValid = false;
                 this.setState({
-                    [prop]: {
-                        ...this.state[prop],
-                        errors
+                    fields: {
+                        ...fields,
+                        [prop]: {
+                            ...fields[prop],
+                            errors
+                        }
+
                     }
                 })
             } else {
@@ -51,7 +71,7 @@ class Signup extends React.Component {
             }
         }
         if (isValid) {
-            if (role === 'user') {
+            if (this.state.userSignup) {
                 results.role_id = 4
             } else {
                 results.role_id = 3
@@ -63,25 +83,26 @@ class Signup extends React.Component {
 
     render() {
         const {handleForm} = this.props;
+        const {fields} = this.state;
         return (
             <div className={'openForm'}>
                 <div className={'formLeft'}>
-                    <h3>Sign Up</h3>
+                    <h3>{this.state.userSignup ? 'Sign Up' : 'Admin Sign Up'}</h3>
                     <form onSubmit={this.handleSubmit} className='user'>
                         <input type='text' placeholder="First Name" name='first_name' onBlur={this.inputChange}/>
-                        <InputErrors errors={this.state.first_name.errors}/>
+                        <InputErrors errors={fields.first_name.errors}/>
                         
                         <input type='text' placeholder="Last Name" name='last_name' onBlur={this.inputChange}/>
-                        <InputErrors errors={this.state.last_name.errors}/>
+                        <InputErrors errors={fields.last_name.errors}/>
                         
                         <input type={'email'} placeholder={'Email Address'} name="email" onBlur={this.inputChange}/>
-                        <InputErrors errors={this.state.email.errors}/>
+                        <InputErrors errors={fields.email.errors}/>
                         
                         <input type={'text'} placeholder={'Password'} name="password" onBlur={this.inputChange}/>
-                        <InputErrors errors={this.state.password.errors}/>
+                        <InputErrors errors={fields.password.errors}/>
                         
                         <input type='text' placeholder='Phone Number' name='phone' onBlur={this.inputChange}/>   
-                        <InputErrors errors={this.state.phone.errors}/>
+                        <InputErrors errors={fields.phone.errors}/>
                         
                         <div className={'signUp'}>
                             <input type="submit" className="submit" value="Sign Up"/>
@@ -93,8 +114,7 @@ class Signup extends React.Component {
                 </div>
                 <div className={'formRight'}>
                     <h3>Real estate professional?</h3>
-                    <div>Manage your profile, leads, listing and more.</div>
-                    <button>Pro Sign up</button>
+                    <button onClick={this.changeUser}>{this.state.userSignup ? 'Pro Sign up' : 'User Sign Up'}</button>
                     <span><a href={'/'}>Already registered? Log in here</a></span>
                 </div>
                 <img src={'../images/xIcon.png'} alt={'close'} className={'exitBtn'} onClick={() => handleForm(false)}/>

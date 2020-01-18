@@ -14,6 +14,7 @@ import {getApartmentsFromServer} from "./components/dataFromToServer";
 import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
 import AddApartment from './components/addApartment';
+import AdminSignUp from './components/admin/adminSignup';
 
 class App extends React.Component {
     constructor() {
