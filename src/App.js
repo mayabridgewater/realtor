@@ -15,6 +15,7 @@ import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
 import AddApartment from './components/addApartment';
 import AdminSignUp from './components/admin/adminSignup';
+import AdminMain from './components/admin/adminMain';
 
 class App extends React.Component {
     constructor() {
@@ -66,9 +67,9 @@ class App extends React.Component {
                         <Route path={'/addapartment'}>
                             <AddApartment/>
                         </Route>
-                        {/* <Route path={'/admin'}>
+                        <Route path={'/admin'}>
                             <AdminMain/>
-                        </Route> */}
+                        </Route>
                         <Route path={'/'}>
                             <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>
                         </Route>

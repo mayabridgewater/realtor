@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import PhoneNav from "./phoneNav";
 import Login from './login';
 import Signup from "./signup";
+import { Link } from 'react-router-dom';
 
 class RightNav extends React.Component {
     constructor(){
@@ -16,10 +17,10 @@ class RightNav extends React.Component {
     }
 
     componentDidMount() {
-        const currentCookie = JSON.parse(Cookies.get('user'));
+        const currentCookie = Cookies.get('user');
         if (currentCookie) {
             this.setState({
-                roleId: currentCookie.role_id
+                roleId: JSON.parse(currentCookie).role_id
             })
         }
     }
@@ -47,10 +48,16 @@ class RightNav extends React.Component {
         this.setState({
             roleId: id
         })
-    }
+    };
+
+    logout = () => {
+        Cookies.remove('user');
+        this.setState({
+            roleId: undefined
+        })
+    };
 
     render() {
-        console.log(this.state)
         return (
             <div className={'rightNav d-flex'}>
                 <div className={'img d-none d-md-flex'} onMouseEnter={this.showStyle} onMouseLeave={() => this.showStyle(false)}>
@@ -65,7 +72,8 @@ class RightNav extends React.Component {
                     {this.state.showForm === 2 && <Signup handleForm={this.handleForm} check={this.unCheck}/>}
                 </div>
                 }
-                {this.state.roleId && <p>Logout</p>}
+                {this.state.roleId && <p onClick={this.logout}>Logout</p>}
+                {this.state.roleId === 3 && <Link to='/admin'><p>Admin</p></Link>}
                 <span className={'d-none d-md-flex'}>|</span>
                 <p className={'d-none d-md-flex'}><a href={"/"}>Advertise</a></p>
             </div>
