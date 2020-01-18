@@ -2,9 +2,9 @@
 import fetcher from '../api/fetcher';
 
 
-async function getApartmentsFromServer() {
+async function getApartmentsFromServer(data) {
     try {
-        const result = await fetcher.get(`/apartments`);
+        const result = await fetcher.get(`/apartments?${data}`);
         return result.data
     } catch(error) {
         return error
@@ -33,7 +33,7 @@ async function loginUser(data) {
 async function getCountries() {
     try {
         const countries = await fetcher.get('/countries');
-        return(countries.data)
+        return countries.data
     }catch(error) {
         return error
     }
