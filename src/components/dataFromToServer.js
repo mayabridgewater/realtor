@@ -62,7 +62,7 @@ async function addApartment(data) {
         const success = await fetcher.post('/apartments', data);
         return success
     } catch(error) {
-        return error
+        return false
     }
 }
 

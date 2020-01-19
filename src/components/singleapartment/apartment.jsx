@@ -1,4 +1,6 @@
 import React from 'react';
+import Cookies from 'js-cookie';
+
 import ApartmentHeader from "./apartmentheader";
 import Carousel from "./carousel";
 import Details from "./details";
@@ -67,6 +69,7 @@ class Apartment extends React.Component {
                         <Details apartment={this.state.apartment}/>
                         <ExtraDetails/>
                         <DropDown apartment={this.state.apartment}/>
+                        {JSON.parse(Cookies.get('user').role_id===3) &&
                         <div className='customContainer' style={{paddingBottom: '20px'}}>
                             <form onSubmit={this.handleSubmit}>
                                 <label>Approve</label>
@@ -79,6 +82,7 @@ class Apartment extends React.Component {
                                 <input type='submit'/>
                             </form>
                         </div>
+                        }
                         <Footer id={3}/>
                     </div>
                 }

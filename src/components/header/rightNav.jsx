@@ -72,10 +72,16 @@ class RightNav extends React.Component {
                     {this.state.showForm === 2 && <Signup handleForm={this.handleForm} check={this.unCheck}/>}
                 </div>
                 }
-                {this.state.roleId && <p onClick={this.logout}>Logout</p>}
-                {this.state.roleId === 3 && <Link to='/admin'><p>Admin</p></Link>}
-                <span className={'d-none d-md-flex'}>|</span>
-                <p className={'d-none d-md-flex'}><a href={"/"}>Advertise</a></p>
+                {this.state.roleId && 
+                    <div className='d-flex'>
+                        <span style={{padding: '0 5px'}}>Welcome {JSON.parse(Cookies.get('user')).first_name}</span>
+                        <p onClick={this.logout}>Logout</p>
+                    </div>
+                    }
+                {this.state.roleId === 3 ? <Link to='/admin'><p>Admin</p></Link>
+                :
+                <Link to='/addapartment'><p className={'d-none d-md-flex'}>Advertise</p></Link>
+                }
             </div>
         );
     }

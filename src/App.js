@@ -55,7 +55,7 @@ class App extends React.Component {
                             <div>
                                 <Header/>
                                 <Search filterSearch={this.filterSearch} aptLength={updatedApartments.length} reset={this.resetSearch}/>
-                                <Gallery apartments={updatedApartments} returnFavorites={this.returnFavorites}/>
+                                <Gallery/>
                                 <Footer id={2}/>
                             </div>
                         </Route>

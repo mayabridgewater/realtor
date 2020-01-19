@@ -19,7 +19,7 @@ class Homepage extends React.Component {
                 <Header/>
                 <SubHeader/>
                 <Main/>
-                <NewListings returnFavorites={returnFavorites} favorites={favorites}/>
+                {/* <NewListings returnFavorites={returnFavorites} favorites={favorites}/> */}
                 <WhatsHappening/>
                 <Trends/>
                 <Ads/>

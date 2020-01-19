@@ -21,6 +21,7 @@ class ApartmentBox extends React.Component {
 
     render() {
         const {id, price, main_image, images, number_of_room, number_of_bath, sqft, address, city_name, name, apartments, returnFavorites} = this.props;
+        console.log(main_image);
         return (
             <div id={'container'} className={'col-sm-6 col-md-4 col-lg-3'} style={{position: 'relative'}}>
                 <Link to={`/apartment/${id}`}><div className={'box'}>

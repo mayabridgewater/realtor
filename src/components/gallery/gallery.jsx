@@ -1,10 +1,28 @@
 import React from 'react';
+
 import ApartmentBox from "./apartmentBox";
-import {Link} from "react-router-dom";
+import {getApartmentsFromServer} from '../dataFromToServer';
+
 
 class Gallery extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            apartments: [],
+            loading: true,
+            favorites: [],
+            updatedApartments: []
+        }
+    }
+    async componentDidMount() {
+        const data = await getApartmentsFromServer();
+        this.setState({
+            apartments: data,
+            loading: false
+        })
+    };
     render() {
-        const {apartments, returnFavorites} = this.props;
+        const {apartments} = this.state;
         return (
             <div id={'apartmentBox'} className={'container-fluid'}>
                 <div className={'galleryHeader'}>
