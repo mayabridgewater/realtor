@@ -23,29 +23,31 @@ class App extends React.Component {
         this.state = {
             apartments: [],
             loading: true,
-            favorites: [],
-            updatedApartments: []
+            favorites: []
         }
+        this.filterApartments = this.filterApartments.bind(this)
     }
     async componentDidMount() {
         try {
             const data = await getApartmentsFromServer();
-            this.handleSuccess(data)
+            this.setState({
+                apartments: data,
+                loading: false
+            })
         } catch (error) {
-            this.handleSuccess(error)
+            console.log(error)
         }
     };
 
-    handleSuccess = (success) => {
+    async filterApartments(query) {
+        const apartments = await getApartmentsFromServer(query);
         this.setState({
-            apartments: success,
-            updatedApartments: success,
-            loading: false
+            apartments: apartments
         })
-    };
+    }
 
     render() {
-        const {updatedApartments} = this.state;
+        console.log(this.state.apartments)
         return (
             <Router>
                 {this.state.loading ? <div className="loader"/> :
@@ -54,8 +56,8 @@ class App extends React.Component {
                         <Route path={'/apartments'}>
                             <div>
                                 <Header/>
-                                <Search filterSearch={this.filterSearch} aptLength={updatedApartments.length} reset={this.resetSearch}/>
-                                <Gallery/>
+                                <Search filterApartments={this.filterApartments}/>
+                                <Gallery apartments={this.state.apartments}/>
                                 <Footer id={2}/>
                             </div>
                         </Route>

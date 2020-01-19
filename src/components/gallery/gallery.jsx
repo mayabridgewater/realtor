@@ -5,24 +5,8 @@ import {getApartmentsFromServer} from '../dataFromToServer';
 
 
 class Gallery extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            apartments: [],
-            loading: true,
-            favorites: [],
-            updatedApartments: []
-        }
-    }
-    async componentDidMount() {
-        const data = await getApartmentsFromServer();
-        this.setState({
-            apartments: data,
-            loading: false
-        })
-    };
     render() {
-        const {apartments} = this.state;
+        const {apartments} = this.props;
         return (
             <div id={'apartmentBox'} className={'container-fluid'}>
                 <div className={'galleryHeader'}>
