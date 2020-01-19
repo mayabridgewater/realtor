@@ -6,6 +6,7 @@ import Heart from "../favorites/heart";
 class Carousel extends React.Component {
     render() {
         const {apartment, id, apartments} = this.props;
+        console.log(apartment)
         return (
                 <div className={'customContainer carouselWrapper'}>
                      {/*<p className={'presentedBy'}>Presented by: </p>*/}
@@ -14,9 +15,9 @@ class Carousel extends React.Component {
                          <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
                              <div className="carousel-inner">
                                  <div className="carousel-item active">
-                                     <img className="d-block w-100" src={'../images/apartment/' + apartment.main_image} alt="First slide"/>
+                                     <img className="d-block w-100" src={'http://localhost:3000/' + apartment[0].main_image} alt="First slide"/>
                                  </div>
-                                 {apartment.images.map((picture, p) => <InnerCarousel image={picture} key={p}/>)}
+                                 {/* {apartment.images.map((picture, p) => <InnerCarousel image={picture} key={p}/>)} */}
                              </div>
                              <a className="carousel-control-prev" href={"#carouselExampleControls"} role="button" data-slide="prev">
                                  <span className="carousel-control-prev-icon" aria-hidden="true"/>
