@@ -49,8 +49,12 @@ class Login extends React.Component {
         }
         if (isValid) {
             const login = await loginUser(results);
-            const currentCookie = JSON.parse(Cookies.get('user'));
-            this.props.login(currentCookie.role_id)
+            if (!login) {
+                console.log('incorrect password or email')
+            } else {
+                const currentCookie = JSON.parse(Cookies.get('user'));
+                this.props.login(currentCookie.role_id)
+            }
         }
     }
 

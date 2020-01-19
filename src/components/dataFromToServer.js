@@ -11,6 +11,15 @@ async function getApartmentsFromServer(data) {
     }
 };
 
+async function getApartmentById(id) {
+    try {
+        const result = await fetcher.get(`/apartments/${id}`);
+        return result.data
+    }catch(error) {
+        return error
+    }
+}
+
 async function registerUser(data) {
     try {
         const post = await fetcher.post('/signup', data);
@@ -26,7 +35,7 @@ async function loginUser(data) {
         const login = await fetcher.post('/login', data);
         return login
     } catch(error) {
-        return error
+        return false
     }
 }
 
@@ -57,11 +66,19 @@ async function addApartment(data) {
     }
 }
 
+async function updateApartment(data) {
+    const success = await fetcher.put('/apartments', data);
+    console.log(success)
+    
+}
+
 export {
     getApartmentsFromServer, 
     registerUser,
     loginUser,
     getCountries,
     getCitiesByCountry, 
-    addApartment
+    addApartment,
+    getApartmentById,
+    updateApartment
 }

@@ -21,9 +21,9 @@ export default class AdminMain extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='container-fluid'>
                 <h1>Admin Home</h1>
-                <div className='container-fluid'>
+                <div>
                     <h3>Pending Apartments</h3>
                     <div className='row'>
                         {this.state.apartments.map((item, i) => <ApartmentBox {...item} key={i}/>)}

@@ -9,9 +9,9 @@ class Details extends React.Component {
                     <div className={'d-flex flex-column'}>
                         <h1>${apartment.price}</h1>
                         <div className={'d-flex'}>
-                            <p><span>{apartment.number_of_beds}</span> bed</p>
-                            <p><span>{apartment.number_of_rooms}</span> bath</p>
-                            <p><span>{apartment.sqft}</span> sqft</p>
+                            <p><span>{apartment[0].number_of_room}</span> bed</p>
+                            <p><span>{apartment[0].number_of_bath}</span> bath</p>
+                            <p><span>{apartment[0].sqft}</span> sqft</p>
                         </div>
                         {/* <p><span>{apartment.address},</span> {city.label} {city.country}</p> */}
                     </div>
