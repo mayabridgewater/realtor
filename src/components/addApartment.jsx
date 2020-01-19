@@ -3,11 +3,14 @@ import React from 'react';
 import {getCountries, getCitiesByCountry, addApartment} from './dataFromToServer';
 import validate from './forms/validation';
 import InputErrors from './forms/inputErrors';
+import Homepage from './homepage/homePage';
+import Header from './header/header';
 
 class AddApartment extends React.Component {
     constructor() {
         super();
         this.state = {
+            uploadSuccess: false,
             countries: [],
             cities: [],
             fields: {
@@ -98,13 +101,24 @@ class AddApartment extends React.Component {
         }
         if (isValid) {
             const success = addApartment(data);
-            console.log(success);
+            if (!success) {
+                console.log('no')
+            } else {
+                this.setState({
+                    uploadSuccess: true
+                })
+            }
         }
     }
 
     render() {
         return (
             <div>
+                {this.state.uploadSuccess ? 
+                    <Homepage/> 
+                    :
+                    <div>
+                    <Header/>
                 <h1>Add New Apartment</h1>
                 <form onSubmit={this.handleSubmit} enctype="multipart/form-data" action='/apartments'>
                     <div class="form-group">
@@ -173,6 +187,8 @@ class AddApartment extends React.Component {
                     </div>
                     <input type='submit'></input>
                 </form>
+                </div>
+    }
             </div>
         )
     }
