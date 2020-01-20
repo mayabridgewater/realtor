@@ -6,7 +6,6 @@ import Heart from "../favorites/heart";
 class Carousel extends React.Component {
     render() {
         const {apartment, id, apartments} = this.props;
-        console.log(apartment)
         return (
                 <div className={'customContainer carouselWrapper'}>
                      {/*<p className={'presentedBy'}>Presented by: </p>*/}

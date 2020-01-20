@@ -1149,3 +1149,7 @@ body {
   .favorites a {
     color: black;
     text-decoration: none; }
+
+.adminMenu {
+  border-right: 1px solid black;
+  height: 100vh; }
