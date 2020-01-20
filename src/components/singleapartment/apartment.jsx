@@ -64,12 +64,12 @@ class Apartment extends React.Component {
                 <ApartmentHeader/>
                 {this.state.loading ? <p>loading</p> :
                     <div>
-                        <h3 className='offset-md-1'>Pending Apartment: </h3>
+                        {this.state.apartment[0].status === 'pending' && <h3 className='offset-md-1'>Pending Apartment: </h3>}
                         <Carousel apartment={this.state.apartment}/>
                         <Details apartment={this.state.apartment}/>
                         <ExtraDetails/>
                         <DropDown apartment={this.state.apartment}/>
-                        {JSON.parse(Cookies.get('user').role_id===3) &&
+                        {Cookies.get('user') && JSON.parse(Cookies.get('user').role_id===3) &&
                         <div className='customContainer' style={{paddingBottom: '20px'}}>
                             <form onSubmit={this.handleSubmit}>
                                 <label>Approve</label>
