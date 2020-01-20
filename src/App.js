@@ -27,69 +27,6 @@ class App extends React.Component {
         }
         this.filterApartments = this.filterApartments.bind(this)
     }
-<<<<<<< HEAD
-    componentDidMount = () => {
-        getApartmentsFromServer(this.handleSuccess)
-    };
-
-    handleSuccess = (success) => {
-        console.log(success);
-        this.setState({
-            apartments: success,
-            updatedApartments: success,
-            loading: false
-        })
-    };
-
-    apartmentsByCity = (id) => {
-      const newList = this.state.apartments.filter(apartment => apartment.cityId === id);
-      this.setState({
-          apartments: newList,
-          loading: false
-      })
-    };
-
-    filtered = (apartments) => {
-        this.setState({
-            updatedApartments: apartments
-        })
-    };
-
-    resetSearch = () => {
-        this.setState({
-            updatedApartments: this.state.apartments
-        })
-    };
-
-    filterSearch = (data) => {
-        const {updatedApartments} = this.state;
-        let filteredArray = updatedApartments;
-
-        cityFilter(
-            data.city,
-            filteredArray,
-            (ap) => {filteredArray = ap}).then(
-                () => priceFilter(
-                    data.minprice,
-                    data.maxprice,
-                    filteredArray,
-                    (ap) => {filteredArray = ap})).then(
-                        () => bedsFilter(
-                            data.beds,
-                            data.minbeds,
-                            data.maxbeds,
-                            filteredArray,
-                            (ap) => {filteredArray = ap})).then(
-                                () => bathsFilter(
-                                    data.baths,
-                                    data.minbaths,
-                                    data.maxbaths,
-                                    filteredArray,
-                                    (ap) => {filteredArray = ap})).then(
-                                        () => this.filtered(filteredArray));
-        // const dataProperty = [data.pAll, data.pSingle, data.pMulti, data.pCondo, data.pMobile, data.pFarm, data.pLand];
-        // let properties = propertyFilter(dataProperty);
-=======
     async componentDidMount() {
         try {
             const data = await getApartmentsFromServer();
@@ -100,7 +37,6 @@ class App extends React.Component {
         } catch (error) {
             console.log(error)
         }
->>>>>>> 2fcdedd5eca259d68d672d161673639df54b68ac
     };
 
     async filterApartments(query) {
@@ -111,11 +47,7 @@ class App extends React.Component {
     }
 
     render() {
-<<<<<<< HEAD
-        const {updatedApartments} = this.state;
-=======
         console.log(this.state.apartments)
->>>>>>> 2fcdedd5eca259d68d672d161673639df54b68ac
         return (
             <Router>
                 {this.state.loading ? <div className="loader"/> :
