@@ -193,7 +193,7 @@ class Search extends React.Component {
                                                 <p>$2.4M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={'Any Price'} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={undefined} onBlur={this.inputChange} className={'radiobtn'}/>
                                                 <p>Any Price</p>
                                             </label>
                                         </div>}
