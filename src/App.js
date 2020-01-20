@@ -23,9 +23,11 @@ class App extends React.Component {
         this.state = {
             apartments: [],
             loading: true,
-            favorites: []
+            favorites: [],
+            loggedIn: false
         }
-        this.filterApartments = this.filterApartments.bind(this)
+        this.filterApartments = this.filterApartments.bind(this);
+        this.login = this.login.bind(this)
     }
     async componentDidMount() {
         const data = await getApartmentsFromServer();
@@ -39,6 +41,18 @@ class App extends React.Component {
         const apartments = await getApartmentsFromServer(query);
         this.setState({
             apartments: apartments
+        })
+    }
+
+    login() {
+        this.setState({
+            loggedIn: true
+        })
+    } 
+
+    logOut() {
+        this.setState({
+            loggedOut: false
         })
     }
 
