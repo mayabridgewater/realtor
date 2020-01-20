@@ -37,6 +37,7 @@ class App extends React.Component {
     };
 
     handleSuccess = (success) => {
+        console.log(success);
         this.setState({
             apartments: success,
             updatedApartments: success,
@@ -108,7 +109,6 @@ class App extends React.Component {
 
     render() {
         const {updatedApartments} = this.state;
-        console.log(updatedApartments.length);
         return (
             <Router>
                 {this.state.loading ? <div className="loader"/> :
