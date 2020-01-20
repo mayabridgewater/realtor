@@ -69,7 +69,7 @@ class Apartment extends React.Component {
                         <Details apartment={this.state.apartment}/>
                         <ExtraDetails/>
                         <DropDown apartment={this.state.apartment}/>
-                        {Cookies.get('user') && JSON.parse(Cookies.get('user').role_id===3) &&
+                        {this.state.apartment[0].status === 'pending' &&
                         <div className='customContainer' style={{paddingBottom: '20px'}}>
                             <form onSubmit={this.handleSubmit}>
                                 <label>Approve</label>

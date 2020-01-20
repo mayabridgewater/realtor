@@ -28,15 +28,11 @@ class App extends React.Component {
         this.filterApartments = this.filterApartments.bind(this)
     }
     async componentDidMount() {
-        try {
-            const data = await getApartmentsFromServer();
-            this.setState({
-                apartments: data,
-                loading: false
-            })
-        } catch (error) {
-            console.log(error)
-        }
+        const data = await getApartmentsFromServer();
+        this.setState({
+            apartments: data,
+            loading: false
+        })
     };
 
     async filterApartments(query) {
@@ -47,7 +43,6 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.state.apartments)
         return (
             <Router>
                 {this.state.loading ? <div className="loader"/> :
