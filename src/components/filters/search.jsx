@@ -290,6 +290,38 @@ class Search extends React.Component {
                                 </div>
                             </div>}
                         </div> 
+                        <div className={'searchBtn pr-3 d-none d-md-block'}><button type='button' className={'btn'} onClick={() => this.showStyle(5)}>More Options</button>
+                            {this.state.display === 5 &&
+                                <div className={'property'}>
+                                    <h3>Sale Type</h3>
+                                    <div className={'row container-fluid propertyTypes'}>
+                                        <label className={'col-6'}>
+                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='sale' onBlur={this.inputChange}/>
+                                            <img src={'./images/filters/for-sale.png'} alt={''}/><span>For Sale</span>
+                                        </label>
+                                        <label className={'col-6'}>
+                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='rent' onBlur={this.inputChange}/>
+                                            <img src={'./images/filters/for-rent.png'} alt={''}/><span>For Rent</span>
+                                        </label>
+                                        <label className={'col-6'}>
+                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='both' onBlur={this.inputChange}/>
+                                            <img src={'./images/filters/both.png'} alt={''}/><span>Both</span>
+                                        </label>
+                                    </div>
+                                    <h3>Sqft</h3>
+                                    <select class="form-control" name='sqft' onBlur={this.inputChange}>
+                                        <option value='50'>50+</option>
+                                        <option value='100'>100+</option>
+                                        <option value='150'>150+</option>
+                                        <option value='200'>200+</option>
+                                        <option value='300'>300+</option>
+                                        <option value='400'>400+</option>
+                                        <option value='550'>550+</option>
+                                        <option value='1000'>1000+</option>                                        
+                                    </select>
+                                </div>
+                            }
+                        </div>
                         <button className={'btn search'}>Search</button>
                         {this.state.displayResults && <button className={'btn search'} onClick={this.resetSearch}>Reset</button>}
                     </form>

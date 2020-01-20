@@ -29,9 +29,9 @@ class Carousel extends React.Component {
                              </a>
                          </div>
                          <div className={'overText'}>
-                             {apartment.for_sale ? <p>For Sale</p> : <p>For Rent</p>}
+                            {apartment[0].sale_status === 'both' ? <p>For Sale/Rent</p> : <p>For {apartment[0].sale_status}</p>}
                          </div>
-                         <ApartmentForm address={apartment.address}/>
+                         <ApartmentForm address={apartment[0].address}/>
                          <Heart apartmentId={id} locationId={2} apartments={apartments}/>
                      </div>
                  </div>
