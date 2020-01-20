@@ -11,7 +11,7 @@ class Signup extends React.Component {
             userSignup: true,
             fields: {
                 email: {value: '', errors: [], validations: {required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/}},
-                password: {value: '', errors: [], validations: {required: true, minLength: 8}},
+                password: {value: '', errors: [], validations: {required: true, minLength: 5}},
                 first_name: {value: '', errors: [], validations: {required: true, minLength: 2}},
                 last_name: {value: '', errors: [], validations:{required: false}},
                 phone: {value: '', errors:[], validations:{required:false}}

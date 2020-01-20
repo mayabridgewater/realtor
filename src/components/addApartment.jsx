@@ -24,7 +24,7 @@ class AddApartment extends React.Component {
                 sale_status: {value: '', errors: [], validations: {required: false}},
                 property_type: {value: '', errors: [], validations: {required: false}},
                 main_image: {value: '', errors: [], validations: {required: false}},
-                // images: {value: '', errors: [], validations: {required: false}}
+                images: {value: '', errors: [], validations: {required: false}}
             }
         }
         this.getCities = this.getCities.bind(this)
@@ -81,9 +81,9 @@ class AddApartment extends React.Component {
                 });
             } else if (prop === 'images') {
                 const images = (document.querySelector('#multipleImages').files);
-                for (let i = 0; i < images.length; i++) {
-                    data.append('images', images[i])
-                }
+                Array.from(images).forEach(file => {
+                    data.append('images', file)
+                })
             } else if (errors.length > 0) {
                 isValid = false;
                 this.setState({
@@ -108,6 +108,7 @@ class AddApartment extends React.Component {
                     uploadSuccess: true
                 })
             }
+            
         }
     }
 
@@ -181,8 +182,8 @@ class AddApartment extends React.Component {
                             <label>Main Image</label>
                             <input type="file" name="main_image"/>
 
-                            {/* <label>Extra Pictures</label>
-                            <input type="file" id='multipleImages' name="images" multiple/> */}
+                            <label>Extra Pictures</label>
+                            <input type="file" id='multipleImages' name="images" multiple/>
                         </div>
                     </div>
                     <input type='submit'></input>
