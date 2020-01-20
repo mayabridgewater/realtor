@@ -29,19 +29,19 @@ class Signup extends React.Component {
         })
     }
 
+    changeState = (newState) => {
+        this.setState({
+            ...this.state,
+            fields: newState
+        })
+    }
+
     inputChange({target: {name, value}}) {
         const errors = validate(name, value, this.state.fields[name].validations);
-        this.setState({
-            fields: {
-                ...this.state.fields,
-                [name]: {
-                    ...this.state.fields[name],
-                    value,
-                    errors
-                }
-
-            }
-        });
+        const newFields = {...this.state.fields};
+        newFields[name].value = value;
+        newFields[name].errors = errors;
+        this.changeState(newFields);
     }
 
     handleSubmit = e => {
@@ -50,21 +50,14 @@ class Signup extends React.Component {
 
         let results = {};
         let isValid = true;
+        const newFields = {...this.state.fields};
+
         for (let prop in fields) {
             const value = fields[prop].value;
             const errors = validate(prop, value, fields[prop].validations);
             if (errors.length > 0) {
                 isValid = false;
-                this.setState({
-                    fields: {
-                        ...fields,
-                        [prop]: {
-                            ...fields[prop],
-                            errors
-                        }
-
-                    }
-                })
+                newFields[prop].errors = errors
             } else {
                 results[prop] = value
             }
@@ -76,6 +69,8 @@ class Signup extends React.Component {
                 results.role_id = 3
             }
             registerUser(results)
+        }else {
+            this.changeState(newFields)
         }
     }
 

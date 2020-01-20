@@ -73,7 +73,8 @@ async function updateApartment(data) {
 }
 
 async function getImages(aprtId) {
-    const images = await fetcher.get(`/images/${aprtId}`)
+    const images = await fetcher.get(`/images/${aprtId}`);
+    return images.data
 }
 
 export {

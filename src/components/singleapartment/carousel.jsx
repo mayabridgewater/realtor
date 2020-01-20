@@ -13,86 +13,40 @@ class Carousel extends React.Component {
     }
 
     async componentDidMount() {
-        const images = await getImages(this.props.apartment[0].id)
+        const images = await getImages(this.props.apartment[0].id);
+        this.setState({
+            images
+        })
     }
 
     render() {
         const {apartment, id, apartments} = this.props;
         return (
-                    <div class="row">
-                    <div class="col-md-12">
+                    <div className="row">
+                        <div className="col-md-12">
 
-                            <div id="mdb-lightbox-ui"></div>
+                                <div id="mdb-lightbox-ui"></div>
 
-                            <div class="mdb-lightbox no-margin">
+                                <div className="mdb-lightbox no-margin">
 
-                                <figure class="col-md-4">
-                                    <a href={'http://localhost:3000/' + apartment[0].main_image} data-size="1600x1067">
-                                    <img alt="picture" src={'http://localhost:3000/' + apartment[0].main_image}
-                                        class="img-fluid"/>
-                                    </a>
-                                </figure>
-                                {}
+                                    <figure className="col-md-4">
+                                        <a href={'http://localhost:3000/' + apartment[0].main_image} data-size="1600x1067">
+                                        <img alt="picture" src={'http://localhost:3000/' + apartment[0].main_image}
+                                            className="img-fluid"/>
+                                        </a>
+                                    </figure>
+                                    {this.state.images.map((image, i) => (
+                                        <figure className="col-md-4" key={i}>
+                                        <a href={'http://localhost:3000/' + image.url} data-size="1600x1067">
+                                        <img alt="picture" src={'http://localhost:3000/' + image.url}
+                                            className="img-fluid" />
+                                        </a>
+                                    </figure>
+                                    ))}
 
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(98).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
-
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(131).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
-
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(123).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(123).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
-
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(118).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(118).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
-
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(128).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(128).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
-
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(132).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(132).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
-
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(115).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
-
-                                <figure class="col-md-4">
-                                    <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(133).jpg" data-size="1600x1067">
-                                    <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(133).jpg"
-                                        class="img-fluid" />
-                                    </a>
-                                </figure>
+                                </div>
 
                             </div>
-
-                        </div>
                        
                          {/* <div className={'overText'}>
                             {apartment[0].sale_status === 'both' ? <p>For Sale/Rent</p> : <p>For {apartment[0].sale_status}</p>}
