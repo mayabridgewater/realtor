@@ -72,6 +72,10 @@ async function updateApartment(data) {
     
 }
 
+async function getImages(aprtId) {
+    const images = await fetcher.get(`/images/${aprtId}`)
+}
+
 export {
     getApartmentsFromServer, 
     registerUser,
@@ -80,5 +84,6 @@ export {
     getCitiesByCountry, 
     addApartment,
     getApartmentById,
-    updateApartment
+    updateApartment,
+    getImages
 }
