@@ -722,7 +722,7 @@ body {
       padding: 0; }
 
 #apartmentBox {
-  min-height: calc(100vh - 410px);
+  min-height: calc(100vh - 361px);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 20px 0; }
@@ -1149,3 +1149,7 @@ body {
   .favorites a {
     color: black;
     text-decoration: none; }
+
+.adminMenu {
+  border-right: 1px solid black;
+  height: 100vh; }
