@@ -52,6 +52,7 @@ class RightNav extends React.Component {
 
     logout = () => {
         Cookies.remove('user');
+        window.location.replace('/')
         this.setState({
             roleId: undefined
         })

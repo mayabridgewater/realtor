@@ -18,13 +18,10 @@ class Login extends React.Component {
 
     inputChange({target: {name, value}}) {
         const errors = validate(name, value, this.state[name].validations);
-        this.setState({
-            [name]: {
-                ...this.state[name],
-                value,
-                errors
-            }
-        });
+        const newState = {...this.state};
+        newState[name].value = value;
+        newState[name].errors = errors;
+        this.changeState(newState)
     }
 
     async handleSubmit(e) {
@@ -32,17 +29,14 @@ class Login extends React.Component {
 
         let results = {};
         let isValid = true;
+        const newState = {...this.state};
+
         for (let prop in this.state) {
             const value = this.state[prop].value;
             const errors = validate(prop, value, this.state[prop].validations);
             if (errors.length > 0) {
                 isValid = false;
-                this.setState({
-                    [prop]: {
-                        ...this.state[prop],
-                        errors
-                    }
-                })
+                newState[prop].errors = errors
             } else {
                 results[prop] = value
             }
@@ -50,15 +44,25 @@ class Login extends React.Component {
         if (isValid) {
             const login = await loginUser(results);
             if (!login) {
-                console.log('incorrect password or email')
+                this.state.email.errors.push('invalid email or password')
             } else {
                 const currentCookie = JSON.parse(Cookies.get('user'));
                 this.props.login(currentCookie.role_id)
             }
+        }else {
+            this.changeState(newState)
         }
     }
 
+    changeState = (newState) => {
+        this.setState({
+            email: newState.email,
+            password: newState.password
+        })
+    }
+
     render() {
+        console.log(this.state)
         const {handleForm} = this.props;
         return (
             <div className={'openForm'}>
@@ -74,6 +78,7 @@ class Login extends React.Component {
                             <span><a href={'/'}>Forgot Password?</a></span>
                     
                             <div>
+                                {}
                                 <input type="submit" className="submit" value="Log In"/>
                                 <span className={'toAccount'} onClick={() => handleForm(2)}>No account? Sign Up</span>
                             </div>
