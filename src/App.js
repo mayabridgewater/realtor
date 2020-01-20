@@ -3,13 +3,6 @@ import './components/style/style.css';
 import Gallery from "./components/gallery/gallery";
 import Header from "./components/header/header";
 import Search from "./components/filters/search";
-// import {apartments} from "./components/gallery/apartments";
-// import {cities} from "./components/gallery/cities";
-import {cityFilter} from "./components/filters/functions/cityFilter";
-import {priceFilter} from "./components/filters/functions/priceFilter";
-import {bedsFilter} from "./components/filters/functions/bedsFilter";
-import {bathsFilter} from "./components/filters/functions/bathsFilter";
-// import {propertyFilter} from "./components/filters/functions/propertyFilter";
 import {
     BrowserRouter as Router,
     Switch,
@@ -17,10 +10,12 @@ import {
 } from "react-router-dom";
 import Homepage from "./components/homepage/homePage";
 import Apartment from "./components/singleapartment/apartment";
-import {getApartmentsFromServer} from "./components/dataFromServer";
-import CityGallery from "./components/gallery/cityGallery";
+import {getApartmentsFromServer} from "./components/dataFromToServer";
 import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
+import AddApartment from './components/addApartment';
+import AdminSignUp from './components/admin/adminSignup';
+import AdminMain from './components/admin/adminMain';
 
 class App extends React.Component {
     constructor() {
@@ -28,10 +23,11 @@ class App extends React.Component {
         this.state = {
             apartments: [],
             loading: true,
-            favorites: [],
-            updatedApartments: []
+            favorites: []
         }
+        this.filterApartments = this.filterApartments.bind(this)
     }
+<<<<<<< HEAD
     componentDidMount = () => {
         getApartmentsFromServer(this.handleSuccess)
     };
@@ -93,22 +89,33 @@ class App extends React.Component {
                                         () => this.filtered(filteredArray));
         // const dataProperty = [data.pAll, data.pSingle, data.pMulti, data.pCondo, data.pMobile, data.pFarm, data.pLand];
         // let properties = propertyFilter(dataProperty);
+=======
+    async componentDidMount() {
+        try {
+            const data = await getApartmentsFromServer();
+            this.setState({
+                apartments: data,
+                loading: false
+            })
+        } catch (error) {
+            console.log(error)
+        }
+>>>>>>> 2fcdedd5eca259d68d672d161673639df54b68ac
     };
 
-    returnFavorites = (apartmentId, isFavorite) => {
-        let updatedArray;
-        if (isFavorite) {
-            updatedArray = [...this.state.favorites, this.state.apartments.find(apartment => apartment.id === apartmentId)]
-        } else {
-            updatedArray = this.state.favorites.filter(apartment => apartment.id !== apartmentId)
-        }
+    async filterApartments(query) {
+        const apartments = await getApartmentsFromServer(query);
         this.setState({
-            favorites: updatedArray
+            apartments: apartments
         })
-    };
+    }
 
     render() {
+<<<<<<< HEAD
         const {updatedApartments} = this.state;
+=======
+        console.log(this.state.apartments)
+>>>>>>> 2fcdedd5eca259d68d672d161673639df54b68ac
         return (
             <Router>
                 {this.state.loading ? <div className="loader"/> :
@@ -117,19 +124,21 @@ class App extends React.Component {
                         <Route path={'/apartments'}>
                             <div>
                                 <Header/>
-                                <Search filterSearch={this.filterSearch} aptLength={updatedApartments.length} reset={this.resetSearch}/>
-                                <Gallery apartments={updatedApartments} returnFavorites={this.returnFavorites}/>
+                                <Search filterApartments={this.filterApartments}/>
+                                <Gallery apartments={this.state.apartments}/>
                                 <Footer id={2}/>
                             </div>
-                        </Route>
-                        <Route path={'/cities'}>
-                            <Header/>
-                            <CityGallery apartmentsByCity={this.apartmentsByCity}/>
                         </Route>
                         <Route path={'/apartment/:id'} component={Apartment}/>
                         <Route path={'/favorites'}>
                             <Favorites favorites={this.state.favorites} returnFavorites={this.returnFavorites}/>
                             <Footer id={4}/>
+                        </Route>
+                        <Route path={'/addapartment'}>
+                            <AddApartment/>
+                        </Route>
+                        <Route path={'/admin'}>
+                            <AdminMain/>
                         </Route>
                         <Route path={'/'}>
                             <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>

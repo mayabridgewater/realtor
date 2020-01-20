@@ -1,5 +1,5 @@
 import React from 'react';
-import {getApartmentsFromServer} from "../dataFromServer";
+import {getApartmentsFromServer} from "../dataFromToServer";
 import Gallery from "../gallery/gallery";
 import {Link} from "react-router-dom";
 
