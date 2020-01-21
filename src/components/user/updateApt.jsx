@@ -44,6 +44,7 @@ export default class UpdateApt extends React.Component {
             data[prop] = this.state[prop].value
         }
         if (isValid) {
+            data.status = 'pending';
             updateApartment(data)
         } else {
             this.setState({
