@@ -78,6 +78,11 @@ async function getImages(aprtId) {
     return images.data
 }
 
+async function getApartmentHistory(apartId) {
+    const history = await fetcher.get(`/history/apartment/${apartId}`);
+    return history.data
+}
+
 export {
     getApartmentsFromServer, 
     registerUser,
@@ -87,5 +92,6 @@ export {
     addApartment,
     getApartmentById,
     updateApartment,
-    getImages
+    getImages,
+    getApartmentHistory
 }
