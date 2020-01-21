@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ApartmentBox from '../gallery/apartmentBox';
-import { Link } from 'react-router-dom';
 import UpdateApt from './updateApt';
+import {updateApartment} from '../dataFromToServer';
 
 export default class ApprovedApt extends React.Component {
     constructor() {
@@ -11,6 +11,7 @@ export default class ApprovedApt extends React.Component {
             updateApartment: false
         };
         this.updateApt = this.updateApt.bind(this);
+        this.removeApt = this.removeApt.bind(this);
     }
 
     updateApt() {
@@ -19,11 +20,18 @@ export default class ApprovedApt extends React.Component {
         })
     }
 
+    async removeApt() {
+        this.props.apartment.status = 'removed';
+        await updateApartment(this.props.apartment);
+        window.location.replace('/userprofile');
+    }
+
     render() {
         return (
             <div>
                 <ApartmentBox {...this.props.apartment}/>
                 <button onClick={this.updateApt} id={this.props.apartment.id}>Update</button>
+                <button onClick={this.removeApt} id={this.props.apartment.id}>Sold</button>
                 {this.state.updateApartment && <UpdateApt apartment={this.props.apartment}/>}
             </div>
         )

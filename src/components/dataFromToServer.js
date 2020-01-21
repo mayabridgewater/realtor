@@ -67,6 +67,7 @@ async function addApartment(data) {
 }
 
 async function updateApartment(data) {
+    // console.log(data);
     const success = await fetcher.put('/apartments', data);
     console.log(success)
     

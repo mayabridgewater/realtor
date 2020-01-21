@@ -55,6 +55,7 @@ class Apartment extends React.Component {
         this.state.apartment[0].statusdescription = this.state.description
         // console.log(this.state);
         const result = await updateApartment(this.state.apartment[0]);
+        window.location.replace('/admin');
         console.log(result)
     }
  
