@@ -36,7 +36,7 @@ class Header extends React.Component {
 
                 </div>
                 <div>
-                    <RightNav/>
+                    <RightNav login={this.props.login} logout={this.props.logout}/>
                 </div>
             </div>
         )

@@ -1,13 +1,14 @@
 import React from 'react';
 import './components/style/style.css';
-import Gallery from "./components/gallery/gallery";
-import Header from "./components/header/header";
-import Search from "./components/filters/search";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
+
+import Gallery from "./components/gallery/gallery";
+import Header from "./components/header/header";
+import Search from "./components/filters/search";
 import Homepage from "./components/homepage/homePage";
 import Apartment from "./components/singleapartment/apartment";
 import {getApartmentsFromServer} from "./components/dataFromToServer";
@@ -16,6 +17,7 @@ import Footer from "./components/footer/footer";
 import AddApartment from './components/addApartment';
 import AdminSignUp from './components/admin/adminSignup';
 import AdminMain from './components/admin/adminMain';
+import UserProfile from './components/user/profile';
 
 class App extends React.Component {
     constructor() {
@@ -24,10 +26,11 @@ class App extends React.Component {
             apartments: [],
             loading: true,
             favorites: [],
-            loggedIn: false
+            loggedIn: false,
         }
         this.filterApartments = this.filterApartments.bind(this);
-        this.login = this.login.bind(this)
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
     }
     async componentDidMount() {
         const data = await getApartmentsFromServer();
@@ -46,13 +49,13 @@ class App extends React.Component {
 
     login() {
         this.setState({
-            loggedIn: true
+            loggedIn: true,
         })
     } 
 
-    logOut() {
+    logout() {
         this.setState({
-            loggedOut: false
+            loggedOut: false,
         })
     }
 
@@ -64,8 +67,8 @@ class App extends React.Component {
                     <Switch>
                         <Route path={'/apartments'}>
                             <div>
-                                <Header/>
-                                <Search filterApartments={this.filterApartments}/>
+                                <Header login={this.login} logout={this.logout}/>
+                                <Search/>
                                 <Gallery apartments={this.state.apartments}/>
                                 <Footer id={2}/>
                             </div>
@@ -81,7 +84,11 @@ class App extends React.Component {
                         <Route path={'/admin'}>
                             <AdminMain/>
                         </Route>
+                        <Route path={'/userprofile'}>
+                            <UserProfile/>
+                        </Route>
                         <Route path={'/'}>
+                            <Header login={this.login} logout={this.logout}/>
                             <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>
                         </Route>
                     </Switch>
