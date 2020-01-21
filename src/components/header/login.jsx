@@ -44,10 +44,10 @@ class Login extends React.Component {
         if (isValid) {
             const login = await loginUser(results);
             if (!login) {
-                this.state.email.errors.push('invalid email or password')
+                console.log('incorrect')
             } else {
                 const currentCookie = JSON.parse(Cookies.get('user'));
-                this.props.login(currentCookie.role_id)
+                this.props.login(currentCookie)
             }
         }else {
             this.changeState(newState)

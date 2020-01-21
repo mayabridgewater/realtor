@@ -16,7 +16,7 @@ class Homepage extends React.Component {
         const {returnFavorites, favorites} = this.props;
         return (
             <div>
-                <Header/>
+                {/* <Header/> */}
                 <SubHeader/>
                 <Main/>
                 {/* <NewListings returnFavorites={returnFavorites} favorites={favorites}/> */}

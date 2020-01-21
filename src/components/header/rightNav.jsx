@@ -44,10 +44,11 @@ class RightNav extends React.Component {
       }
     };
 
-    login = (id) => {
+    login = (user) => {
         this.setState({
-            roleId: id
-        })
+            roleId: user.role_id
+        });
+        this.props.login()
     };
 
     logout = () => {
@@ -56,6 +57,7 @@ class RightNav extends React.Component {
         this.setState({
             roleId: undefined
         })
+        this.props.logout()
     };
 
     render() {
@@ -75,7 +77,7 @@ class RightNav extends React.Component {
                 }
                 {this.state.roleId && 
                     <div className='d-flex'>
-                        <span style={{padding: '0 5px'}}>Welcome {JSON.parse(Cookies.get('user')).first_name}</span>
+                        <span style={{padding: '0 5px'}}>Welcome <Link to='/userprofile'>{JSON.parse(Cookies.get('user')).first_name}</Link></span>
                         <p onClick={this.logout}>Logout</p>
                     </div>
                     }

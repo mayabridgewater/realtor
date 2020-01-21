@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ApartmentBox from "./apartmentBox";
-import {getApartmentsFromServer} from '../dataFromToServer';
 
 
 class Gallery extends React.Component {
