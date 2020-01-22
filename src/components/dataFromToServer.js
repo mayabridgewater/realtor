@@ -67,7 +67,6 @@ async function addApartment(data) {
 }
 
 async function updateApartment(data) {
-    // console.log(data);
     const success = await fetcher.put('/apartments', data);
     console.log(success)
     
@@ -83,6 +82,16 @@ async function getApartmentHistory(apartId) {
     return history.data
 }
 
+async function getUsers(param) {
+    const users = await fetcher.get(`/users/?${param}`);
+    return users.data
+}
+
+async function updateUser(status) {
+    const success = await fetcher.put('/users', status);
+    console.log(success)
+}
+
 export {
     getApartmentsFromServer, 
     registerUser,
@@ -93,5 +102,7 @@ export {
     getApartmentById,
     updateApartment,
     getImages,
-    getApartmentHistory
+    getApartmentHistory,
+    getUsers,
+    updateUser
 }
