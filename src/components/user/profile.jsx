@@ -16,7 +16,7 @@ export default class UserProfile extends React.Component {
             removed_apartments: [],
             denied_apartments: [],
             pending_apartments: [],
-            showing: 'approved'
+            showing: 'denied'  //'approved'
         }
     }
 
@@ -52,7 +52,7 @@ export default class UserProfile extends React.Component {
                     <div className='col-3' style={{height: '100vh', borderRight: '1px solid'}}>
                         <h4>Your Apartments</h4>
                         <h5 id='approved' onClick={this.changeStatus}>Active: {this.state.approved_apartments.length}</h5>
-                        <h5 id='removed' onClick={this.changeStatus}>Sold: {this.state.removed_apartments.length}</h5>
+                        <h5 id='removed' onClick={this.changeStatus}>Sold/Deleted: {this.state.removed_apartments.length}</h5>
                         <h5 id='denied' onClick={this.changeStatus}>Denied: {this.state.denied_apartments.length}</h5>
                         <h5 id='pending' onClick={this.changeStatus}>Pending: {this.state.pending_apartments.length}</h5>
                     </div>
