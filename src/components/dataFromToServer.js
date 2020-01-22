@@ -92,6 +92,11 @@ async function updateUser(status) {
     console.log(success)
 }
 
+async function getUserHistory(query) {
+    const userHist = await fetcher.get(`/history/user/?${query}`);
+    return userHist.data
+}
+
 export {
     getApartmentsFromServer, 
     registerUser,
@@ -104,5 +109,6 @@ export {
     getImages,
     getApartmentHistory,
     getUsers,
-    updateUser
+    updateUser,
+    getUserHistory
 }
