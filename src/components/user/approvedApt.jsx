@@ -28,10 +28,12 @@ export default class ApprovedApt extends React.Component {
 
     render() {
         return (
-            <div className={'col-sm-6 col-md-4 col-lg-3'}>
+            <div className={'col-md-6 col-lg-4'}>
                 <ApartmentBox {...this.props.apartment}/>
-                <button onClick={this.updateApt} id={this.props.apartment.id}>Update</button>
-                <button onClick={this.removeApt} id={this.props.apartment.id}>Sold</button>
+                <div style={{margin: '10px'}}>
+                    <button onClick={this.updateApt} id={this.props.apartment.id} className='aptBtn'>Update</button>
+                    <button onClick={this.removeApt} id={this.props.apartment.id} className='aptBtn'>Sold</button>
+                </div>
                 {this.state.updateApartment && <UpdateApt apartment={this.props.apartment}/>}
             </div>
         )
