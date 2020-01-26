@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {updateUser, getUserHistory} from '../dataFromToServer';
+import {updateUser} from '../dataFromToServer';
 
 export default class UserDetails extends React.Component {
     constructor(props) {
@@ -8,20 +8,12 @@ export default class UserDetails extends React.Component {
         this.state = {
             block: false,
             unblock: false,
-            status_description: '',
-            block_description: ''
+            status_description: ''
         };
         this.block = this.block.bind(this);
         this.inputChange = this.inputChange.bind(this);
-        this.unblock = this.unblock.bind(this)
-    }
-
-    async componentDidMount() {
-        console.log(this.props.id)
-        const desc = await getUserHistory(`id=${this.props.id}&label=inactive`);
-        this.setState({
-            block_description: desc[0]
-        })
+        this.unblock = this.unblock.bind(this);
+        this.handleSumbit = this.handleSumbit.bind(this)
     }
 
     block() {
@@ -42,7 +34,7 @@ export default class UserDetails extends React.Component {
         })
     }
 
-    handleSumbit = (e) => {
+    async handleSumbit(e) {
         e.preventDefault();
         let queryStatus = '';
         if (this.state.blocked) {
@@ -50,28 +42,30 @@ export default class UserDetails extends React.Component {
         }else {
             queryStatus = 'active'
         }
-        const data = {id: this.props.id, status: queryStatus, status_description: this.state.status_description};
-        updateUser(data);
+        const data = {id: this.props.user.id, status: queryStatus, status_description: this.state.status_description};
+        await updateUser(data);
         window.location.replace('/admin')
     }
 
     render() {
-        const {id, role_id, first_name, last_name, email, phone, status} = this.props;
+        const {user} = this.props;
         return (
             <div className='col-sm-3 col-md-4' style={{border: '1px solid'}}>
-                <h5>User: {first_name} {last_name}</h5>
-                <p>Role: {role_id === 3 ? 'Admin' : 'Regular User'}</p>
-                <p>Email: {email}</p>
-                <p>Phone: {phone}</p>
-                {this.state.block_description ?
-                    <div style={{border: '1px solid green'}}>
-                        <p>Description: </p>
-                        <p>{this.state.block_description.description}</p>
-                    </div>
-                    :
-                    <div></div>
-                }
-                {status === 'active' ?
+                <h5>User: {user.first_name} {user.last_name}</h5>
+                <p>Role: {user.role_id === 3 ? 'Admin' : 'Regular User'}</p>
+                <p>Email: {user.email}</p>
+                <p>Phone: {user.phone}</p>
+                <div style={{border: '1px solid green'}}>
+                    <p>User History: </p>
+                    {user.history.map((history, h) => (
+                        <div>
+                            <p>Status: {history.label}</p>
+                            <p>Date: {history.date}</p>
+                            <p>Description: {history.description}</p>
+                        </div>
+                    ))}
+                </div>
+                {user.status === 'active' ?
                     <button onClick={this.block}>Block</button>
                     :
                     <button onClick={this.unblock}>Unblock</button>

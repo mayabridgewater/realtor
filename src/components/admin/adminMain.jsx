@@ -1,9 +1,9 @@
 import React from 'react';
 
-import {getApartmentsFromServer, getUsers} from '../dataFromToServer';
+import {getApartmentsFromServer, getUsers, getUserHistory} from '../dataFromToServer';
 import Header from '../header/header';
 import ShowAptStats from './showAptStats';
-import ShowUserStats from './showUserStats';
+import UserDetails from '../user/userDetails';
 
 export default class AdminMain extends React.Component {
     constructor() {
@@ -22,29 +22,41 @@ export default class AdminMain extends React.Component {
     }
 
     async componentDidMount() {
-        const apartments = await getApartmentsFromServer();
-        console.log(apartments)
-        // let query = 'status=pending';
-        // const apartments_pending = await getApartmentsFromServer(query);
-        // query = 'status=denied';
-        // const apartments_denied = await getApartmentsFromServer(query);
-        // query = 'status=approved';
-        // const apartments_approved = await getApartmentsFromServer(query);
-        // query = 'status=removed';
-        // const apartments_removed = await getApartmentsFromServer(query);
-        // query = 'status=active';
-        // const active_users = await getUsers(query);
-        // query = 'status=inactive';
-        // const inactive_users = await getUsers(query);
-        // this.setState({
-        //     apartments_pending,
-        //     apartments_denied,
-        //     apartments_approved,
-        //     apartments_removed,
-        //     showCurrent: apartments_pending,
-        //     active_users,
-        //     inactive_users,
-        // })
+        const [apartments, users, history] = await Promise.all(
+            [await getApartmentsFromServer(), await getUsers(), await getUserHistory()]    
+        );
+        const aprtStatus = {apartments_pending: [], 
+                              apartments_denied: [], 
+                              apartments_approved: [], 
+                              apartments_removed: []};
+        const userStatus = {
+            active_users: [],
+            inactive_users: []
+        };
+        for (let i = 0; i < apartments.length; i++) {
+            const current = `apartments_${apartments[i].status}`
+            aprtStatus[current].push(apartments[i])
+        }
+        for (let i = 0; i < users.length; i++) {
+            const current = `${users[i].status}_users`;
+            const id = users[i].id;
+            users[i].history = [];
+            for (let j = 0; j < history.length; j++) {
+                if (history[j].user_id === id) {
+                    users[i].history.push(history[j]);
+                }
+            }
+            userStatus[current].push(users[i])
+        }
+        this.setState({
+            apartments_pending: aprtStatus.apartments_pending,
+            apartments_denied: aprtStatus.apartments_denied,
+            apartments_approved: aprtStatus.apartments_approved,
+            apartments_removed: aprtStatus.apartments_removed,
+            showCurrent: aprtStatus.apartments_pending,
+            active_users: userStatus.active_users,
+            inactive_users: userStatus.inactive_users,
+        })
     }
 
     changeCurrentApt = (status) => {
@@ -57,7 +69,6 @@ export default class AdminMain extends React.Component {
 
     showUsers = (status) => {
         const clicked = `${status}_users`;
-        console.log('users',this.state[clicked]);
         this.setState({
             showApartments: false,
             showCurrentUsers: this.state[clicked]
@@ -86,7 +97,12 @@ export default class AdminMain extends React.Component {
                             {this.state.showApartments ?
                                 <ShowAptStats apartments= {this.state.showCurrent}/>
                                 :
-                                <ShowUserStats users={this.state.showCurrentUsers}/>
+                                <div>
+                                    <h2>{this.state.showCurrentUsers[0].status} Users</h2>
+                                    <div className='row'>
+                                        {this.state.showCurrentUsers.map((user, u) => <UserDetails user={user} key={u}/>)}
+                                    </div>
+                                </div>
                             }
                         </div>
                     </div>
