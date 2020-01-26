@@ -22,27 +22,29 @@ export default class AdminMain extends React.Component {
     }
 
     async componentDidMount() {
-        let query = 'status=pending';
-        const apartments_pending = await getApartmentsFromServer(query);
-        query = 'status=denied';
-        const apartments_denied = await getApartmentsFromServer(query);
-        query = 'status=approved';
-        const apartments_approved = await getApartmentsFromServer(query);
-        query = 'status=removed';
-        const apartments_removed = await getApartmentsFromServer(query);
-        query = 'status=active';
-        const active_users = await getUsers(query);
-        query = 'status=inactive';
-        const inactive_users = await getUsers(query);
-        this.setState({
-            apartments_pending,
-            apartments_denied,
-            apartments_approved,
-            apartments_removed,
-            showCurrent: apartments_pending,
-            active_users,
-            inactive_users,
-        })
+        const apartments = await getApartmentsFromServer();
+        console.log(apartments)
+        // let query = 'status=pending';
+        // const apartments_pending = await getApartmentsFromServer(query);
+        // query = 'status=denied';
+        // const apartments_denied = await getApartmentsFromServer(query);
+        // query = 'status=approved';
+        // const apartments_approved = await getApartmentsFromServer(query);
+        // query = 'status=removed';
+        // const apartments_removed = await getApartmentsFromServer(query);
+        // query = 'status=active';
+        // const active_users = await getUsers(query);
+        // query = 'status=inactive';
+        // const inactive_users = await getUsers(query);
+        // this.setState({
+        //     apartments_pending,
+        //     apartments_denied,
+        //     apartments_approved,
+        //     apartments_removed,
+        //     showCurrent: apartments_pending,
+        //     active_users,
+        //     inactive_users,
+        // })
     }
 
     changeCurrentApt = (status) => {
@@ -55,6 +57,7 @@ export default class AdminMain extends React.Component {
 
     showUsers = (status) => {
         const clicked = `${status}_users`;
+        console.log('users',this.state[clicked]);
         this.setState({
             showApartments: false,
             showCurrentUsers: this.state[clicked]
@@ -62,6 +65,7 @@ export default class AdminMain extends React.Component {
     }
 
     render() {
+        console.log(this.state.showCurrentUsers)
         return (
             <div>
                 <Header/>
