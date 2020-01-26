@@ -65,10 +65,8 @@ class Apartment extends React.Component {
                 <ApartmentHeader/>
                 {this.state.loading ? <p>loading</p> :
                     <div>
-                        {this.state.apartment[0].status === 'pending' && <h3 className='offset-md-1'>Pending Apartment: </h3>}
+                        {this.state.apartment[0].status === 'pending' && <h3 className='offset-1'>Pending Apartment: </h3>}
                         <Carousel apartment={this.state.apartment}/>
-                        <Details apartment={this.state.apartment}/>
-                        <ExtraDetails/>
                         <DropDown apartment={this.state.apartment}/>
                         {this.state.apartment[0].status === 'pending' &&
                         <div className='customContainer' style={{paddingBottom: '20px'}}>
@@ -84,9 +82,9 @@ class Apartment extends React.Component {
                             </form>
                         </div>
                         }
-                        <Footer id={3}/>
                     </div>
                 }
+                <Footer id={3}/>
             </div>
         )
     }
