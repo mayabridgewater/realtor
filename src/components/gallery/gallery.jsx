@@ -12,7 +12,11 @@ class Gallery extends React.Component {
                     <h3>New York Real Estate & Homes for Sale</h3>
                 </div>
                 <div className={'row'}>
-                    {apartments.map((item, i) => <ApartmentBox {...item} key={i}/>)}
+                    {apartments.map((item, i) => (
+                        <div id={'container'} className={'col-sm-6 col-md-4 col-lg-3'} style={{position: 'relative'}}>
+                            <ApartmentBox {...item} key={i}/>
+                        </div>
+                    ))}
                 </div>
             </div>
         )
