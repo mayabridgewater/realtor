@@ -3,8 +3,8 @@ import React from 'react';
 import {updateUser, getUserHistory} from '../dataFromToServer';
 
 export default class UserDetails extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             block: false,
             unblock: false,
@@ -17,9 +17,10 @@ export default class UserDetails extends React.Component {
     }
 
     async componentDidMount() {
+        console.log(this.props.id)
         const desc = await getUserHistory(`id=${this.props.id}&label=inactive`);
         this.setState({
-            block_description: desc[0].description
+            block_description: desc[0]
         })
     }
 
@@ -62,11 +63,13 @@ export default class UserDetails extends React.Component {
                 <p>Role: {role_id === 3 ? 'Admin' : 'Regular User'}</p>
                 <p>Email: {email}</p>
                 <p>Phone: {phone}</p>
-                {this.state.block_description && 
+                {this.state.block_description ?
                     <div style={{border: '1px solid green'}}>
                         <p>Description: </p>
-                        <p>{this.state.block_description}</p>
+                        <p>{this.state.block_description.description}</p>
                     </div>
+                    :
+                    <div></div>
                 }
                 {status === 'active' ?
                     <button onClick={this.block}>Block</button>

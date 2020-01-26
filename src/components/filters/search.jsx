@@ -77,6 +77,7 @@ class Search extends React.Component {
                 query += `${prop}=${this.state.search[prop]}&`
             }
         }
+        query += 'availability=available&status=approved';
         // const apartments = await getApartmentsFromServer(query);
         this.props.filterApartments(query)
     };

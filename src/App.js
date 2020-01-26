@@ -33,7 +33,7 @@ class App extends React.Component {
         this.logout = this.logout.bind(this);
     }
     async componentDidMount() {
-        const data = await getApartmentsFromServer();
+        const data = await getApartmentsFromServer('availability=available&status=approved');
         this.setState({
             apartments: data,
             loading: false
@@ -68,7 +68,7 @@ class App extends React.Component {
                         <Route path={'/apartments'}>
                             <div>
                                 <Header login={this.login} logout={this.logout}/>
-                                <Search/>
+                                <Search filterApartments={this.filterApartments}/>
                                 <Gallery apartments={this.state.apartments}/>
                                 <Footer id={2}/>
                             </div>
