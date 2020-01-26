@@ -29,29 +29,43 @@ class Carousel extends React.Component {
 
                                 <div className="mdb-lightbox no-margin">
 
-                                    <figure className="col-md-4">
+                                    <figure className="col-md-5 col-lg-6" style={{width: '70%', margin: '0 auto'}}>
                                         <a href={'http://localhost:3000/' + apartment[0].main_image} data-size="1600x1067">
                                         <img alt="picture" src={'http://localhost:3000/' + apartment[0].main_image}
                                             className="img-fluid"/>
                                         </a>
                                     </figure>
-                                    {this.state.images.map((image, i) => (
-                                        <figure className="col-md-4" key={i}>
-                                        <a href={'http://localhost:3000/' + image.url} data-size="1600x1067">
-                                        <img alt="picture" src={'http://localhost:3000/' + image.url}
-                                            className="img-fluid" />
-                                        </a>
-                                    </figure>
-                                    ))}
+                                   
+                                    <div id="multi-item-example" class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
 
+                                 
+                                    <div class="controls-top text-center">
+                                        <a class="black-text" href="#multi-item-example" data-slide="prev"><i class="fas fa-angle-left fa-3x pr-3"></i></a>
+                                        <a class="black-text" href="#multi-item-example" data-slide="next"><i class="fas fa-angle-right fa-3x pl-3"></i></a>
+                                    </div>
+                                   
+
+                                    <div class="carousel-inner" role="listbox">
+
+                                        
+                                        <div class="carousel-item active">
+                                        {this.state.images.map((image, i) => (
+                                            <div class="col-md-3 mb-3">
+                                                <div class="card">
+                                                <img class="img-fluid" src={'http://localhost:3000/' + image.url}
+                                                    alt="Card image cap"/>
+                                                </div>
+                                            </div>
+                                        ))}
+
+                                        </div>
+                                
+                                    </div>
+                             
+                                    </div>
+                                </div>
                                 </div>
 
-                            </div>
-                       
-                         {/* <div className={'overText'}>
-                            {apartment[0].sale_status === 'both' ? <p>For Sale/Rent</p> : <p>For {apartment[0].sale_status}</p>}
-                         </div> */}
-                         <ApartmentForm address={apartment[0].address}/>
                          <Heart apartmentId={id} locationId={2} apartments={apartments}/>
                     
                  </div>
@@ -60,24 +74,3 @@ class Carousel extends React.Component {
 }
 
 export default Carousel
-
-{/* <div className={'customContainer carouselWrapper'}>
-                //      {/*<p className={'presentedBy'}>Presented by: </p>*/}
-                //      {/*<p className={'presentedBy'}><span>{apartment.agent}</span> with <span>{apartment.agency}</span></p>*/}
-                //      <div className={'outerCarousel'}>
-                //          <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-                //              <div className="carousel-inner">
-                //                  <div className="carousel-item active">
-                //                      <img className="d-block w-100" src={'http://localhost:3000/' + apartment[0].main_image} alt="First slide"/>
-                //                  </div>
-                //                  {/* {apartment.images.map((picture, p) => <InnerCarousel image={picture} key={p}/>)} */}
-                //              </div>
-                //              <a className="carousel-control-prev" href={"#carouselExampleControls"} role="button" data-slide="prev">
-                //                  <span className="carousel-control-prev-icon" aria-hidden="true"/>
-                //                  <span className="sr-only">Previous</span>
-                //              </a>
-                //              <a className="carousel-control-next" href={"#carouselExampleControls"} role="button" data-slide="next">
-                //                  <span className="carousel-control-next-icon" aria-hidden="true"/>
-                //                  <span className="sr-only">Next</span>
-                //              </a>
-                //          </div> */}
