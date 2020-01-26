@@ -28,7 +28,7 @@ export default class ApprovedApt extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'col-sm-6 col-md-4 col-lg-3'}>
                 <ApartmentBox {...this.props.apartment}/>
                 <button onClick={this.updateApt} id={this.props.apartment.id}>Update</button>
                 <button onClick={this.removeApt} id={this.props.apartment.id}>Sold</button>
