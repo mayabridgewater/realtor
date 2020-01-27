@@ -15,6 +15,7 @@ export default class UpdateApt extends React.Component {
             description: {value: this.props.apartment.description, errors: [], validations: {required: false}},
             sale_status: {value: this.props.apartment.sale_status, errors: [], validations: {required: true}},
             property_type: {value: this.props.apartment.property_type, errors: [], validations: {required: true}},
+            availability: {value: this.props.apartment.availability, errors: [], validations: {required: true}},
             main_image: {value: this.props.apartment.main_image, errors: [], validations: {required: false}},
             images: {value: this.props.apartment.images, error: [], validations: {required: false}},
             new_main_image: {value: '', errors: [], validations: {required: false}},
@@ -68,12 +69,16 @@ export default class UpdateApt extends React.Component {
         })
     }
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
         let isValid = true;
         const stateCopy = {...this.state};
         const data = {...this.props.apartment};
         const formData = new FormData();
+        formData.append('id', this.props.apartment.id);
+        formData.append('user_id', this.props.apartment.user_id);
+        formData.append('address', this.props.apartment.address);
+        formData.append('city_id', this.props.apartment.city_id);
 
         for (let prop in this.state) {
             const errors = validate(prop, this.state[prop].value, this.state[prop].validations);
@@ -86,13 +91,16 @@ export default class UpdateApt extends React.Component {
                     formData.append('new_images', file)
                 })
             }else if (prop === 'new_main_image') {
-                if (!this.state.new_main_image.value) {
+                if (this.state.main_image.value) {
                     continue
                 }else {
                     const new_main_image = document.querySelector('input[type="file"]').files[0];
                     formData.append('new_main_image', new_main_image);
                 }
             }else if (prop === 'images') {
+                for (let i = 0; i < this.state.images.value.length; i++) {
+                    formData.append('image', this.state.images.value[i].id)
+                }
                 //run on images.value.id and add to new form data
             }
             // data[prop] = this.state[prop].value
@@ -100,7 +108,8 @@ export default class UpdateApt extends React.Component {
         }
         if (isValid) {
             formData.append('status', 'pending');
-            updateApartment(formData)
+            await updateApartment(formData);
+            window.location.replace('/userprofile')
         } else {
             this.setState({
                 ...stateCopy
@@ -148,6 +157,13 @@ export default class UpdateApt extends React.Component {
                         <option value='land'>Land</option> 
                     </select>
                     <InputErrors errors={this.state.property_type.errors}/>
+
+                    <label>Availability</label>
+                    <select name='availability' value={this.state.property_type.value} onChange={this.handleChange} onBlur={this.inputChange}>
+                        <option value='available'>Available</option>
+                        <option value='suspended'>Suspend</option>
+                        <option value='removed'>Remove</option>
+                    </select>
 
                     <label>Main Image</label>
                     {!this.state.main_image.value ?
