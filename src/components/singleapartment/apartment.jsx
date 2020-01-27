@@ -1,7 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 
-import ApartmentHeader from "./apartmentheader";
 import Carousel from "./carousel";
 import Details from "./details";
 import {getApartmentById, updateApartment} from "../dataFromToServer";
@@ -61,7 +60,6 @@ class Apartment extends React.Component {
     render() {
         return (
             <div>
-                <ApartmentHeader/>
                 {this.state.loading ? <p>loading</p> :
                     <div>
                         {this.state.apartment[0].status === 'pending' && <h3 className='offset-1'>Pending Apartment: </h3>}
