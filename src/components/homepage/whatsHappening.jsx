@@ -4,10 +4,10 @@ class WhatsHappening extends React.Component {
     render() {
         return (
             <div className={'container cityInfo'}>
-                <h1>What's happening in New York, NY</h1>
+                <h1>What's New on Realtor.com</h1>
                 <div className={'row info'}>
                     <div className={'test col-6 col-md-3'}>
-                        <p className={'statNum'}>393</p>
+                        <p className={'statNum'}>{this.props.numOfAvail}</p>
                         <p className={'statText'}>Homes for Sale</p>
                     </div>
                     <div className={'test col-6 col-md-3'}>
