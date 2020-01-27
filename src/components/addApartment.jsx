@@ -3,6 +3,8 @@ import React from 'react';
 import {getCountries, getCitiesByCountry, addApartment} from './dataFromToServer';
 import validate from './forms/validation';
 import InputErrors from './forms/inputErrors';
+import Homepage from './homepage/homePage';
+import Header from './header/header';
 
 class AddApartment extends React.Component {
     constructor() {
@@ -11,17 +13,17 @@ class AddApartment extends React.Component {
             countries: [],
             cities: [],
             fields: {
-                address: {value:'', errors: [], validations: {required: false, minLength: 0}},
-                city: {value: '', errors: [], validations: {required: false}},
-                price: {value: '', errors: [], validations: {required: false}},
+                address: {value:'', errors: [], validations: {required: true, minLength: 8}},
+                city: {value: '', errors: [], validations: {required: true}},
+                price: {value: '', errors: [], validations: {required: true}},
                 number_of_room: {value: '', errors: [], validations: {required: false}},
                 number_of_bath: {value: '', errors: [], validations: {required: false}},
-                sqft: {value: '', errors: [], validations: {required: false}},
+                sqft: {value: '', errors: [], validations: {required: true}},
                 description: {value: '', errors: [], validations: {required: false}},
-                sale_status: {value: '', errors: [], validations: {required: false}},
-                property_type: {value: '', errors: [], validations: {required: false}},
+                sale_status: {value: '', errors: [], validations: {required: true}},
+                property_type: {value: '', errors: [], validations: {required: true}},
                 main_image: {value: '', errors: [], validations: {required: false}},
-                // images: {value: '', errors: [], validations: {required: false}}
+                images: {value: '', errors: [], validations: {required: false}}
             }
         }
         this.getCities = this.getCities.bind(this)
@@ -46,16 +48,10 @@ class AddApartment extends React.Component {
   
     inputChange = ({target: {name, value}}) => {
         const errors = validate(name, value, this.state.fields[name].validations);
-        this.setState({
-            fields: {
-                ...this.state.fields,
-                [name]: {
-                    ...this.state.fields[name],
-                    value,
-                    errors
-                }
-            }
-        });
+        const newFields = {...this.state.fields};
+        newFields[name].value = value;
+        newFields[name].errors = errors;
+        this.changeState(newFields)
     }
 
     handleSubmit = (e) => {
@@ -63,48 +59,54 @@ class AddApartment extends React.Component {
         let isValid = true;
         let data = new FormData();
 
+        const newFields = {...this.state.fields};
+        
         for (let prop in this.state.fields) {
             const value = this.state.fields[prop].value;
             const errors = validate(prop, value, this.state.fields[prop].validations);
             if (prop === 'main_image') {
                 const main_image = document.querySelector('input[type="file"]').files[0];
                 data.append('main_image', main_image);
-                this.setState({
-                        main_image: {
-                            ...this.state.fields.main_image,
-                            value: data,
-                            errors
-                        }
-                });
             } else if (prop === 'images') {
                 const images = (document.querySelector('#multipleImages').files);
-                for (let i = 0; i < images.length; i++) {
-                    data.append('images', images[i])
-                }
+                Array.from(images).forEach(file => {
+                    data.append('images', file)
+                })
             } else if (errors.length > 0) {
                 isValid = false;
-                this.setState({
-                    fields: {
-                        ...this.state.fields,
-                        [prop]: {
-                            ...this.state.fields[prop],
-                            errors
-                        }
-                    }
-                });
+                newFields[prop].errors = errors;
+                
             } else {
                 data.append(`${prop}`, value)
             }
         }
         if (isValid) {
             const success = addApartment(data);
-            console.log(success);
+            if (!success) {
+                console.log('no')
+            } else {
+                window.location.replace('/')
+            }
+        } else {
+            this.changeState(newFields)
         }
+    }
+
+    changeState = (newFields) => {
+        this.setState({
+            ...this.state,
+            fields: newFields
+        })
     }
 
     render() {
         return (
             <div>
+                {this.state.uploadSuccess ? 
+                    <Homepage/> 
+                    :
+                    <div>
+                    <Header/>
                 <h1>Add New Apartment</h1>
                 <form onSubmit={this.handleSubmit} enctype="multipart/form-data" action='/apartments'>
                     <div class="form-group">
@@ -167,12 +169,14 @@ class AddApartment extends React.Component {
                             <label>Main Image</label>
                             <input type="file" name="main_image"/>
 
-                            {/* <label>Extra Pictures</label>
-                            <input type="file" id='multipleImages' name="images" multiple/> */}
+                            <label>Extra Pictures</label>
+                            <input type="file" id='multipleImages' name="images" multiple/>
                         </div>
                     </div>
                     <input type='submit'></input>
                 </form>
+                </div>
+    }
             </div>
         )
     }

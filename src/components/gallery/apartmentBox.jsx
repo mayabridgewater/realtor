@@ -20,12 +20,14 @@ class ApartmentBox extends React.Component {
 
 
     render() {
-        const {id, price, main_image, images, number_of_room, number_of_bath, sqft, address, city_name, name, apartments, returnFavorites} = this.props;
+        const {id, price, main_image, images, number_of_room, number_of_bath, sqft, address, city_name, name, created_on, sale_status, property_type} = this.props;
         return (
-            <div id={'container'} className={'col-sm-6 col-md-4 col-lg-3'} style={{position: 'relative'}}>
                 <Link to={`/apartment/${id}`}><div className={'box'}>
                     <div className={'imageBox'} style={{backgroundImage: `url("http://localhost:3000${main_image}")`}} onMouseOver={this.changeImage} onMouseOut={() => this.changeImage(false)}>
-                        <OverImage price={price}/>
+                        <OverImage price={price}
+                                   date={created_on}
+                                   sale_status={sale_status}
+                                   property_type={property_type}/>
                     </div>
                     <InfoBox beds={number_of_room}
                              baths={number_of_bath}
@@ -35,8 +37,6 @@ class ApartmentBox extends React.Component {
                              country= {name}/>
                 </div>
             </Link>
-                <Heart apartmentId={id} locationId={1} apartments={apartments} returnFavorites={returnFavorites}/>
-            </div>
         )}
 }
 

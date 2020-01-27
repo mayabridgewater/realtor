@@ -1,5 +1,6 @@
 import React from 'react';
-import ApartmentHeader from "./apartmentheader";
+import Cookies from 'js-cookie';
+
 import Carousel from "./carousel";
 import Details from "./details";
 import {getApartmentById, updateApartment} from "../dataFromToServer";
@@ -50,23 +51,20 @@ class Apartment extends React.Component {
     async handleSubmit(e) {
         e.preventDefault();
         this.state.apartment[0].status = this.state.approval;
-        this.state.apartment[0].statusdescription = this.state.description
-        // console.log(this.state);
+        this.state.apartment[0].statusdescription = this.state.description;
         const result = await updateApartment(this.state.apartment[0]);
-        console.log(result)
+        window.location.replace('/admin');
     }
  
     render() {
         return (
             <div>
-                <ApartmentHeader/>
                 {this.state.loading ? <p>loading</p> :
                     <div>
-                        <h3 className='offset-md-1'>Pending Apartment: </h3>
+                        {this.state.apartment[0].status === 'pending' && <h3 className='offset-1'>Pending Apartment: </h3>}
                         <Carousel apartment={this.state.apartment}/>
-                        <Details apartment={this.state.apartment}/>
-                        <ExtraDetails/>
                         <DropDown apartment={this.state.apartment}/>
+                        {this.state.apartment[0].status === 'pending' &&
                         <div className='customContainer' style={{paddingBottom: '20px'}}>
                             <form onSubmit={this.handleSubmit}>
                                 <label>Approve</label>
@@ -79,9 +77,10 @@ class Apartment extends React.Component {
                                 <input type='submit'/>
                             </form>
                         </div>
-                        <Footer id={3}/>
+                        }
                     </div>
                 }
+                <Footer id={3}/>
             </div>
         )
     }

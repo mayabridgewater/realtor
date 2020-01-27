@@ -1,61 +1,86 @@
 import React from 'react';
 import './components/style/style.css';
-import Gallery from "./components/gallery/gallery";
-import Header from "./components/header/header";
-import Search from "./components/filters/search";
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from "react-router-dom";
+
+import Gallery from "./components/gallery/gallery";
+import Header from "./components/header/header";
+import Search from "./components/filters/search";
 import Homepage from "./components/homepage/homePage";
 import Apartment from "./components/singleapartment/apartment";
 import {getApartmentsFromServer} from "./components/dataFromToServer";
 import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
 import AddApartment from './components/addApartment';
-import AdminSignUp from './components/admin/adminSignup';
 import AdminMain from './components/admin/adminMain';
+import UserProfile from './components/user/profile';
 
 class App extends React.Component {
     constructor() {
         super();
         this.state = {
             apartments: [],
+            filteredApartments: [],
             loading: true,
             favorites: [],
-            updatedApartments: []
+            loggedIn: false,
+            numOfAvail: ''
         }
+        this.filterApartments = this.filterApartments.bind(this);
+        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+        this.reset = this.reset.bind(this)
     }
     async componentDidMount() {
-        try {
-            const data = await getApartmentsFromServer();
-            this.handleSuccess(data)
-        } catch (error) {
-            this.handleSuccess(error)
-        }
-    };
-
-    handleSuccess = (success) => {
+        const data = await getApartmentsFromServer('availability=available&status=approved');
         this.setState({
-            apartments: success,
-            updatedApartments: success,
-            loading: false
+            apartments: data,
+            filteredApartments: data,
+            loading: false,
+            numOfAvail: data.length
         })
     };
 
+    async filterApartments(query) {
+        const apartments = await getApartmentsFromServer(query);
+        this.setState({
+            filteredApartments: apartments
+        })
+    }
+
+    async reset() {
+        const data = await getApartmentsFromServer('availability=available&status=approved');
+        this.setState({
+            filteredApartments: data
+        })
+    }
+
+    login() {
+        this.setState({
+            loggedIn: true,
+        })
+    } 
+
+    logout() {
+        this.setState({
+            loggedOut: false,
+        })
+    }
+
     render() {
-        const {updatedApartments} = this.state;
         return (
             <Router>
                 {this.state.loading ? <div className="loader"/> :
                 <div>
+                    <Header login={this.login} logout={this.logout}/>
                     <Switch>
                         <Route path={'/apartments'}>
                             <div>
-                                <Header/>
-                                <Search filterSearch={this.filterSearch} aptLength={updatedApartments.length} reset={this.resetSearch}/>
-                                <Gallery apartments={updatedApartments} returnFavorites={this.returnFavorites}/>
+                                <Search filterApartments={this.filterApartments} reset={this.reset}/>
+                                <Gallery apartments={this.state.filteredApartments} numOfAvail={this.state.numOfAvail}/>
                                 <Footer id={2}/>
                             </div>
                         </Route>
@@ -70,8 +95,11 @@ class App extends React.Component {
                         <Route path={'/admin'}>
                             <AdminMain/>
                         </Route>
+                        <Route path={'/userprofile'}>
+                            <UserProfile/>
+                        </Route>
                         <Route path={'/'}>
-                            <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>
+                            <Homepage numOfAvail={this.state.numOfAvail}/>
                         </Route>
                     </Switch>
 

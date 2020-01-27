@@ -62,7 +62,7 @@ async function addApartment(data) {
         const success = await fetcher.post('/apartments', data);
         return success
     } catch(error) {
-        return error
+        return false
     }
 }
 
@@ -70,6 +70,36 @@ async function updateApartment(data) {
     const success = await fetcher.put('/apartments', data);
     console.log(success)
     
+}
+
+async function getImages(aprtId) {
+    if(!aprtId) {
+        const images = await fetcher.get('/images');
+        return images.data
+    }else {
+        const images = await fetcher.get(`/images/${aprtId}`);
+        return images.data
+    }
+}
+
+async function getApartmentHistory(apartId) {
+    const history = await fetcher.get(`/history/apartment/${apartId}`);
+    return history.data
+}
+
+async function getUsers(param) {
+    const users = await fetcher.get(`/users/?${param}`);
+    return users.data
+}
+
+async function updateUser(status) {
+    const success = await fetcher.put('/users', status);
+    console.log(success)
+}
+
+async function getUserHistory(query) {
+    const userHist = await fetcher.get(`/history/user/?${query}`);
+    return userHist.data
 }
 
 export {
@@ -80,5 +110,10 @@ export {
     getCitiesByCountry, 
     addApartment,
     getApartmentById,
-    updateApartment
+    updateApartment,
+    getImages,
+    getApartmentHistory,
+    getUsers,
+    updateUser,
+    getUserHistory
 }

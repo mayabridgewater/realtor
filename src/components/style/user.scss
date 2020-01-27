@@ -1,0 +1,28 @@
+.userMenu {
+    box-sizing: border-box;
+    padding: 15px
+}
+.updatedApt {
+    border: 2px solid purple;
+    padding: 5px;
+    width: 150%;
+}
+.mainImage {
+    width: 130px;
+    height: 100px;
+    margin: 0 5px;
+    background-position: center;
+    background-size: cover;
+}
+// .slideMain {
+//     display: flex;
+//     width: 260px;
+//     margin-right: 15px;
+//   }
+//   .slider {
+//     overflow-x: scroll;
+//     white-space: nowrap;
+//     @media (min-width: 1130px) {
+//       overflow-x: hidden;
+//     }
+//   }

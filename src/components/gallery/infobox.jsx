@@ -11,7 +11,10 @@ class InfoBox extends React.Component {
                     <p><span className={'bold'}>{sqft}</span> Sqft</p>
                 </div>
                 <div className={'d-flex justify-content-between'}>
-                    <p>{address}</p> <p>{city}, {country}</p>
+                    <div> 
+                        <p>{address},</p>
+                        <p>{city}, {country}</p>
+                    </div>
                 </div>
             </div>
         )

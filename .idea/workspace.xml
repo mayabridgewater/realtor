@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="329e3233-e945-441a-8aa8-1817bf67a252" name="Default Changelist" comment="" />
+    <list default="true" id="329e3233-e945-441a-8aa8-1817bf67a252" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dataFromServer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dataFromServer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gallery/apartmentBox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gallery/apartmentBox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gallery/gallery.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gallery/gallery.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/gallery/infobox.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gallery/infobox.jsx" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,6 +22,9 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1SsiTEx4gWAhrXSpsXTer0eWrzO" />
   <component name="PropertiesComponent">
@@ -196,6 +207,7 @@
       <workItem from="1575024626000" duration="1787000" />
       <workItem from="1575026474839" duration="593000" />
       <workItem from="1575132570314" duration="399000" />
+      <workItem from="1579162515845" duration="4000" />
     </task>
     <servers />
   </component>

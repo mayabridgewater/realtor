@@ -70,19 +70,6 @@ body {
     -webkit-box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
     box-shadow: 0em -2.6em 0em 0em rgba(255, 255, 255, 0.2), 1.8em -1.8em 0 0em rgba(255, 255, 255, 0.2), 2.5em 0em 0 0em rgba(255, 255, 255, 0.2), 1.75em 1.75em 0 0em rgba(255, 255, 255, 0.2), 0em 2.5em 0 0em rgba(255, 255, 255, 0.2), -1.8em 1.8em 0 0em rgba(255, 255, 255, 0.5), -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff; } }
 
-.subHeader {
-  padding: 12px 0; }
-  .subHeader .approvedBtn {
-    background: white;
-    border: 1px solid #a103fc;
-    border-radius: 20px;
-    padding: 5px; }
-    .subHeader .approvedBtn a {
-      color: #a103fc;
-      text-decoration: none; }
-  .subHeader p {
-    padding: 0 5px; }
-
 .main {
   padding: 200px 0;
   width: 100%;
@@ -114,16 +101,6 @@ body {
       font-size: 20px;
       color: #c287ff;
       text-shadow: -1px 0 #a103fc, 0 1px #a103fc, 1px 0 #a103fc, 0 -1px #a103fc; }
-  .main input {
-    height: 50px;
-    width: 500px;
-    border: none;
-    @inlcude formRadius(left);
-    padding-left: 10px;
-    margin-left: 10px; }
-    @media (min-width: 850px) {
-      .main input {
-        margin-left: 0; } }
   .main button {
     height: 50px;
     width: 90px;
@@ -137,20 +114,26 @@ body {
 
 .slider {
   overflow-x: scroll;
-  white-space: nowrap; }
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin: 30px 0;
+  padding: 5px 0; }
   @media (min-width: 1130px) {
     .slider {
       overflow-x: hidden; } }
 
 .slideMain {
-  display: inline-block;
-  width: 260px;
-  margin-right: 15px; }
-
-#newListing {
-  margin-top: 30px; }
-  #newListing h1 {
-    font-size: 30px; }
+  padding-top: 10px;
+  width: 70%;
+  margin: auto; }
+  .slideMain .homepageAptBox {
+    margin: 0 10px;
+    width: 350px; }
 
 .cityInfo {
   padding: 40px 0; }
@@ -295,41 +278,6 @@ body {
       .bottomSection .bottomRight {
         width: 100%; } }
 
-.topDirectory {
-  padding: 50px 0;
-  font-size: 13px;
-  border-bottom: 1px solid grey; }
-  .topDirectory img {
-    width: 200px; }
-  .topDirectory h5 {
-    font-size: 14px; }
-  .topDirectory ul {
-    padding-left: 15px; }
-    .topDirectory ul a {
-      color: grey; }
-    .topDirectory ul li {
-      padding: 2px 0; }
-
-.bottomDirectory {
-  padding: 10px 0;
-  border-bottom: 1px solid grey;
-  white-space: nowrap; }
-  .bottomDirectory h5 {
-    font-size: 14px; }
-  .bottomDirectory ul {
-    list-style: none;
-    padding-left: 0; }
-  .bottomDirectory a {
-    color: grey;
-    font-size: 13px; }
-  .bottomDirectory .dirBtn {
-    text-align: end; }
-    .bottomDirectory .dirBtn button {
-      color: darkgoldenrod;
-      background: transparent;
-      border: none;
-      font-weight: bold; }
-
 body {
   position: relative;
   height: 100vh; }
@@ -337,7 +285,8 @@ body {
 #header {
   border-bottom: 1px solid;
   position: relative;
-  white-space: nowrap; }
+  white-space: nowrap;
+  padding: 10px 20px; }
 
 .rightNav {
   height: 100%;
@@ -375,27 +324,6 @@ body {
     text-decoration: none;
     color: black;
     padding: 0 5px; }
-
-.phoneNav {
-  position: absolute;
-  width: 300px;
-  top: 54px;
-  right: 0;
-  background: white;
-  z-index: 999;
-  -webkit-animation: animation ease-in-out 1s;
-  animation: animation ease-in-out 1s; }
-  .phoneNav img {
-    width: 50px; }
-  .phoneNav .details {
-    height: 30px;
-    padding: 0 10px; }
-    .phoneNav .details a {
-      padding: 0; }
-    .phoneNav .details p:hover {
-      border-bottom: none; }
-    .phoneNav .details span {
-      padding: 0 5px; }
 
 .burgerNav {
   margin: auto 0;
@@ -658,16 +586,16 @@ body {
     flex-direction: column;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
     @media (min-width: 768px) {
       .topFoot .social {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
         -ms-flex-direction: row;
-        flex-direction: row;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between; } }
+        flex-direction: row; } }
     .topFoot .social .media {
       padding-bottom: 10px; }
       @media (min-width: 768px) {
@@ -677,11 +605,6 @@ body {
         width: 45px;
         border-radius: 10px;
         margin: 0 4px; }
-    .topFoot .social .ads img {
-      width: 100px;
-      height: 45px;
-      border-radius: 10px;
-      margin: 0 4px; }
 
 .bottomFoot {
   background: #3e1037;
@@ -689,43 +612,20 @@ body {
   white-space: nowrap;
   font-size: 14px;
   padding: 10px 0; }
-  .bottomFoot ul {
-    list-style: none;
-    padding: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap; }
-  .bottomFoot li {
-    width: 50%; }
-    @media (min-width: 650px) {
-      .bottomFoot li {
-        width: 33%; } }
-    @media (min-width: 768px) {
-      .bottomFoot li {
-        width: 25%; } }
-    @media (min-width: 1024px) {
-      .bottomFoot li {
-        width: auto; } }
-  .bottomFoot a {
-    text-decoration: none;
+  .bottomFoot span {
     font-size: 13px;
-    color: white;
-    padding-right: 10px; }
-    .bottomFoot a:hover {
-      color: darkgoldenrod; }
+    color: white; }
   .bottomFoot .rights {
     color: grey;
     white-space: normal; }
-    .bottomFoot .rights a {
-      padding: 0; }
 
 #apartmentBox {
-  min-height: calc(100vh - 361px);
+  min-height: calc(100vh - 240px);
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 20px 0; }
+  box-sizing: border-box; }
+  @media (min-width: 560px) {
+    #apartmentBox {
+      padding: 0 50px; } }
   #apartmentBox a {
     text-decoration: none;
     color: black; }
@@ -738,7 +638,8 @@ body {
 
 .box {
   -webkit-box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
-  box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96); }
+  box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
+  width: 100%; }
   .box:hover {
     -webkit-box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96);
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96); }
@@ -750,8 +651,8 @@ body {
   position: relative; }
 
 .infoBox {
-  white-space: nowrap;
-  padding: 7px 0; }
+  padding: 7px 0;
+  height: 105px; }
   .infoBox p {
     padding: 0 10px;
     margin: 0; }
@@ -952,6 +853,26 @@ body {
 .property input[type='checkbox']:checked + span {
   color: #a103fc; }
 
+.carouselWrapper {
+  padding: 40px 0; }
+
+.singleMainImg {
+  margin: auto;
+  height: 400px;
+  width: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.extraImg {
+  margin-top: 10px;
+  width: 70px;
+  height: 80px;
+  overflow: hidden; }
+  .extraImg img {
+    width: 100%;
+    height: 100%; }
+
 .singleApt {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -974,12 +895,6 @@ body {
     border-top-left-radius: 5px;
     border: 1px solid grey;
     padding: 4px 0; }
-
-.carouselWrapper {
-  padding: 40px 0; }
-  .carouselWrapper img {
-    height: 420px;
-    width: 100%; }
 
 .outerCarousel {
   position: relative; }
@@ -1149,3 +1064,35 @@ body {
   .favorites a {
     color: black;
     text-decoration: none; }
+
+.adminMenu {
+  border-right: 1px solid black;
+  height: 100vh; }
+
+.showResults {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 15px; }
+
+.aptBtn {
+  margin: 0 10px; }
+
+.updateImg {
+  width: 130px; }
+
+.userMenu {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 15px; }
+
+.updatedApt {
+  border: 2px solid purple;
+  padding: 5px;
+  width: 150%; }
+
+.mainImage {
+  width: 130px;
+  height: 100px;
+  margin: 0 5px;
+  background-position: center;
+  background-size: cover; }
