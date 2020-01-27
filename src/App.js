@@ -23,6 +23,7 @@ class App extends React.Component {
         super();
         this.state = {
             apartments: [],
+            filteredApartments: [],
             loading: true,
             favorites: [],
             loggedIn: false,
@@ -31,11 +32,13 @@ class App extends React.Component {
         this.filterApartments = this.filterApartments.bind(this);
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
+        this.reset = this.reset.bind(this)
     }
     async componentDidMount() {
         const data = await getApartmentsFromServer('availability=available&status=approved');
         this.setState({
             apartments: data,
+            filteredApartments: data,
             loading: false,
             numOfAvail: data.length
         })
@@ -44,7 +47,14 @@ class App extends React.Component {
     async filterApartments(query) {
         const apartments = await getApartmentsFromServer(query);
         this.setState({
-            apartments: apartments
+            filteredApartments: apartments
+        })
+    }
+
+    async reset() {
+        const data = await getApartmentsFromServer('availability=available&status=approved');
+        this.setState({
+            filteredApartments: data
         })
     }
 
@@ -69,8 +79,8 @@ class App extends React.Component {
                     <Switch>
                         <Route path={'/apartments'}>
                             <div>
-                                <Search filterApartments={this.filterApartments}/>
-                                <Gallery apartments={this.state.apartments} numOfAvail={this.state.numOfAvail}/>
+                                <Search filterApartments={this.filterApartments} reset={this.reset}/>
+                                <Gallery apartments={this.state.filteredApartments} numOfAvail={this.state.numOfAvail}/>
                                 <Footer id={2}/>
                             </div>
                         </Route>
