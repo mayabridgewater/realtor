@@ -15,7 +15,6 @@ import {getApartmentsFromServer} from "./components/dataFromToServer";
 import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
 import AddApartment from './components/addApartment';
-import AdminSignUp from './components/admin/adminSignup';
 import AdminMain from './components/admin/adminMain';
 import UserProfile from './components/user/profile';
 
@@ -27,6 +26,7 @@ class App extends React.Component {
             loading: true,
             favorites: [],
             loggedIn: false,
+            numOfAvail: ''
         }
         this.filterApartments = this.filterApartments.bind(this);
         this.login = this.login.bind(this);
@@ -36,7 +36,8 @@ class App extends React.Component {
         const data = await getApartmentsFromServer('availability=available&status=approved');
         this.setState({
             apartments: data,
-            loading: false
+            loading: false,
+            numOfAvail: data.length
         })
     };
 
@@ -88,7 +89,7 @@ class App extends React.Component {
                             <UserProfile/>
                         </Route>
                         <Route path={'/'}>
-                            <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>
+                            <Homepage numOfAvail={this.state.numOfAvail}/>
                         </Route>
                     </Switch>
 
