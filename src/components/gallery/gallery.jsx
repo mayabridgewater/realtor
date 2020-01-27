@@ -7,13 +7,13 @@ class Gallery extends React.Component {
     render() {
         const {apartments} = this.props;
         return (
-            <div id={'apartmentBox'} className={'container-fluid'}>
+            <div id={'apartmentBox'}>
+                <p>{this.props.numOfAvail} Available Homes</p>
                 <div className={'galleryHeader'}>
-                    <h3>New York Real Estate & Homes for Sale</h3>
                 </div>
                 <div className={'row'}>
                     {apartments.map((item, i) => (
-                        <div id={'container'} className={'col-sm-6 col-md-4 col-lg-3'} style={{position: 'relative'}}>
+                        <div id={'container'} className={'col-md-6 col-lg-4'} style={{position: 'relative'}}>
                             <ApartmentBox {...item} key={i}/>
                         </div>
                     ))}
