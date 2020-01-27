@@ -616,7 +616,7 @@ body {
     white-space: normal; }
 
 #apartmentBox {
-  min-height: calc(100vh - 285px);
+  min-height: calc(100vh - 240px);
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
   @media (min-width: 560px) {
@@ -636,9 +636,6 @@ body {
   -webkit-box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
   box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
   width: 100%; }
-  @media (min-width: 760px) {
-    .box {
-      width: 260px; } }
   .box:hover {
     -webkit-box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96);
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96); }
