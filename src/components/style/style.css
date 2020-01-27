@@ -722,7 +722,7 @@ body {
       padding: 0; }
 
 #apartmentBox {
-  min-height: calc(100vh - 410px);
+  min-height: calc(100vh - 361px);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 20px 0; }
