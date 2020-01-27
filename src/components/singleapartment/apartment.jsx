@@ -52,8 +52,7 @@ class Apartment extends React.Component {
     async handleSubmit(e) {
         e.preventDefault();
         this.state.apartment[0].status = this.state.approval;
-        this.state.apartment[0].statusdescription = this.state.description
-        // console.log(this.state);
+        this.state.apartment[0].statusdescription = this.state.description;
         const result = await updateApartment(this.state.apartment[0]);
         window.location.replace('/admin');
         console.log(result)

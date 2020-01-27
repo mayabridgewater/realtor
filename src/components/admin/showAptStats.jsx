@@ -10,7 +10,11 @@ export default class ShowAptStats extends React.Component {
             <div>
                 <h3>{status} Apartments</h3>
                 <div className='row'>
-                    {apartments.map((item, i) => <ApartmentBox {...item} key={i}/>)}
+                    {apartments.map((item, i) => (
+                        <div className={'col-md-6 col-lg-4'}>
+                            <ApartmentBox {...item} key={i}/>
+                        </div>
+                    ))}
                 </div>
             </div>
         )
