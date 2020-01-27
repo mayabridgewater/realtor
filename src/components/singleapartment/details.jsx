@@ -1,6 +1,25 @@
 import React from 'react';
 
+import {getCityById, getCountryById} from '../dataFromToServer';
+
 class Details extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            country: null,
+            city: null
+        }
+    }
+
+    async componentDidMount() {
+        const city = await getCityById(this.props.apartment[0].city_id);
+        const country = await getCountryById(city[0].country_id);
+        this.setState({
+            country: country,
+            city: city
+        });
+    }
+
     render() {
         const {apartment} = this.props;
         return (
@@ -13,17 +32,21 @@ class Details extends React.Component {
                             <p><span>{apartment[0].number_of_bath}</span> bath</p>
                             <p><span>{apartment[0].sqft}</span> sqft</p>
                         </div>
-                        <p><span>{apartment[0].address},</span></p>
-                        {/* </span> {city.label} {city.country}</p> */}
+                        <div className='d-flex'>
+                            <p><span>{apartment[0].address},</span></p>
+                            {this.state.city && this.state.country &&
+                                <p><span> {this.state.city[0].city_name} {this.state.country[0].name}</span></p>
+                            }
+                        </div>
                     </div>
                     <div>
                         <div id={"map-container-google-2"} className={"z-depth-1-half map-container"}>
-                            {/* <iframe src={`https://maps.google.com/maps?q=${city.label}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                            {this.state.city &&
+                            <iframe src={`https://maps.google.com/maps?q=${this.state.city[0].city_name}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
                                     frameBorder={0}
                                     style={{border:0}} allowFullScreen
-                                    title={'map'}/> */}
+                                    title={'map'}/>}
                         </div>
-                        <a href={'/'} className={'commute'}><p>Commute Time</p></a>
                     </div>
                 </div>
             </div>

@@ -23,9 +23,7 @@ async function getApartmentById(id) {
 async function registerUser(data) {
     try {
         const post = await fetcher.post('/signup', data);
-        console.log(post)
     } catch(error) {
-        console.log(error);
         return error
     }
 };
@@ -48,6 +46,12 @@ async function getCountries() {
     }
 }
 
+async function getCountryById(id) {
+    const country = await fetcher.get(`/countries/${id}`);
+    console.log(country.data)
+    return country.data
+}
+
 async function getCitiesByCountry(country_id) {
     try {
         const cities = await fetcher.get(`/cities/${country_id}`);
@@ -56,6 +60,11 @@ async function getCitiesByCountry(country_id) {
 
     }
 };
+
+async function getCityById(id) {
+    const result = await fetcher.get(`/cities/?city_id=${id}`);
+    return result.data
+}
 
 async function addApartment(data) {
     try {
@@ -115,5 +124,7 @@ export {
     getApartmentHistory,
     getUsers,
     updateUser,
-    getUserHistory
+    getUserHistory,
+    getCityById,
+    getCountryById
 }

@@ -63,6 +63,7 @@ class Apartment extends React.Component {
                     <div>
                         {this.state.apartment[0].status === 'pending' && <h3 className='offset-1'>Pending Apartment: </h3>}
                         <Carousel apartment={this.state.apartment}/>
+                        <Details apartment={this.state.apartment}/>
                         <DropDown apartment={this.state.apartment}/>
                         {this.state.apartment[0].status === 'pending' &&
                         <div className='customContainer' style={{paddingBottom: '20px'}}>
