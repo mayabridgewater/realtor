@@ -1,3 +1,26 @@
+.carouselWrapper {
+  padding: 40px 0;
+}
+.singleMainImg {
+  margin: auto;
+  height: 400px;
+  width: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.extraImg {
+  margin-top: 10px;
+  width: 70px;
+  height: 80px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
 .singleApt {
   box-sizing: border-box;
   padding: 10px 0;
@@ -20,13 +43,6 @@
     @include formRadius('left');
     border: 1px solid grey;
     padding: 4px 0;
-  }
-}
-.carouselWrapper {
-  padding: 40px 0;
-  img {
-    height: 420px;
-    width: 100%;
   }
 }
 .outerCarousel {

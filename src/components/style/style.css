@@ -118,6 +118,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   margin: 30px 0;
   padding: 5px 0; }
   @media (min-width: 1130px) {
@@ -129,7 +132,8 @@ body {
   width: 70%;
   margin: auto; }
   .slideMain .homepageAptBox {
-    margin: 0 10px; }
+    margin: 0 10px;
+    width: 350px; }
 
 .cityInfo {
   padding: 40px 0; }
@@ -849,6 +853,26 @@ body {
 .property input[type='checkbox']:checked + span {
   color: #a103fc; }
 
+.carouselWrapper {
+  padding: 40px 0; }
+
+.singleMainImg {
+  margin: auto;
+  height: 400px;
+  width: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.extraImg {
+  margin-top: 10px;
+  width: 70px;
+  height: 80px;
+  overflow: hidden; }
+  .extraImg img {
+    width: 100%;
+    height: 100%; }
+
 .singleApt {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -871,12 +895,6 @@ body {
     border-top-left-radius: 5px;
     border: 1px solid grey;
     padding: 4px 0; }
-
-.carouselWrapper {
-  padding: 40px 0; }
-  .carouselWrapper img {
-    height: 420px;
-    width: 100%; }
 
 .outerCarousel {
   position: relative; }
