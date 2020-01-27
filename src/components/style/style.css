@@ -282,7 +282,7 @@ body {
   border-bottom: 1px solid;
   position: relative;
   white-space: nowrap;
-  padding: 10px 0; }
+  padding: 10px 20px; }
 
 .rightNav {
   height: 100%;
@@ -616,10 +616,12 @@ body {
     white-space: normal; }
 
 #apartmentBox {
-  min-height: calc(100vh - 361px);
+  min-height: calc(100vh - 285px);
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 20px 0; }
+  box-sizing: border-box; }
+  @media (min-width: 560px) {
+    #apartmentBox {
+      padding: 0 50px; } }
   #apartmentBox a {
     text-decoration: none;
     color: black; }
@@ -633,7 +635,10 @@ body {
 .box {
   -webkit-box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
   box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
-  width: 260px; }
+  width: 100%; }
+  @media (min-width: 760px) {
+    .box {
+      width: 260px; } }
   .box:hover {
     -webkit-box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96);
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96); }
@@ -645,7 +650,8 @@ body {
   position: relative; }
 
 .infoBox {
-  padding: 7px 0; }
+  padding: 7px 0;
+  height: 105px; }
   .infoBox p {
     padding: 0 10px;
     margin: 0; }

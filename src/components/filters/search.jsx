@@ -78,7 +78,6 @@ class Search extends React.Component {
             }
         }
         query += 'availability=available&status=approved';
-        // const apartments = await getApartmentsFromServer(query);
         this.props.filterApartments(query)
     };
 
@@ -114,7 +113,6 @@ class Search extends React.Component {
                             ))}
                         </select>
                         <select id="inputCity" class="form-control" name='city' onBlur={this.inputChange}>
-                            {/* <option>City</option> */}
                             {this.state.cities.map((city, i) => (
                                 <option key={i} value={city.id}>{city.city_name}</option>
                             ))}
@@ -326,7 +324,7 @@ class Search extends React.Component {
                         <button className={'btn search'}>Search</button>
                         {this.state.displayResults && <button className={'btn search'} onClick={this.resetSearch}>Reset</button>}
                     </form>
-                    <Link to={'/favorites'}><p>Favorite Homes</p></Link>
+    
                 </div>
             </div>
         )

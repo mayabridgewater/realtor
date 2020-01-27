@@ -70,7 +70,7 @@ class App extends React.Component {
                         <Route path={'/apartments'}>
                             <div>
                                 <Search filterApartments={this.filterApartments}/>
-                                <Gallery apartments={this.state.apartments}/>
+                                <Gallery apartments={this.state.apartments} numOfAvail={this.state.numOfAvail}/>
                                 <Footer id={2}/>
                             </div>
                         </Route>
