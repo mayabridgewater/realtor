@@ -64,10 +64,10 @@ class App extends React.Component {
             <Router>
                 {this.state.loading ? <div className="loader"/> :
                 <div>
+                    <Header login={this.login} logout={this.logout}/>
                     <Switch>
                         <Route path={'/apartments'}>
                             <div>
-                                <Header login={this.login} logout={this.logout}/>
                                 <Search filterApartments={this.filterApartments}/>
                                 <Gallery apartments={this.state.apartments}/>
                                 <Footer id={2}/>
@@ -88,7 +88,6 @@ class App extends React.Component {
                             <UserProfile/>
                         </Route>
                         <Route path={'/'}>
-                            <Header login={this.login} logout={this.logout}/>
                             <Homepage returnFavorites={this.returnFavorites} favorites={this.state.favorites}/>
                         </Route>
                     </Switch>
