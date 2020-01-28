@@ -38,7 +38,7 @@ export default class DeniedApt extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'col-md-6 col-lg-4'}>
                 <ApartmentBox {...this.props.apartment}/>
                 <p>Why your apartment was denied: </p>
                 <div style={{border: '1px solid', width: '200px', height: '70px'}}>

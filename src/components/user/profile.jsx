@@ -6,6 +6,7 @@ import { getApartmentsFromServer, getImages } from '../dataFromToServer';
 import ApartmentBox from '../gallery/apartmentBox';
 import ApprovedApt from './approvedApt';
 import DeniedApt from './deniedApt';
+import { Link } from 'react-router-dom';
 
 export default class UserProfile extends React.Component {
     constructor(props) {
@@ -63,20 +64,31 @@ export default class UserProfile extends React.Component {
         console.log(this.state);
         return (
             <div>
-                <Header/>
                 <div className='row' style={{boxSizing: 'border-box'}}>
                     <div className='col-3 userMenu' style={{height: '100vh', borderRight: '1px solid'}}>
                         <h4>Your Apartments</h4>
-                        <h5 id='approved' onClick={this.changeStatus}>Active: {this.state.approved_apartments.length}</h5>
-                        <h5 id='removed' onClick={this.changeStatus}>Sold/Deleted: {this.state.removed_apartments.length}</h5>
-                        <h5 id='denied' onClick={this.changeStatus}>Denied: {this.state.denied_apartments.length}</h5>
-                        <h5 id='pending' onClick={this.changeStatus}>Pending: {this.state.pending_apartments.length}</h5>
+                        <h5 id='approved' onClick={this.changeStatus} className={this.state.showing === 'approved' && 'current'}>Active: {this.state.approved_apartments.length}</h5>
+                        <h5 id='removed' onClick={this.changeStatus} className={this.state.showing === 'removed' && 'current'}>Sold/Deleted: {this.state.removed_apartments.length}</h5>
+                        <h5 id='denied' onClick={this.changeStatus} className={this.state.showing === 'denied' && 'current'}>Denied: {this.state.denied_apartments.length}</h5>
+                        <h5 id='pending' onClick={this.changeStatus} className={this.state.showing === 'pending' && 'current'}>Pending: {this.state.pending_apartments.length}</h5>
+
+                        <div className='addApt'>
+                            <Link to='/addapartment'><h4>Add Apartment</h4></Link>
+                        </div>
                     </div>
                     <div className='col-9 showResults'>
                         <div className='row' style={{margin: '0'}}>
                             {this.state.showing === 'approved' && this.state.approved_apartments.map((apt, a) => <ApprovedApt apartment={apt} key={a}/>)}
-                            {this.state.showing === 'removed' && this.state.removed_apartments.map((apt, a) => <ApartmentBox {...apt} key={a}/>)}
+                            {this.state.showing === 'removed' && this.state.removed_apartments.map((apt, a) => (
+                                <div className={'col-md-6 col-lg-4'}>
+                                    <ApartmentBox {...apt} key={a}/>
+                                </div>))}
                             {this.state.showing === 'denied' && this.state.denied_apartments.map((apt, a) => <DeniedApt apartment={apt} key={a}/>)}
+                            {this.state.showing === 'pending' && this.state.pending_apartments.map((apt, a) => (
+                                <div className={'col-md-6 col-lg-4'}>
+                                    <ApartmentBox {...apt} key={a}/>
+                                </div>
+                                ))}
                         </div>
                     </div>
                 </div>
