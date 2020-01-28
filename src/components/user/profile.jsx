@@ -60,7 +60,6 @@ export default class UserProfile extends React.Component {
     }
 
     render() {
-        const {currentUser} = this.props;
         console.log(this.state);
         return (
             <div>

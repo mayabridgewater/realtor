@@ -1,0 +1,34 @@
+.addApartment {
+    padding: 10px 0;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-position-x: right;
+    h1 {
+        text-align: center;
+    }
+}
+.form {
+    width: 90%;
+    margin: auto;
+    label {
+        font-weight: bold;
+    }
+    .submitWrap {
+        text-align: center;
+        .submit {
+            padding: 5px 15px
+        }
+    }
+}
+.innerDetails {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    input {
+        width: 200px
+    }
+}
+.file {
+    width: 250px
+}

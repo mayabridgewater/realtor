@@ -1145,3 +1145,39 @@ h5 {
   padding: 5px 8px; }
   .submit:hover {
     background-color: #a103fc; }
+
+.addApartment {
+  padding: 10px 0;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-position-x: right; }
+  .addApartment h1 {
+    text-align: center; }
+
+.form {
+  width: 90%;
+  margin: auto; }
+  .form label {
+    font-weight: bold; }
+  .form .submitWrap {
+    text-align: center; }
+    .form .submitWrap .submit {
+      padding: 5px 15px; }
+
+.innerDetails {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .innerDetails input {
+    width: 200px; }
+
+.file {
+  width: 250px; }
