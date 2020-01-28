@@ -14,7 +14,7 @@ import Apartment from "./components/singleapartment/apartment";
 import {getApartmentsFromServer} from "./components/dataFromToServer";
 import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
-import AddApartment from './components/addApartment';
+import AddApartment from './components/user/addApartment';
 import AdminMain from './components/admin/adminMain';
 import UserProfile from './components/user/profile';
 
