@@ -2,7 +2,6 @@ import React from 'react';
 
 import Main from "./main";
 import WhatsHappening from './whatsHappening';
-import Footer from "../footer/footer";
 import ApartmentsPreview from './apartmentsPreview';
 
 class Homepage extends React.Component {
@@ -13,7 +12,6 @@ class Homepage extends React.Component {
                 <Main/>
                 <ApartmentsPreview/>
                 <WhatsHappening numOfAvail={this.props.numOfAvail}/>
-                <Footer id={1}/>
             </div>
         )
     }

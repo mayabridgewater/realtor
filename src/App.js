@@ -81,14 +81,9 @@ class App extends React.Component {
                             <div>
                                 <Search filterApartments={this.filterApartments} reset={this.reset}/>
                                 <Gallery apartments={this.state.filteredApartments} numOfAvail={this.state.numOfAvail}/>
-                                <Footer id={2}/>
                             </div>
                         </Route>
                         <Route path={'/apartment/:id'} component={Apartment}/>
-                        <Route path={'/favorites'}>
-                            <Favorites favorites={this.state.favorites} returnFavorites={this.returnFavorites}/>
-                            <Footer id={4}/>
-                        </Route>
                         <Route path={'/addapartment'}>
                             <AddApartment/>
                         </Route>
@@ -102,7 +97,7 @@ class App extends React.Component {
                             <Homepage numOfAvail={this.state.numOfAvail}/>
                         </Route>
                     </Switch>
-
+                    <Footer/>
                 </div>}
             </Router>
         );

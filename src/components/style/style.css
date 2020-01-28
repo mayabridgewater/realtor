@@ -123,7 +123,7 @@ body {
   justify-content: space-between;
   margin: 30px 0;
   padding: 5px 0; }
-  @media (min-width: 1130px) {
+  @media (min-width: 1500px) {
     .slider {
       overflow-x: hidden; } }
 
@@ -640,7 +640,8 @@ body {
   -webkit-box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
   box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
   width: 100%;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  min-width: 264px; }
   .box:hover {
     -webkit-box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96);
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96); }
@@ -847,12 +848,6 @@ body {
       border: 2px solid #a103fc; }
     .property label:hover {
       color: #a103fc; }
-
-.property input[type='checkbox']:checked + img {
-  border: 2px solid #a103fc; }
-
-.property input[type='checkbox']:checked + span {
-  color: #a103fc; }
 
 .carouselWrapper {
   padding: 40px 0; }
@@ -1082,6 +1077,21 @@ body {
   .block textarea {
     width: 80%;
     height: 100px; }
+
+.approval {
+  padding-bottom: 20px;
+  text-align: center; }
+
+.statusChange img {
+  width: 30px;
+  margin: 0 10px;
+  border-radius: 50%; }
+
+[type=radio] + img {
+  cursor: pointer; }
+
+.statusChange input[type='radio']:checked + img {
+  background: #c287ff; }
 
 .userMenu {
   -webkit-box-sizing: border-box;
