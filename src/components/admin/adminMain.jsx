@@ -17,7 +17,8 @@ export default class AdminMain extends React.Component {
             showCurrent: [],
             active_users: [],
             inactive_users: [],
-            showCurrentUsers: []
+            showCurrentUsers: [],
+            current: 'pending'
         }
     }
 
@@ -63,7 +64,8 @@ export default class AdminMain extends React.Component {
         const clicked = `apartments_${status}`;
         this.setState({
             showApartments: true,
-            showCurrent: this.state[clicked]
+            showCurrent: this.state[clicked],
+            current: status
         })
     }
 
@@ -71,35 +73,33 @@ export default class AdminMain extends React.Component {
         const clicked = `${status}_users`;
         this.setState({
             showApartments: false,
-            showCurrentUsers: this.state[clicked]
+            showCurrentUsers: this.state[clicked],
+            current: status
         })
     }
 
     render() {
-        console.log(this.state.showCurrentUsers)
         return (
             <div>
-                <Header/>
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='col-3 adminMenu'>
-                            <h5 style={{color: 'green'}}>Apartments</h5>
-                            <h4 onClick={() => this.changeCurrentApt('pending')}>Pending: {this.state.apartments_pending.length}</h4>
-                            <h4 onClick={() => this.changeCurrentApt('denied')}>Denied: {this.state.apartments_denied.length}</h4>
-                            <h4 onClick={() => this.changeCurrentApt('approved')}>Active: {this.state.apartments_approved.length}</h4>
-                            <h4 onClick={() => this.changeCurrentApt('removed')}>Removed: {this.state.apartments_removed.length}</h4>
-                            <h5 style={{color: 'green'}}>Users</h5>
-                            <h4 onClick={() => this.showUsers('active')}>Active: {this.state.active_users.length}</h4>
-                            <h4 onClick={() => this.showUsers('inactive')}>Blocked: {this.state.inactive_users.length}</h4>
+                            <h4>Apartments</h4>
+                            <h5 onClick={() => this.changeCurrentApt('pending')} className={this.state.current === 'pending' && 'current'}>Pending: {this.state.apartments_pending.length}</h5>
+                            <h5 onClick={() => this.changeCurrentApt('denied')} className={this.state.current === 'denied' && 'current'}>Denied: {this.state.apartments_denied.length}</h5>
+                            <h5 onClick={() => this.changeCurrentApt('approved')} className={this.state.current === 'approved' && 'current'}>Active: {this.state.apartments_approved.length}</h5>
+                            <h5 onClick={() => this.changeCurrentApt('removed')} className={this.state.current === 'removed' && 'current'}>Removed: {this.state.apartments_removed.length}</h5>
+                            <h4>Users</h4>
+                            <h5 onClick={() => this.showUsers('active')} className={this.state.current === 'active' && 'current'}>Active: {this.state.active_users.length}</h5>
+                            <h5 onClick={() => this.showUsers('inactive')} className={this.state.current === 'inactive' && 'current'}>Blocked: {this.state.inactive_users.length}</h5>
                         </div>
-                        <div className='col-9'>
-                        <h1>Admin Home</h1>
+                        <div className='col-9 stats'>
                             {this.state.showApartments ?
-                                <ShowAptStats apartments= {this.state.showCurrent}/>
+                                <ShowAptStats apartments= {this.state.showCurrent} status={this.state.current}/>
                                 :
                                 <div>
-                                    <h2>{this.state.showCurrentUsers[0].status} Users</h2>
-                                    <div className='row'>
+                                    <h2>{this.state.current === 'active' ? 'Active' : 'Blocked'} Users</h2>
+                                    <div className='row userStat'>
                                         {this.state.showCurrentUsers.map((user, u) => <UserDetails user={user} key={u}/>)}
                                     </div>
                                 </div>

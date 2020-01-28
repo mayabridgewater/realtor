@@ -96,29 +96,6 @@
     font-size: 9px;
   }
 }
-.far {
-  position: absolute;
-  bottom: -40px;
-  right: 60px;
-  font-size: 50px;
-  padding: 15px;
-  border-radius: 50%;
-  background: white;
-  color: $darkGold;
-  box-shadow: 0 2px 27px -9px rgba(0,0,0,0.75);
-  &:hover {
-    box-shadow: 0 2px 25px 1px rgba(0,0,0,0.76);
-  }
-  @media (min-width: 1100px) {
-    right: 300px;
-  }
-}
-.favorite {
-  color: #ff253a;
-  &:hover {
-    color: #ff253a;
-  }
-}
 
 .customContainer {
   margin-right: 2%;
@@ -155,14 +132,7 @@
     text-decoration: none;
   }
 }
-.presentedBy {
-  font-size: 13px;
-  margin: 0;
-  padding-left: 5px;
-  span {
-    font-weight: bold;
-  }
-}
+
 .extraDetails {
   padding-top: 20px;
   white-space: nowrap;
@@ -217,6 +187,7 @@
   }
   h4 {
     display: inline-block;
+    color: black;
   }
   .section {
     padding: 25px 0;

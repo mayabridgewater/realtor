@@ -37,7 +37,7 @@ export default class UserDetails extends React.Component {
     async handleSumbit(e) {
         e.preventDefault();
         let queryStatus = '';
-        if (this.state.blocked) {
+        if (this.state.block) {
             queryStatus = 'inactive'
         }else {
             queryStatus = 'active'
@@ -50,36 +50,36 @@ export default class UserDetails extends React.Component {
     render() {
         const {user} = this.props;
         return (
-            <div className='col-sm-3 col-md-4' style={{border: '1px solid'}}>
-                <h5>User: {user.first_name} {user.last_name}</h5>
-                <p>Role: {user.role_id === 3 ? 'Admin' : 'Regular User'}</p>
-                <p>Email: {user.email}</p>
-                <p>Phone: {user.phone}</p>
-                <div style={{border: '1px solid green'}}>
-                    <p>User History: </p>
+            <div className='col-sm-6 col-lg-3 singleUser'>
+                <h5>{user.first_name} {user.last_name}</h5>
+                <p>Role: <span>{user.role_id === 3 ? 'Admin' : 'Regular User'}</span></p>
+                <p>Email: <span>{user.email}</span></p>
+                <p>Phone: <span>{user.phone}</span></p>
+                <div className='userHistory'>
+                    <p>User History- </p>
                     {user.history.map((history, h) => (
-                        <div>
-                            <p>Status: {history.label}</p>
-                            <p>Date: {history.date}</p>
-                            <p>Description: {history.description}</p>
+                        <div className='historyBlock'>
+                            <p>Status: <span>{history.label}</span></p>
+                            <p>Date: <span>{history.date}</span></p>
+                            <p>Description: <span>{history.description}</span></p>
                         </div>
                     ))}
                 </div>
                 {user.status === 'active' ?
-                    <button onClick={this.block}>Block</button>
+                    <button onClick={this.block} className='aptBtn'>Block</button>
                     :
-                    <button onClick={this.unblock}>Unblock</button>
+                    <button onClick={this.unblock} className='aptBtn'>Unblock</button>
                 }
                 {this.state.block && 
-                    <form onSubmit={this.handleSumbit}>
+                    <form onSubmit={this.handleSumbit} className='block'>
                         <textarea name='status_description' onChange={this.inputChange}></textarea>
-                        <input type='submit'/>
+                        <input type='submit' className='aptBtn'/>
                     </form>
                 }
                 {this.state.unblock && 
-                    <form onSubmit={this.handleSumbit}>
+                    <form onSubmit={this.handleSumbit} className='block'>
                         <textarea name='status_description' onChange={this.inputChange}></textarea>
-                        <input type='submit'/>
+                        <input type='submit' className='aptBtn'/>
                     </form>
                 }
             </div>
