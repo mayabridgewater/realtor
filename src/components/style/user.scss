@@ -1,11 +1,13 @@
 .userMenu {
     box-sizing: border-box;
-    padding: 15px
-}
-.updatedApt {
-    border: 2px solid purple;
-    padding: 5px;
-    width: 150%;
+    padding: 15px;
+    overflow: hidden;
+    h5 {
+        color: grey;
+    }
+    .current {
+        color: black;
+    }
 }
 .mainImage {
     width: 130px;
@@ -14,15 +16,53 @@
     background-position: center;
     background-size: cover;
 }
-// .slideMain {
-//     display: flex;
-//     width: 260px;
-//     margin-right: 15px;
-//   }
-//   .slider {
-//     overflow-x: scroll;
-//     white-space: nowrap;
-//     @media (min-width: 1130px) {
-//       overflow-x: hidden;
-//     }
-//   }
+h4 {
+    color: $darkGold;
+    padding: 10px 0; 
+}
+h5 {
+    cursor: grab;
+}
+.addApt {
+    a {
+        text-decoration: none;
+    }
+}
+.aptBtn {
+    border: none;
+    border-radius: 8px;
+    background-color: $purple-color;
+    color: white;
+    padding: 6px 10px;
+    &:hover {
+        background-color: $darkGold;
+    }
+    &:focus {
+        outline: 0;
+    }
+}
+.updateApt {
+    border: 2px solid $overImageTextBgrnd;
+    padding: 5px;
+    width: 100%;
+}
+.inputArea {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    label {
+        font-weight: bold;
+    }
+    .delete {
+        cursor: pointer;
+    }
+}
+.submit {
+    background-color: $darkGold;
+    border: none;
+    color: white;
+    padding: 5px 8px;
+    &:hover {
+        background-color: $purple-color;
+    }
+}

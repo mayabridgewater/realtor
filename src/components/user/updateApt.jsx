@@ -73,7 +73,6 @@ export default class UpdateApt extends React.Component {
         e.preventDefault();
         let isValid = true;
         const stateCopy = {...this.state};
-        const data = {...this.props.apartment};
         const formData = new FormData();
         formData.append('id', this.props.apartment.id);
         formData.append('user_id', this.props.apartment.user_id);
@@ -101,9 +100,7 @@ export default class UpdateApt extends React.Component {
                 for (let i = 0; i < this.state.images.value.length; i++) {
                     formData.append('image', this.state.images.value[i].id)
                 }
-                //run on images.value.id and add to new form data
             }
-            // data[prop] = this.state[prop].value
             formData.append(`${prop}`, this.state[prop].value)
         }
         if (isValid) {
@@ -118,81 +115,103 @@ export default class UpdateApt extends React.Component {
     }
 
     render() {
-        console.log(this.state.images.value)
         return (
-            <div className='updatedApt'>
+            <div className='updateApt'>
                 <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
-                
-                    <label>Price</label>   
-                    <input type='text' name='price' value={this.state.price.value} onChange={this.handleChange} onBlur={this.inputChange}/>
-                    <InputErrors errors={this.state.price.errors}/>
-                    
-                    <label>Rooms</label>   
-                    <input type='text' name='number_of_room' value={this.state.number_of_room.value} onChange={this.handleChange} onBlur={this.inputChange}/>
 
-                    <label>Bathrooms</label>   
-                    <input type='text' name='number_of_bath' value={this.state.number_of_bath.value} onChange={this.handleChange} onBlur={this.inputChange}/>
-
-                    <label>Sqft</label>   
-                    <input type='text' name='sqft' value={this.state.sqft.value} onChange={this.handleChange} onBlur={this.inputChange}/>
-                    <InputErrors errors={this.state.sqft.errors}/>
-
-                    <label>Description</label>
-                    <textarea className="form-control" rows="3" name='description' value={this.state.description.value} onChange={this.handleChange} onBlur={this.inputChange}></textarea>
-
-                    <label>Sale Status</label>
-                    <select className="form-control" name='sale_status' value={this.state.sale_status.value} onChange={this.handleChange} onBlur={this.inputChange}>
-                        <option value='sale'>For Sale</option>
-                        <option value='rent'>For Rent</option>
-                        <option value='both'>Both</option> 
-                    </select>
-                    <InputErrors errors={this.state.sale_status.errors}/>
-
-                    <label>Property Type</label>
-                    <select className="form-control" name='property_type' value={this.state.property_type.value} onChange={this.handleChange} onBlur={this.inputChange}>
-                        <option value='house'>House</option>
-                        <option value='ranch'>Ranch</option>
-                        <option value='condo'>Condo</option>
-                        <option value='land'>Land</option> 
-                    </select>
-                    <InputErrors errors={this.state.property_type.errors}/>
-
-                    <label>Availability</label>
-                    <select name='availability' value={this.state.property_type.value} onChange={this.handleChange} onBlur={this.inputChange}>
-                        <option value='available'>Available</option>
-                        <option value='suspended'>Suspend</option>
-                        <option value='removed'>Remove</option>
-                    </select>
-
-                    <label>Main Image</label>
-                    {!this.state.main_image.value ?
-                        <div>
-                            <input type="file" name="new_main_image"/>
-                            <span onClick={this.undoImgDelete}>Undo</span>
-                        </div>
-                        :
-                        <div>
-                            <div className='mainImage' name='main_image' style={{backgroundImage: `url("http://localhost:3000${this.state.main_image.value}")`}}>
-                            </div>
-                            <span onClick={() => this.deleteImg('main_image')}>Delete</span>
-                        </div>
-                    }
-
-                    <label>Images</label>
-                    <div className='slideMain slider'>
-                    {this.state.images.value.map((image, i) => (
-                        <div key={i}>
-                            <div className='mainImage'  name='images' value={image.id} style={{backgroundImage: `url("http://localhost:3000${image.url}")`}}></div>
-                            <span onClick={() => this.deleteImg(image.id)}>Delete</span>
-                        </div>
-                    ))}
+                    <div className='inputArea'>
+                        <label>Price</label>   
+                        <input type='text' name='price' value={this.state.price.value} onChange={this.handleChange} onBlur={this.inputChange}/>
+                        <InputErrors errors={this.state.price.errors}/>
                     </div>
-                    <label>Add Pictures</label>
-                    <input type="file" id='multipleImages' name="new_images" multiple/>
 
+                    <div className='inputArea'>
+                        <label>Rooms</label>   
+                        <input type='text' name='number_of_room' value={this.state.number_of_room.value} onChange={this.handleChange} onBlur={this.inputChange}/>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Bathrooms</label>   
+                        <input type='text' name='number_of_bath' value={this.state.number_of_bath.value} onChange={this.handleChange} onBlur={this.inputChange}/>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Sqft</label>   
+                        <input type='text' name='sqft' value={this.state.sqft.value} onChange={this.handleChange} onBlur={this.inputChange}/>
+                        <InputErrors errors={this.state.sqft.errors}/>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Description</label>
+                        <textarea className="form-control" rows="3" name='description' value={this.state.description.value} onChange={this.handleChange} onBlur={this.inputChange}></textarea>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Sale Status</label>
+                        <select className="form-control" name='sale_status' value={this.state.sale_status.value} onChange={this.handleChange} onBlur={this.inputChange}>
+                            <option value='sale'>For Sale</option>
+                            <option value='rent'>For Rent</option>
+                            <option value='both'>Both</option> 
+                        </select>
+                        <InputErrors errors={this.state.sale_status.errors}/>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Property Type</label>
+                        <select className="form-control" name='property_type' value={this.state.property_type.value} onChange={this.handleChange} onBlur={this.inputChange}>
+                            <option value='house'>House</option>
+                            <option value='ranch'>Ranch</option>
+                            <option value='condo'>Condo</option>
+                            <option value='land'>Land</option> 
+                        </select>
+                        <InputErrors errors={this.state.property_type.errors}/>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Availability</label>
+                        <select className="form-control" name='availability' value={this.state.property_type.value} onChange={this.handleChange} onBlur={this.inputChange}>
+                            <option value='available'>Available</option>
+                            <option value='suspended'>Suspend</option>
+                            <option value='removed'>Remove</option>
+                        </select>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Main Image</label>
+                        {!this.state.main_image.value ?
+                            <div>
+                                <input type="file" name="new_main_image"/>
+                                <span onClick={this.undoImgDelete} className='delete'>Undo</span>
+                            </div>
+                            :
+                            <div>
+                                <div className='mainImage' name='main_image' style={{backgroundImage: `url("http://localhost:3000${this.state.main_image.value}")`}}>
+                                </div>
+                                <span onClick={() => this.deleteImg('main_image')} className='delete'>Delete</span>
+                            </div>
+                        }
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Images</label>
+                        <div className='slideMain slider'>
+                        {this.state.images.value.map((image, i) => (
+                            <div key={i}>
+                                <div className='mainImage'  name='images' value={image.id} style={{backgroundImage: `url("http://localhost:3000${image.url}")`}}></div>
+                                <span onClick={() => this.deleteImg(image.id)} className='delete'>Delete</span>
+                            </div>
+                        ))}
+                        </div>
+                    </div>
+
+                    <div className='inputArea'>
+                        <label>Add Pictures</label>
+                        <input type="file" id='multipleImages' name="new_images" multiple/>
+                    </div>
+                
                 </div>
-                <input type='submit'></input>
+                <input type='submit' className='submit'></input>
                 </form>
             </div>
         )

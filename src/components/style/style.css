@@ -1083,12 +1083,12 @@ body {
 .userMenu {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 15px; }
-
-.updatedApt {
-  border: 2px solid purple;
-  padding: 5px;
-  width: 150%; }
+  padding: 15px;
+  overflow: hidden; }
+  .userMenu h5 {
+    color: grey; }
+  .userMenu .current {
+    color: black; }
 
 .mainImage {
   width: 130px;
@@ -1096,3 +1096,52 @@ body {
   margin: 0 5px;
   background-position: center;
   background-size: cover; }
+
+h4 {
+  color: darkgoldenrod;
+  padding: 10px 0; }
+
+h5 {
+  cursor: -webkit-grab;
+  cursor: grab; }
+
+.addApt a {
+  text-decoration: none; }
+
+.aptBtn {
+  border: none;
+  border-radius: 8px;
+  background-color: #a103fc;
+  color: white;
+  padding: 6px 10px; }
+  .aptBtn:hover {
+    background-color: darkgoldenrod; }
+  .aptBtn:focus {
+    outline: 0; }
+
+.updateApt {
+  border: 2px solid #c287ff;
+  padding: 5px;
+  width: 100%; }
+
+.inputArea {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 5px 0; }
+  .inputArea label {
+    font-weight: bold; }
+  .inputArea .delete {
+    cursor: pointer; }
+
+.submit {
+  background-color: darkgoldenrod;
+  border: none;
+  color: white;
+  padding: 5px 8px; }
+  .submit:hover {
+    background-color: #a103fc; }
