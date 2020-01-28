@@ -1,6 +1,12 @@
 .adminMenu { 
     border-right: 1px solid black;
     height: 100vh;
+    h5 {
+        color: grey;
+    }
+    .current {
+        color: black;
+    }
 }
 .showResults {
     box-sizing: border-box;
@@ -8,8 +14,41 @@
 }
 .aptBtn {
     margin: 0 10px;
-    
 }
 .updateImg {
     width: 130px
+}
+.stats {
+    padding: 10px;
+}
+.userStat {
+    padding: 0 15px; 
+    .singleUser {
+        border: 1px dotted black;
+        padding-bottom: 5px;
+        h5 {
+            font-size: 23px;
+            text-align: center;
+        }
+        p {
+            font-weight: bold;
+        }
+        span {
+            font-weight: normal;
+        }
+        .historyBlock {
+            border-top: 1px solid;
+        }
+    }
+}
+.block {
+    display: block;
+    margin-top: 5px;
+    input {
+        display: block;
+    }
+    textarea {
+        width: 80%;
+        height: 100px
+    }
 }

@@ -639,7 +639,8 @@ body {
 .box {
   -webkit-box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
   box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
-  width: 100%; }
+  width: 100%;
+  margin-bottom: 15px; }
   .box:hover {
     -webkit-box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96);
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96); }
@@ -940,29 +941,6 @@ body {
   .aptForm span {
     font-size: 9px; }
 
-.far {
-  position: absolute;
-  bottom: -40px;
-  right: 60px;
-  font-size: 50px;
-  padding: 15px;
-  border-radius: 50%;
-  background: white;
-  color: darkgoldenrod;
-  -webkit-box-shadow: 0 2px 27px -9px rgba(0, 0, 0, 0.75);
-  box-shadow: 0 2px 27px -9px rgba(0, 0, 0, 0.75); }
-  .far:hover {
-    -webkit-box-shadow: 0 2px 25px 1px rgba(0, 0, 0, 0.76);
-    box-shadow: 0 2px 25px 1px rgba(0, 0, 0, 0.76); }
-  @media (min-width: 1100px) {
-    .far {
-      right: 300px; } }
-
-.favorite {
-  color: #ff253a; }
-  .favorite:hover {
-    color: #ff253a; }
-
 .customContainer {
   margin-right: 2%;
   margin-left: 2%; }
@@ -990,13 +968,6 @@ body {
     color: dodgerblue; }
   .details a {
     text-decoration: none; }
-
-.presentedBy {
-  font-size: 13px;
-  margin: 0;
-  padding-left: 5px; }
-  .presentedBy span {
-    font-weight: bold; }
 
 .extraDetails {
   padding-top: 20px;
@@ -1040,7 +1011,8 @@ body {
     margin: 0;
     margin-right: 10px; }
   #dropDown h4 {
-    display: inline-block; }
+    display: inline-block;
+    color: black; }
   #dropDown .section {
     padding: 25px 0; }
     #dropDown .section:hover {
@@ -1068,6 +1040,10 @@ body {
 .adminMenu {
   border-right: 1px solid black;
   height: 100vh; }
+  .adminMenu h5 {
+    color: grey; }
+  .adminMenu .current {
+    color: black; }
 
 .showResults {
   -webkit-box-sizing: border-box;
@@ -1079,6 +1055,33 @@ body {
 
 .updateImg {
   width: 130px; }
+
+.stats {
+  padding: 10px; }
+
+.userStat {
+  padding: 0 15px; }
+  .userStat .singleUser {
+    border: 1px dotted black;
+    padding-bottom: 5px; }
+    .userStat .singleUser h5 {
+      font-size: 23px;
+      text-align: center; }
+    .userStat .singleUser p {
+      font-weight: bold; }
+    .userStat .singleUser span {
+      font-weight: normal; }
+    .userStat .singleUser .historyBlock {
+      border-top: 1px solid; }
+
+.block {
+  display: block;
+  margin-top: 5px; }
+  .block input {
+    display: block; }
+  .block textarea {
+    width: 80%;
+    height: 100px; }
 
 .userMenu {
   -webkit-box-sizing: border-box;
