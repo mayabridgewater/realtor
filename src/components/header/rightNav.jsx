@@ -71,13 +71,13 @@ class RightNav extends React.Component {
                 </div>
                 }
                 {this.state.roleId && 
-                    <div className='d-flex'>
-                        <span style={{padding: '0 5px'}}>Welcome {JSON.parse(Cookies.get('user')).first_name}</span>
-                        <p onClick={this.logout}>Logout</p>
+                    <div className='d-flex '>
+                        <span className="welcome" style={{padding: '0 5px'}}>Welcome {JSON.parse(Cookies.get('user')).first_name}</span>
+                        <p onClick={this.logout} style={{cursor: 'pointer'}}>Logout</p>
+                        {this.state.roleId === 3 && <Link to='/admin'><p>Admin</p></Link>}
+                        {this.state.roleId === 4 && <Link to='/userprofile'><p>My Profile</p></Link>}
                     </div>
                     }
-                {this.state.roleId === 3 && <Link to='/admin'><p>Admin</p></Link>}
-                {this.state.roleId === 4 && <Link to='/userprofile'>My Profile</Link>}
             </div>
         );
     }

@@ -11,6 +11,7 @@ class Apartment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: false,
             apartment: [],
             loading: true,
             denied: false,
@@ -20,6 +21,15 @@ class Apartment extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     async componentDidMount() {
+        let user = Cookies.get('user');
+        if (user) {
+            user = JSON.parse(Cookies.get('user')).role_id;
+            if (user === 3) {
+                this.setState({
+                    user: true
+                })
+            }
+        }
         const apartmentId = this.props.match.params.id;
         const apartment = await getApartmentById(apartmentId);
         this.setState({
@@ -51,7 +61,7 @@ class Apartment extends React.Component {
         e.preventDefault();
         this.state.apartment[0].status = this.state.approval;
         this.state.apartment[0].statusdescription = this.state.description;
-        const result = await updateApartment(this.state.apartment[0]);
+        await updateApartment(this.state.apartment[0]);
         window.location.replace('/admin');
     }
  
@@ -60,11 +70,11 @@ class Apartment extends React.Component {
             <div>
                 {this.state.loading ? <p>loading</p> :
                     <div>
-                        {this.state.apartment[0].status === 'pending' && <h3 className='offset-1'>Pending Apartment: </h3>}
+                        {this.state.apartment[0].status === 'pending' && this.state.user && <h3 className='offset-1'>Pending Apartment: </h3>}
                         <Carousel apartment={this.state.apartment}/>
                         <Details apartment={this.state.apartment}/>
                         <DropDown apartment={this.state.apartment}/>
-                        {this.state.apartment[0].status === 'pending' &&
+                        {this.state.apartment[0].status === 'pending' && this.state.user &&
                         <div className='customContainer approval'>
                             <form onSubmit={this.handleSubmit}>
                                 <label className='statusChange'>

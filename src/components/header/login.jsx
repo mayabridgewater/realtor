@@ -44,7 +44,12 @@ class Login extends React.Component {
         if (isValid) {
             const login = await loginUser(results);
             if (!login) {
-                console.log('incorrect')
+                this.setState({
+                    email: {
+                        ...this.state.email,
+                        errors: ['email or password is invalid']
+                    }
+                })
             } else {
                 const currentCookie = JSON.parse(Cookies.get('user'));
                 this.props.login(currentCookie)
@@ -62,18 +67,17 @@ class Login extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         const {handleForm} = this.props;
         return (
             <div className={'openForm'}>
-                <div className={'formLeft'}>
+                <div className={'formLeft'} style={{backgroundImage: 'url(../images/login_signup.jpg)'}}>
                     <h3>Log in to your account</h3>
                     <span>Access all your saved properties, searches, notes and more.</span> 
                     <form onSubmit={this.handleSubmit}>
-                        <input type={'email'} placeholder={'Email Address'} name='email' onBlur={this.inputChange}/>
+                        <input type={'email'} placeholder={'Email Address'} name='email' onChange={this.inputChange}/>
                         <InputErrors errors={this.state.email.errors}/>
 
-                        <input type={'text'} placeholder={'Password'} name='password' onBlur={this.inputChange}/>
+                        <input type={'password'} placeholder={'Password'} name='password' onChange={this.inputChange}/>
                         <InputErrors errors={this.state.password.errors}/>
                             <span><a href={'/'}>Forgot Password?</a></span>
                     
@@ -83,15 +87,7 @@ class Login extends React.Component {
                                 <span className={'toAccount'} onClick={() => handleForm(2)}>No account? Sign Up</span>
                             </div>
                            
-                    </form>
-                  
-                    
-                </div>
-                <div className={'formRight'}>
-                    <h3>Real estate professional?</h3>
-                    <div>Manage your profile, leads, listing and more.</div>
-                    <button>Pro Log in</button>
-                    <span><a href={'/'}>No professional account? Sign up here</a></span>
+                    </form>                    
                 </div>
                 <img src={'../images/xIcon.png'} alt={'close'} className={'exitBtn'} onClick={() => handleForm(false)}/>
             </div>
