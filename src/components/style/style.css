@@ -620,7 +620,7 @@ body {
     white-space: normal; }
 
 #apartmentBox {
-  min-height: calc(100vh - 240px);
+  min-height: calc(100vh - 140px);
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
   @media (min-width: 560px) {
