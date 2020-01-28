@@ -35,7 +35,7 @@ class Details extends React.Component {
                         <div className='d-flex'>
                             <p><span>{apartment[0].address},</span></p>
                             {this.state.city && this.state.country &&
-                                <p><span> {this.state.city[0].city_name} {this.state.country[0].name}</span></p>
+                                <p><span> {this.state.city[0].city_name}, {this.state.country[0].name}</span></p>
                             }
                         </div>
                     </div>

@@ -10,15 +10,8 @@
 .rightNav {
   height: 100%;
   align-items: center;
-  .img {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid transparent;
-    &:hover {
-      border-bottom: 2px solid $purple-color;
-    }
+  .welcome {
+    font-weight: bold;
   }
   p {
     margin: 0;
@@ -26,9 +19,10 @@
     display: flex;
     align-items: center;
     border-bottom: 2px solid transparent;
+    padding: 0 4px;
+    cursor: pointer;
     &:hover {
       color: $purple-color;
-      border-bottom: 2px solid $purple-color;
     }
     &:hover a {
       color: $purple-color;
@@ -41,21 +35,6 @@
   }
 }
 
-
-.burgerNav {
-  margin: auto 0;
-  padding-right: 10px;
-  .burgerMenu {
-    width: 20px;
-    height: 3px;
-    background: black;
-    margin: 5px 0;
-  }
-}
-@keyframes animation {
-  0% {opacity: 0}
-  100% {opacity: 1}
-}
 
 
 .menu {
@@ -80,88 +59,7 @@
     list-style: none;
   }
 
-  @media(max-width: 768px) {
-    width: 60%;
-    height: 100vh;
-    position: fixed;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    background: white;
-    z-index: 999;
-    overflow-x: scroll;
-    display: none;
-    .toggle {
-      padding: 15px 5px;
-      font-size: 20px;
-      border-bottom: 1px solid grey;
-    }
-    ul {
-      display: flex;
-      flex-direction: column;
-      padding-left: 5px;
-    }
-    li {
-      list-style: none;
-      padding: 3px 0;
-      font-size: 13px;
-    }
-  }
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    .toggle {
-      margin: 0;
-      font-size: $header-font-size;
-      padding: 15px 10px;
-      border-bottom: 2px solid transparent;
-
-      &:hover {
-        color: $purple-color;
-        border-bottom: 2px solid $purple-color;
-      }
-    }
-    .dropdown {
-      position: absolute;
-      width: 100%;
-      padding: 20px 0;
-      background: white;
-      z-index: 999;
-      left: 0;
-      top: 54px;
-      justify-content: space-around;
-      animation: animation ease-in-out 1s;
-      white-space: normal;
-      &:hover {
-        display: block;
-      }
-    }
-  }
 }
-@media(max-width: 768px) {
-  .burgerOpen {
-    .menu {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-}
-
-.rightBurger {
-  width: 40%;
-  background: black;
-  height: 100vh;
-  position: fixed;
-  bottom: 0;
-  top: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.65);
-  z-index: 999;
-  @media(min-width: 768px) {
-    display: none;
-  }
-}
-
 .openForm {
   position: fixed;
   background: white;
@@ -174,34 +72,32 @@
   @media (min-width: 650px) {
     left: 10%;
     top: 10%;
-    width: 800px;
+    width: 700px;
     display: flex;
     height: auto
   }
   @media (min-width: 950px) {
-    left: 20%;
+    left: 26%;
   }
   h3 {
     font-size: 25px;
   }
 
   .formLeft {
+    text-align: center;
     width: 100%;
     height: 60%;
-    padding: 10px;
-    padding-top: 30px;
-    @media (min-width: 650px) {
-      width: 60%;
-      height: auto;
-    }
+    padding:60px 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
     form {
       display: flex;
       flex-direction: column;
       margin-top: 10px;
       input {
-        width: 80%;
+        width: 50%;
         padding: 5px;
-        margin: 5px 0;
+        margin: 5px auto;
       }
       span {
         display: inline-block;
@@ -240,7 +136,7 @@
   .formRight {
     width: 100%;
     height: 40%;
-    padding: 30px 10px;
+    padding: 60px 10px;
     background: rgba(250, 199, 248, 0.43);
     display: flex;
     flex-direction: column;

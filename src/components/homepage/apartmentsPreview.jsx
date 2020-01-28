@@ -13,7 +13,7 @@ export default class ApartmentsPreview extends React.Component {
 
     async componentDidMount() {
         const apartments = await getApartmentsFromServer('availability=available&status=approved');
-        const fourApt = apartments.slice(-4);
+        const fourApt = apartments.apartments.slice(-4);
         this.setState({
             apartments: fourApt
         })

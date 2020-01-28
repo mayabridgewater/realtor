@@ -37,9 +37,9 @@ export default class AdminMain extends React.Component {
                 active_users: [],
                 inactive_users: []
             };
-            for (let i = 0; i < apartments.length; i++) {
-                const current = `apartments_${apartments[i].status}`
-                aprtStatus[current].push(apartments[i])
+            for (let i = 0; i < apartments.apartments.length; i++) {
+                const current = `apartments_${apartments.apartments[i].status}`
+                aprtStatus[current].push(apartments.apartments[i])
             }
             for (let i = 0; i < users.length; i++) {
                 const current = `${users[i].status}_users`;

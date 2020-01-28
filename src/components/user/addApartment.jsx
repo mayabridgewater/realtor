@@ -26,7 +26,8 @@ class AddApartment extends React.Component {
                 images: {value: '', errors: [], validations: {required: false}}
             }
         }
-        this.getCities = this.getCities.bind(this)
+        this.getCities = this.getCities.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     async componentDidMount() {
@@ -58,7 +59,7 @@ class AddApartment extends React.Component {
         this.changeState(newFields)
     }
 
-    handleSubmit = (e) => {
+    async handleSubmit(e) {
         e.preventDefault();
         let isValid = true;
         let data = new FormData();
@@ -85,7 +86,7 @@ class AddApartment extends React.Component {
             }
         }
         if (isValid) {
-            const success = addApartment(data);
+            const success = await addApartment(data);
             if (!success) {
                 console.log('no')
             } else {

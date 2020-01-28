@@ -12,7 +12,6 @@ import Search from "./components/filters/search";
 import Homepage from "./components/homepage/homePage";
 import Apartment from "./components/singleapartment/apartment";
 import {getApartmentsFromServer} from "./components/dataFromToServer";
-import Favorites from "./components/favorites/favoritePage";
 import Footer from "./components/footer/footer";
 import AddApartment from './components/user/addApartment';
 import AdminMain from './components/admin/adminMain';
@@ -24,6 +23,7 @@ class App extends React.Component {
         this.state = {
             apartments: [],
             filteredApartments: [],
+            count: '',
             loading: true,
             favorites: [],
             loggedIn: false,
@@ -33,28 +33,36 @@ class App extends React.Component {
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
         this.reset = this.reset.bind(this);
+        this.nextPage = this.nextPage.bind(this);
     }
     async componentDidMount() {
-        const data = await getApartmentsFromServer('availability=available&status=approved');
+        const data = await getApartmentsFromServer('availability=available&status=approved&size=4');
         this.setState({
-            apartments: data,
-            filteredApartments: data,
+            apartments: data.apartments,
+            filteredApartments: data.apartments,
             loading: false,
-            numOfAvail: data.length
+            count: data.amount[0].count
         })
     };
+
+    async nextPage(page) {
+        const data = await getApartmentsFromServer(`page=${page}&availability=available&status=approved&size=4`);
+        this.setState({
+            filterApartments: data.apartments
+        })
+    }
 
     async filterApartments(query) {
         const apartments = await getApartmentsFromServer(query);
         this.setState({
-            filteredApartments: apartments
+            filteredApartments: apartments.apartments
         })
     }
 
     async reset() {
         const data = await getApartmentsFromServer('availability=available&status=approved');
         this.setState({
-            filteredApartments: data
+            filteredApartments: data.apartments
         })
     }
 
@@ -81,7 +89,7 @@ class App extends React.Component {
                         <Route path={'/apartments'}>
                             <div>
                                 <Search filterApartments={this.filterApartments} reset={this.reset}/>
-                                <Gallery apartments={this.state.filteredApartments} numOfAvail={this.state.numOfAvail}/>
+                                <Gallery apartments={this.state.filteredApartments} numOfAvail={this.state.count} nextPage={this.nextPage}/>
                                 <Footer/>
                             </div>
                         </Route>

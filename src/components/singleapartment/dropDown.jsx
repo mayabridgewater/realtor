@@ -22,7 +22,7 @@ class DropDown extends React.Component {
                     <h4>Property Details</h4>
                     {this.state.display === 2 &&
                     <div className={'inner'}>
-                        {apartment.description ? <p>{apartment.description}</p> 
+                        {apartment[0].description ? <p>{apartment[0].description}</p> 
                         :
                         <p>There is currently no additional information on this property</p>}
                     </div>

@@ -27,7 +27,7 @@ export default class UserProfile extends React.Component {
             user = JSON.parse(Cookies.get('user'));
             const id = user.id;
             const [apartments, images] = await Promise.all(
-                [await getApartmentsFromServer(`id=${id}`), await getImages()]
+                [await getApartmentsFromServer(`user_id=${id}`), await getImages()]
             );
             const status = {
                 approved: [],
@@ -35,16 +35,16 @@ export default class UserProfile extends React.Component {
                 denied: [],
                 pending: []
             };
-            for (let i = 0; i < apartments.length; i++) {
-                const current = apartments[i].status;
-                const id = apartments[i].id;
-                apartments[i].images = [];
+            for (let i = 0; i < apartments.apartments.length; i++) {
+                const current = apartments.apartments[i].status;
+                const id = apartments.apartments[i].id;
+                apartments.apartments[i].images = [];
                 for (let j = 0; j < images.length; j++) {
                     if (images[j].apartment_id === id) {
-                        apartments[i].images.push(images[j])
+                        apartments.apartments[i].images.push(images[j])
                     }
                 }
-                status[current].push(apartments[i])
+                status[current].push(apartments.apartments[i])
             };
             this.setState({
                 loading: false,
