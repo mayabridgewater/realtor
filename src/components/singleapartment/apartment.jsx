@@ -86,6 +86,7 @@ class Apartment extends React.Component {
                             </form>
                         </div>
                         }
+                        <Footer/>
                     </div>
                 }
             </div>

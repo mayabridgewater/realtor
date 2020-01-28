@@ -32,7 +32,7 @@ class App extends React.Component {
         this.filterApartments = this.filterApartments.bind(this);
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
-        this.reset = this.reset.bind(this)
+        this.reset = this.reset.bind(this);
     }
     async componentDidMount() {
         const data = await getApartmentsFromServer('availability=available&status=approved');
@@ -70,6 +70,7 @@ class App extends React.Component {
         })
     }
 
+
     render() {
         return (
             <Router>
@@ -81,23 +82,27 @@ class App extends React.Component {
                             <div>
                                 <Search filterApartments={this.filterApartments} reset={this.reset}/>
                                 <Gallery apartments={this.state.filteredApartments} numOfAvail={this.state.numOfAvail}/>
+                                <Footer/>
                             </div>
                         </Route>
                         <Route path={'/apartment/:id'} component={Apartment}/>
                         <Route path={'/addapartment'}>
                             <AddApartment/>
+                            <Footer/>
                         </Route>
                         <Route path={'/admin'}>
                             <AdminMain/>
+                            <Footer/>
                         </Route>
                         <Route path={'/userprofile'}>
-                            <UserProfile/>
+                            <UserProfile loading={this.state.loading}/>
+                            <Footer/>
                         </Route>
                         <Route path={'/'}>
                             <Homepage numOfAvail={this.state.numOfAvail}/>
+                            <Footer/>
                         </Route>
                     </Switch>
-                    <Footer/>
                 </div>}
             </Router>
         );
