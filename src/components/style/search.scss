@@ -118,9 +118,3 @@
     }
   }
 }
-.property input[type='checkbox']:checked + img {
-  border: 2px solid $purple-color;
-}
-.property input[type='checkbox']:checked + span {
-  color: $purple-color;
-}

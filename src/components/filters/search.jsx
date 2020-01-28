@@ -95,7 +95,6 @@ class Search extends React.Component {
     };
 
     render() {
-        const {aptLength} = this.props;
         return (
             <div className={'container-fluid filters'}>
                 <div className={'d-flex pt-3 justify-content-between align-center'}>

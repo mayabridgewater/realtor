@@ -52,3 +52,19 @@
         height: 100px
     }
 }
+
+.approval {
+    padding-bottom: 20px;
+    text-align: center;
+}
+.statusChange img {
+    width: 30px;
+    margin: 0 10px;
+    border-radius: 50%;
+}
+[type=radio] + img {
+    cursor: pointer;
+}
+.statusChange input[type='radio']:checked + img {
+    background: $overImageTextBgrnd;
+}

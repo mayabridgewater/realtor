@@ -8,9 +8,9 @@ class Main extends React.Component {
                 <h1 className="text-lg-center">The Home of Home Search</h1>
                 <h2 className="d-none d-lg-block text-center">With the most complete source of homes for sale & real
                     estate near you</h2>
-                <ul className="navList">
-                    <Link to='/apartments'><li>BUY</li></Link>
-                </ul>
+                <div className="navList">
+                    <Link to='/apartments'><button>BUY</button></Link>
+                </div>
             </div>
         )
     }
