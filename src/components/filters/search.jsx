@@ -72,13 +72,12 @@ class Search extends React.Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        let query = '';
+        let query = {};
         for (let prop in this.state.search) {
             if (this.state.search[prop]) {
-                query += `${prop}=${this.state.search[prop]}&`
+                query[prop] = this.state.search[prop]
             }
         }
-        query += 'availability=available&status=approved';
         this.props.filterApartments(query);
         this.setState({
             reset: true,
@@ -88,8 +87,13 @@ class Search extends React.Component {
 
 
     resetSearch = () => {
+        let clearSearch = {...this.state.search};
+        for (let prop in clearSearch) {
+            clearSearch[prop] = '';
+        }
         this.setState({
-            reset: false
+            reset: false,
+            search: clearSearch
         });
         this.props.reset()
     };

@@ -7,23 +7,24 @@ class Gallery extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pages: []
+            clicked: 1
         }
     }
 
     componentDidMount() {
-        const pages = Math.ceil(this.props.numOfAvail / 9);
-        let pageList = new Array(pages).fill(0);
-        this.setState({
-            pages: pageList
-        })
+        this.changePage(1)
     }
 
     changePage(page) {
-        this.props.nextPage(page)
+        this.props.nextPage(page);
+        this.setState({
+            clicked: page
+        })
     }
     render() {
         const {apartments} = this.props;
+        const pages = Math.ceil(this.props.numOfAvail / 9);
+        let pageList = new Array(pages).fill(0);
         return (
             <div id={'apartmentBox'}>
                 <p>{this.props.numOfAvail} Available Homes</p>
@@ -39,11 +40,9 @@ class Gallery extends React.Component {
                 <div>
                     <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                    {/* <li class="page-item"><a class="page-link" href="#">Previous</a></li> */}
-                    {this.state.pages.map((page, p) => (
-                          <li class="page-item" onClick={() => this.changePage(p+1)} key={p}>{p+1}</li>
+                    {pageList.map((page, p) => (
+                          <li className={this.state.clicked === p+1 ?'page-item clicked' : 'page-item'} onClick={() => this.changePage(p+1)} key={p}>{p+1}</li>
                     ))}
-                    {/* <li class="page-item"><a class="page-link" href="#">Next</a></li> */}
                     </ul>
                     </nav>
                 </div>

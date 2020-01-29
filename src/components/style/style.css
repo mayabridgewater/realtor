@@ -447,7 +447,8 @@ body {
   box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.96);
   width: 100%;
   margin-bottom: 15px;
-  min-width: 264px; }
+  min-width: 264px;
+  white-space: normal; }
   .box:hover {
     -webkit-box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96);
     box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.96); }
@@ -456,6 +457,7 @@ body {
   padding: 100px 0;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   position: relative; }
 
 .infoBox {
@@ -550,6 +552,9 @@ body {
     .pagination .page-item:hover {
       border: 1px solid darkgoldenrod;
       color: darkgoldenrod; }
+  .pagination .clicked {
+    border: 1px solid darkgoldenrod;
+    color: darkgoldenrod; }
 
 .filters {
   white-space: nowrap; }
