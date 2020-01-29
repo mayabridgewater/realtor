@@ -12,7 +12,7 @@ class Gallery extends React.Component {
     }
 
     componentDidMount() {
-        const pages = Math.ceil(this.props.numOfAvail / 4);
+        const pages = Math.ceil(this.props.numOfAvail / 9);
         let pageList = new Array(pages).fill(0);
         this.setState({
             pages: pageList

@@ -32,15 +32,15 @@ class Carousel extends React.Component {
         return (
             <div className="carouselWrapper">
                 <div className="row">
-                    <div className='col-8'>
+                    <div className='col-md-8'>
                         <div className='singleMainImg' style={{backgroundImage: `url(${this.state.currentMain})`}}>
                         </div> 
                     </div>
-                    <div className='col-3'>
+                    <div className='col-md-3'>
                         <div>    
-                            <div className='row'>
+                            <div className='row moreImgs'>
                                 {this.state.images.map((image, i) => (
-                                    <div className='col-6 extraImg'>
+                                    <div className='col-md-6 extraImg'>
                                         <img class="img-fluid" src={'http://localhost:3000/' + image.url} id={'image'+image.id} onClick={() => this.switchCurrent(image.id, image.url)}/>
                                     </div>
                                 ))}

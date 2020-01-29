@@ -27,7 +27,7 @@ export default class AdminMain extends React.Component {
         const user = Cookies.get('user');
         if (user) {
             const [apartments, users, history] = await Promise.all(
-                [await getApartmentsFromServer(), await getUsers(), await getUserHistory()]    
+                [getApartmentsFromServer(), getUsers(), getUserHistory()]    
             );
             const aprtStatus = {apartments_pending: [], 
                                   apartments_denied: [], 
@@ -98,7 +98,7 @@ export default class AdminMain extends React.Component {
                     :
                     <div className='container-fluid'>
                         <div className='row'>
-                            <div className='col-3 adminMenu'>
+                            <div className='col-3 col-lg-2 adminMenu'>
                                 <h4>Apartments</h4>
                                 <h5 onClick={() => this.changeCurrentApt('pending')} className={this.state.current === 'pending' && 'current'}>Pending: {this.state.apartments_pending.length}</h5>
                                 <h5 onClick={() => this.changeCurrentApt('denied')} className={this.state.current === 'denied' && 'current'}>Denied: {this.state.apartments_denied.length}</h5>
@@ -108,7 +108,7 @@ export default class AdminMain extends React.Component {
                                 <h5 onClick={() => this.showUsers('active')} className={this.state.current === 'active' && 'current'}>Active: {this.state.active_users.length}</h5>
                                 <h5 onClick={() => this.showUsers('inactive')} className={this.state.current === 'inactive' && 'current'}>Blocked: {this.state.inactive_users.length}</h5>
                             </div>
-                            <div className='col-9 stats'>
+                            <div className='col-4 col-md-9 stats'>
                                 {this.state.showApartments ?
                                     <ShowAptStats apartments= {this.state.showCurrent} status={this.state.current}/>
                                     :

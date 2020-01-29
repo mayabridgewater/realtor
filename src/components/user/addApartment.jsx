@@ -19,7 +19,7 @@ class AddApartment extends React.Component {
                 number_of_room: {value: '', errors: [], validations: {required: false}},
                 number_of_bath: {value: '', errors: [], validations: {required: false}},
                 sqft: {value: '', errors: [], validations: {required: true}},
-                description: {value: '', errors: [], validations: {required: false}},
+                description: {value: '', errors: [], validations: {required: false, maxLength: 500}},
                 sale_status: {value: '', errors: [], validations: {required: true}},
                 property_type: {value: '', errors: [], validations: {required: true}},
                 main_image: {value: '', errors: [], validations: {required: false}},

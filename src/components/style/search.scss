@@ -1,5 +1,8 @@
 .filters {
   white-space: nowrap;
+  @media (min-width: 560px) {
+    padding: 0 50px;
+  }
 }
 .citySearch input {
   border: 1px solid grey;

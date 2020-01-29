@@ -1,12 +1,9 @@
 #apartmentBox {
   min-height: calc(100vh - 140px);
   box-sizing: border-box;
+  margin-top: 15px;
   @media (min-width: 560px) {
     padding: 0 50px;
-  }
-  a {
-    text-decoration: none;
-    color: black
   }
 }
 #container {
@@ -37,8 +34,7 @@
     padding: 0 10px;
     margin: 0;
   }
-  a {
-    text-decoration: none;
+  .info {
     color: black;
   }
   .bold {
@@ -107,6 +103,20 @@
     to {opacity: 1}
   }
 
-.cityBox {
-  padding-top: 15px;
+.pagination {
+  display: flex;
+  justify-content: center;
+  .page-item {
+    border: 1px solid $purple-color;
+    margin: 0 6px;
+    padding: 5px 8px;
+    font-size: 20px;
+    border-radius: 4px;
+    color: $purple-color;
+    cursor: pointer;
+    &:hover {
+      border: 1px solid $darkGold;
+      color: $darkGold;
+    }
+  }
 }
