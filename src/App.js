@@ -46,10 +46,11 @@ class App extends React.Component {
     };
 
     async nextPage(page) {
-        const data = await getApartmentsFromServer(`page=${page}&availability=available&status=approved&size=4`);
-        this.setState({
-            filterApartments: data.apartments
-        })
+        console.log(page)
+        // const data = await getApartmentsFromServer(`page=${page}&availability=available&status=approved&size=4`);
+        // this.setState({
+        //     filterApartments: data.apartments
+        // })
     }
 
     async filterApartments(query) {
@@ -107,7 +108,7 @@ class App extends React.Component {
                             <Footer/>
                         </Route>
                         <Route path={'/'}>
-                            <Homepage numOfAvail={this.state.numOfAvail}/>
+                            <Homepage numOfAvail={this.state.count}/>
                             <Footer/>
                         </Route>
                     </Switch>
