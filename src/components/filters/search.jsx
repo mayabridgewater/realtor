@@ -102,13 +102,13 @@ class Search extends React.Component {
             <div className={'container-fluid filters'}>
                 <div className={'d-flex pt-3 justify-content-between align-center'}>
                     <form onSubmit={this.handleSubmit} className={'d-flex'} autoComplete={"off"}>
-                        <select id="inputState" class="form-control" onChange={this.getCities}>
+                        <select id="inputState" className="form-control" onChange={this.getCities}>
                             <option>Country</option>
                             {this.state.countries.map((country, c) => (
                                 <option key={c} value={country.id}>{country.name}</option>
                             ))}
                         </select>
-                        <select id="inputCity" class="form-control" name='city' onBlur={this.inputChange}>
+                        <select id="inputCity" className="form-control" name='city' onBlur={this.inputChange}>
                             {this.state.cities.map((city, i) => (
                                 <option key={i} value={city.id}>{city.city_name}</option>
                             ))}

@@ -121,17 +121,17 @@ class AddApartment extends React.Component {
                     :
                     <div className='addApartment' style={{backgroundImage: 'url(./images/addBackground.jpg)'}}>
                         <h1>Add New Apartment</h1>
-                        <form onSubmit={this.handleSubmit} enctype="multipart/form-data" action='/apartments' className='form'>
-                            <div class="form-group">
+                        <form onSubmit={this.handleSubmit} encType="multipart/form-data" action='/apartments' className='form'>
+                            <div className="form-group">
                                 <div className='inputArea'>
                                     <label>Address</label>
-                                    <textarea class="form-control" rows="3" name='address' onBlur={this.inputChange}></textarea>
+                                    <textarea className="form-control" rows="3" name='address' onBlur={this.inputChange}></textarea>
                                     <InputErrors errors={this.state.fields.address.errors}/>
                                 </div>
 
                                 <div className='inputArea'>
-                                    <label for="inputState">Country</label>
-                                    <select id="inputState" class="form-control" onChange={this.getCities}>
+                                    <label htmlFor="inputState">Country</label>
+                                    <select id="inputState" className="form-control" onChange={this.getCities}>
                                         {this.state.countries.map((country, c) => (
                                             <option key={c} value={country.id}>{country.name}</option>
                                         ))}
@@ -139,9 +139,9 @@ class AddApartment extends React.Component {
                                 </div>
                                 
                                 <div className='inputArea'>
-                                    <label for="inputCity">City</label>
-                                    <select id="inputCity" class="form-control" name='city' onBlur={this.inputChange}>
-                                        <option value='' selected></option>
+                                    <label htmlFor="inputCity">City</label>
+                                    <select id="inputCity" className="form-control" name='city' onBlur={this.inputChange}>
+                                        <option value=''></option>
                                         {this.state.cities.map((city, i) => (
                                             <option key={i} value={city.id}>{city.city_name}</option>
                                         ))}
@@ -177,12 +177,12 @@ class AddApartment extends React.Component {
 
                                     <div className='inputArea'>
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3" name='description' onBlur={this.inputChange}></textarea>
+                                        <textarea className="form-control" rows="3" name='description' onBlur={this.inputChange}></textarea>
                                     </div>
 
                                     <div className='inputArea'>
                                         <label>Sale Status</label>
-                                        <select class="form-control" name='sale_status' onBlur={this.inputChange}>
+                                        <select className="form-control" name='sale_status' onBlur={this.inputChange}>
                                             <option value='sale'>For Sale</option>
                                             <option value='rent'>For Rent</option>
                                             <option value='both'>Both</option> 
@@ -192,7 +192,7 @@ class AddApartment extends React.Component {
 
                                     <div className='inputArea'>
                                         <label>Property Type</label>
-                                        <select class="form-control" name='property_type' onBlur={this.inputChange}>
+                                        <select className="form-control" name='property_type' onBlur={this.inputChange}>
                                             <option value='house'>House</option>
                                             <option value='ranch'>Ranch</option>
                                             <option value='condo'>Condo</option>

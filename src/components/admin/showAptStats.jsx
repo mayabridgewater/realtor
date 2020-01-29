@@ -28,19 +28,17 @@ export default class ShowAptStats extends React.Component {
                     {status === 'removed' && 'Sold/Removed'} Apartments</h3>
                 <div className='row'>
                     {apartments.map((item, i) => (
-                        <div className={'col-md-6 col-lg-4'}>
-                            <ApartmentBox {...item} key={i}/>
+                        <div className={'col-md-6 col-lg-4'} key={i}>
+                            <ApartmentBox {...item}/>
                         </div>
                     ))}
                 </div>
                 <div>
                     <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                    {/* <li class="page-item"><a class="page-link" href="#">Previous</a></li> */}
+                    <ul className="pagination">
                     {pageList.map((page, p) => (
-                          <li class="page-item" onClick={() => this.changePage(p+1)} key={p}>{p+1}</li>
+                          <li className="page-item" onClick={() => this.changePage(p+1)} key={p}>{p+1}</li>
                     ))}
-                    {/* <li class="page-item"><a class="page-link" href="#">Next</a></li> */}
                     </ul>
                     </nav>
                 </div>

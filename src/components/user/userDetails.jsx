@@ -58,7 +58,7 @@ export default class UserDetails extends React.Component {
                 <div className='userHistory'>
                     <p>User History- </p>
                     {user.history.map((history, h) => (
-                        <div className='historyBlock'>
+                        <div className='historyBlock' key={h}>
                             <p>Status: <span>{history.label}</span></p>
                             <p>Date: <span>{history.date}</span></p>
                             <p>Description: <span>{history.description}</span></p>

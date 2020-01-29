@@ -100,13 +100,13 @@ export default class AdminMain extends React.Component {
                         <div className='row'>
                             <div className='col-3 col-lg-2 adminMenu'>
                                 <h4>Apartments</h4>
-                                <h5 onClick={() => this.changeCurrentApt('pending')} className={this.state.current === 'pending' && 'current'}>Pending: {this.state.apartments_pending.length}</h5>
-                                <h5 onClick={() => this.changeCurrentApt('denied')} className={this.state.current === 'denied' && 'current'}>Denied: {this.state.apartments_denied.length}</h5>
-                                <h5 onClick={() => this.changeCurrentApt('approved')} className={this.state.current === 'approved' && 'current'}>Active: {this.state.apartments_approved.length}</h5>
-                                <h5 onClick={() => this.changeCurrentApt('removed')} className={this.state.current === 'removed' && 'current'}>Removed: {this.state.apartments_removed.length}</h5>
+                                <h5 onClick={() => this.changeCurrentApt('pending')} className={this.state.current === 'pending' ? 'current' : ''}>Pending: {this.state.apartments_pending.length}</h5>
+                                <h5 onClick={() => this.changeCurrentApt('denied')} className={this.state.current === 'denied' ? 'current' : ''}>Denied: {this.state.apartments_denied.length}</h5>
+                                <h5 onClick={() => this.changeCurrentApt('approved')} className={this.state.current === 'approved' ? 'current' : ''}>Active: {this.state.apartments_approved.length}</h5>
+                                <h5 onClick={() => this.changeCurrentApt('removed')} className={this.state.current === 'removed' ? 'current' : ''}>Removed: {this.state.apartments_removed.length}</h5>
                                 <h4>Users</h4>
-                                <h5 onClick={() => this.showUsers('active')} className={this.state.current === 'active' && 'current'}>Active: {this.state.active_users.length}</h5>
-                                <h5 onClick={() => this.showUsers('inactive')} className={this.state.current === 'inactive' && 'current'}>Blocked: {this.state.inactive_users.length}</h5>
+                                <h5 onClick={() => this.showUsers('active')} className={this.state.current === 'active' ? 'current' : ''}>Active: {this.state.active_users.length}</h5>
+                                <h5 onClick={() => this.showUsers('inactive')} className={this.state.current === 'inactive' ? 'current' : ''}>Blocked: {this.state.inactive_users.length}</h5>
                             </div>
                             <div className='col stats'>
                                 {this.state.showApartments ?

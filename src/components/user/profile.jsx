@@ -76,10 +76,10 @@ export default class UserProfile extends React.Component {
                     <div className='row' style={{boxSizing: 'border-box'}}>
                         <div className='col-3 userMenu' style={{height: '100vh', borderRight: '1px solid'}}>
                             <h4>Your Apartments</h4>
-                            <h5 id='approved' onClick={this.changeStatus} className={this.state.showing === 'approved' && 'current'}>Active: {this.state.approved_apartments.length}</h5>
-                            <h5 id='removed' onClick={this.changeStatus} className={this.state.showing === 'removed' && 'current'}>Sold/Deleted: {this.state.removed_apartments.length}</h5>
-                            <h5 id='denied' onClick={this.changeStatus} className={this.state.showing === 'denied' && 'current'}>Denied: {this.state.denied_apartments.length}</h5>
-                            <h5 id='pending' onClick={this.changeStatus} className={this.state.showing === 'pending' && 'current'}>Pending: {this.state.pending_apartments.length}</h5>
+                            <h5 id='approved' onClick={this.changeStatus} className={this.state.showing === 'approved' ? 'current' : ''}>Active: {this.state.approved_apartments.length}</h5>
+                            <h5 id='removed' onClick={this.changeStatus} className={this.state.showing === 'removed' ? 'current' : ''}>Sold/Deleted: {this.state.removed_apartments.length}</h5>
+                            <h5 id='denied' onClick={this.changeStatus} className={this.state.showing === 'denied' ? 'current' : ''}>Denied: {this.state.denied_apartments.length}</h5>
+                            <h5 id='pending' onClick={this.changeStatus} className={this.state.showing === 'pending' ? 'current' : ''}>Pending: {this.state.pending_apartments.length}</h5>
 
                             <div className='addApt'>
                                 <Link to='/addapartment'><h4>Add Apartment</h4></Link>
