@@ -1,8 +1,4 @@
 import React from 'react';
-import {websiteNav} from "../homepage/directoryLists/websiteNav";
-import FooterNav from "./footerNav";
-import {products} from "../homepage/directoryLists/products";
-import {newsCorp} from "../homepage/directoryLists/newsCorp";
 
 class Footer extends React.Component {
     render() {

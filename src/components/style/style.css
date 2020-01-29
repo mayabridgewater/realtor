@@ -416,7 +416,8 @@ body {
   color: white;
   white-space: nowrap;
   font-size: 14px;
-  padding: 10px 0; }
+  padding: 10px 0;
+  text-align: center; }
   .bottomFoot span {
     font-size: 13px;
     color: white; }
