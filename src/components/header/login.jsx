@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 import validate from '../forms/validation';
 import InputErrors from '../forms/inputErrors';
-import {loginUser} from '../dataFromToServer';
+import {loginUser} from '../../api/dataFromToServer';
 
 class Login extends React.Component {
     constructor(props) {

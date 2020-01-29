@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 import Carousel from "./carousel";
 import Details from "./details";
-import {getApartmentById, updateApartment} from "../dataFromToServer";
+import {getApartmentById, updateApartment} from "../../api/dataFromToServer";
 import DropDown from "./dropDown";
 import Footer from "../footer/footer";
 

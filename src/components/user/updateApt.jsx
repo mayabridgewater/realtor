@@ -2,7 +2,7 @@ import React from 'react';
 
 import validate from '../forms/validation';
 import InputErrors from '../forms/inputErrors';
-import {updateApartment} from '../dataFromToServer';
+import {updateApartment} from '../../api/dataFromToServer';
 
 export default class UpdateApt extends React.Component {
     constructor(props) {

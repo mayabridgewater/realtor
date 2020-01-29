@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {updateUser} from '../dataFromToServer';
+import {updateUser} from '../../api/dataFromToServer';
 
 export default class UserDetails extends React.Component {
     constructor(props) {
@@ -51,7 +51,7 @@ export default class UserDetails extends React.Component {
         const {user} = this.props;
         return (
             <div className='col-sm-6 col-lg-3 singleUser'>
-                <h5>{user.first_name} {user.last_name}</h5>
+                <h3 className='text-center' style={{fontSize: '25px'}}>{user.first_name} {user.last_name}</h3>
                 <p>Role: <span>{user.role_id === 3 ? 'Admin' : 'Regular User'}</span></p>
                 <p>Email: <span>{user.email}</span></p>
                 <p>Phone: <span>{user.phone}</span></p>

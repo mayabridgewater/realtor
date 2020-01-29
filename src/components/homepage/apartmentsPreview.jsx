@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getApartmentsFromServer} from '../dataFromToServer';
+import {getApartmentsFromServer} from '../../api/dataFromToServer';
 import ApartmentBox from '../gallery/apartmentBox';
 
 export default class ApartmentsPreview extends React.Component {
@@ -12,10 +12,10 @@ export default class ApartmentsPreview extends React.Component {
     }
 
     async componentDidMount() {
-        const apartments = await getApartmentsFromServer('availability=available&status=approved');
-        const fourApt = apartments.apartments.slice(0, 4);
+        const query = {availability: 'available', status: 'approved', size: 4}
+        const apartments = await getApartmentsFromServer(query);
         this.setState({
-            apartments: fourApt
+            apartments: apartments.apartments
         })
     }
 

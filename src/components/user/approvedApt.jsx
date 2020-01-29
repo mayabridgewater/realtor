@@ -2,7 +2,7 @@ import React from 'react';
 
 import ApartmentBox from '../gallery/apartmentBox';
 import UpdateApt from './updateApt';
-import {updateApartment} from '../dataFromToServer';
+import {updateApartment} from '../../api/dataFromToServer';
 
 export default class ApprovedApt extends React.Component {
     constructor() {

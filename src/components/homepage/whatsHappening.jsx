@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getApartmentsFromServer, getUsers} from '../dataFromToServer';
+import {getApartmentsFromServer, getUsers} from '../../api/dataFromToServer';
 
 class WhatsHappening extends React.Component {
     constructor() {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getCityById, getCountryById} from '../dataFromToServer';
+import {getCityById, getCountryById} from '../../api/dataFromToServer';
 
 class Details extends React.Component {
     constructor(props) {

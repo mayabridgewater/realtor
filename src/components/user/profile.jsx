@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 
-import { getApartmentsFromServer, getImages } from '../dataFromToServer';
+import { getApartmentsFromServer, getImages } from '../../api/dataFromToServer';
 import ApartmentBox from '../gallery/apartmentBox';
 import ApprovedApt from './approvedApt';
 import DeniedApt from './deniedApt';
@@ -26,8 +26,9 @@ export default class UserProfile extends React.Component {
         if (user) {
             user = JSON.parse(Cookies.get('user'));
             const id = user.id;
+            const query = {user_id: id};
             const [apartments, images] = await Promise.all(
-                [await getApartmentsFromServer(`user_id=${id}`), await getImages()]
+                [getApartmentsFromServer(query), getImages()]
             );
             const status = {
                 approved: [],

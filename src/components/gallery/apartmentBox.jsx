@@ -2,7 +2,6 @@ import React from 'react';
 import InfoBox from "./infobox";
 import OverImage from "./overimage";
 import {Link} from "react-router-dom";
-import Heart from "../favorites/heart";
 
 class ApartmentBox extends React.Component {
     constructor() {

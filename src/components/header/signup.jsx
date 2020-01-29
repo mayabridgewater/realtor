@@ -2,13 +2,14 @@ import React from 'react';
 
 import validate from '../forms/validation';
 import InputErrors from '../forms/inputErrors';
-import {registerUser} from '../dataFromToServer';
+import {registerUser} from '../../api/dataFromToServer';
 
 class Signup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             signup: false,
+            valid: true,
             fields: {
                 email: {value: '', errors: [], validations: {required: true, pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/}},
                 password: {value: '', errors: [], validations: {required: true, minLength: 5}},
@@ -57,10 +58,17 @@ class Signup extends React.Component {
         }
         if (isValid) {
             results.role_id = 4
-            await registerUser(results);
-            this.setState({
-                signup: true
-            })
+            const signUp = await registerUser(results);
+            if (signUp.error) {
+                this.setState({
+                    valid: false
+                })
+            } else {
+                this.setState({
+                    signup: true,
+                    valid: true
+                })
+            }
 
         }else {
             this.changeState(newFields)
@@ -82,21 +90,26 @@ class Signup extends React.Component {
                     <div>
                         <h3>Sign Up</h3>
                         <form onSubmit={this.handleSubmit} className='user'>
-                            <input type='text' placeholder="First Name" name='first_name' onBlur={this.inputChange}/>
+                            <input type='text' placeholder="First Name" name='first_name' onChange={this.inputChange}/>
                             <InputErrors errors={fields.first_name.errors}/>
                             
-                            <input type='text' placeholder="Last Name" name='last_name' onBlur={this.inputChange}/>
+                            <input type='text' placeholder="Last Name" name='last_name' onChange={this.inputChange}/>
                             <InputErrors errors={fields.last_name.errors}/>
                             
-                            <input type={'email'} placeholder={'Email Address'} name="email" onBlur={this.inputChange}/>
+                            <input type={'email'} placeholder={'Email Address'} name="email" onChange={this.inputChange}/>
                             <InputErrors errors={fields.email.errors}/>
                             
-                            <input type={'password'} placeholder={'Password'} name="password" onBlur={this.inputChange}/>
+                            <input type={'password'} placeholder={'Password'} name="password" onChange={this.inputChange}/>
                             <InputErrors errors={fields.password.errors}/>
                             
-                            <input type='text' placeholder='Phone Number' name='phone' onBlur={this.inputChange}/>   
+                            <input type='text' placeholder='Phone Number' name='phone' onChange={this.inputChange}/>   
                             <InputErrors errors={fields.phone.errors}/>
                             
+                            {!this.state.valid && 
+                                <div>
+                                    <small className='form-text text-danger' style={{fontSize: '15px'}}>Invald input</small>
+                                </div>
+                            }
                             <div className={'signUp'}>
                                 <input type="submit" className="submit" value="Sign Up"/>
                                 <span className={'toAccount'} onClick={() => handleForm(1)}>Registered? Log In</span>
