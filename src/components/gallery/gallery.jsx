@@ -32,14 +32,14 @@ class Gallery extends React.Component {
                 </div>
                 <div className={'row'}>
                     {apartments.map((item, i) => (
-                        <div id={'container'} className={'col-md-6 col-lg-4'} style={{position: 'relative'}}>
-                            <ApartmentBox {...item} key={i}/>
+                        <div id={'container'} key={i} className={'col-md-6 col-lg-4'} style={{position: 'relative'}}>
+                            <ApartmentBox {...item}/>
                         </div>
                     ))}
                 </div>
                 <div>
                     <nav aria-label="Page navigation example">
-                    <ul class="pagination">
+                    <ul className="pagination">
                     {pageList.map((page, p) => (
                           <li className={this.state.clicked === p+1 ?'page-item clicked' : 'page-item'} onClick={() => this.changePage(p+1)} key={p}>{p+1}</li>
                     ))}

@@ -40,8 +40,8 @@ class Carousel extends React.Component {
                         <div>    
                             <div className='row moreImgs'>
                                 {this.state.images.map((image, i) => (
-                                    <div className='col-md-6 extraImg'>
-                                        <img class="img-fluid" src={'http://localhost:3000/' + image.url} id={'image'+image.id} onClick={() => this.switchCurrent(image.id, image.url)}/>
+                                    <div className='col-md-6 extraImg' key={i}>
+                                        <img className="img-fluid" src={'http://localhost:3000/' + image.url} id={'image'+image.id} onClick={() => this.switchCurrent(image.id, image.url)} alt={'/'}/>
                                     </div>
                                 ))}
                             </div>
