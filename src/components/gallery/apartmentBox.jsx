@@ -22,7 +22,7 @@ class ApartmentBox extends React.Component {
     render() {
         const {id, price, main_image, images, number_of_room, number_of_bath, sqft, address, city_name, name, created_on, sale_status, property_type} = this.props;
         return (
-                <Link to={`/apartment/${id}`}><div className={'box'}>
+                <Link to={`/apartment/${id}`} style={{textDecoration: 'none'}}><div className={'box'}>
                     <div className={'imageBox'} style={{backgroundImage: `url("http://localhost:3000${main_image}")`}} onMouseOver={this.changeImage} onMouseOut={() => this.changeImage(false)}>
                         <OverImage price={price}
                                    date={created_on}

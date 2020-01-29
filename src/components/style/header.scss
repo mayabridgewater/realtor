@@ -5,14 +5,6 @@
   position: relative;
   white-space: nowrap;
   padding: 10px 20px;
-}
-
-.rightNav {
-  height: 100%;
-  align-items: center;
-  .welcome {
-    font-weight: bold;
-  }
   p {
     margin: 0;
     height: 100%;
@@ -21,6 +13,7 @@
     border-bottom: 2px solid transparent;
     padding: 0 4px;
     cursor: pointer;
+    font-size: 20px;
     &:hover {
       color: $purple-color;
     }
@@ -32,6 +25,15 @@
     text-decoration: none;
     color: black;
     padding: 0 5px;
+  }
+}
+
+.rightNav {
+  height: 100%;
+  align-items: center;
+  .welcome {
+    font-weight: bold;
+    font-size: 20px;
   }
 }
 

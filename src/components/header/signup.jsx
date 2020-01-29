@@ -56,11 +56,7 @@ class Signup extends React.Component {
             }
         }
         if (isValid) {
-            if (this.state.userSignup) {
-                results.role_id = 4
-            } else {
-                results.role_id = 3
-            }
+            results.role_id = 4
             await registerUser(results);
             this.setState({
                 signup: true
@@ -79,10 +75,12 @@ class Signup extends React.Component {
             <div className={'openForm'}>
                 <div className={'formLeft'} style={{backgroundImage: 'url(../images/login_signup.jpg)'}}>
                 {this.state.signup ?
-                    <h3>Welcome to Realtor.com!</h3>
+                    <div style={{height: '300px'}}>
+                        <h3>Welcome to Realtor.com!</h3>
+                    </div>
                         :
                     <div>
-                        <h3>{this.state.userSignup ? 'Sign Up' : 'Admin Sign Up'}</h3>
+                        <h3>Sign Up</h3>
                         <form onSubmit={this.handleSubmit} className='user'>
                             <input type='text' placeholder="First Name" name='first_name' onBlur={this.inputChange}/>
                             <InputErrors errors={fields.first_name.errors}/>

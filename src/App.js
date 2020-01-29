@@ -36,7 +36,7 @@ class App extends React.Component {
         this.nextPage = this.nextPage.bind(this);
     }
     async componentDidMount() {
-        const data = await getApartmentsFromServer('availability=available&status=approved&size=4');
+        const data = await getApartmentsFromServer('availability=available&status=approved&size=9');
         this.setState({
             apartments: data.apartments,
             filteredApartments: data.apartments,
@@ -46,11 +46,10 @@ class App extends React.Component {
     };
 
     async nextPage(page) {
-        console.log(page)
-        // const data = await getApartmentsFromServer(`page=${page}&availability=available&status=approved&size=4`);
-        // this.setState({
-        //     filterApartments: data.apartments
-        // })
+        const data = await getApartmentsFromServer(`page=${page}&availability=available&status=approved&size=9`);
+        this.setState({
+            filteredApartments: data.apartments
+        })
     }
 
     async filterApartments(query) {

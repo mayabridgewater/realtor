@@ -79,10 +79,8 @@ class Login extends React.Component {
 
                         <input type={'password'} placeholder={'Password'} name='password' onChange={this.inputChange}/>
                         <InputErrors errors={this.state.password.errors}/>
-                            <span><a href={'/'}>Forgot Password?</a></span>
                     
-                            <div>
-                                {}
+                            <div style={{marginTop: '22px'}}>
                                 <input type="submit" className="submit" value="Log In"/>
                                 <span className={'toAccount'} onClick={() => handleForm(2)}>No account? Sign Up</span>
                             </div>

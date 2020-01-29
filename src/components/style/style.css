@@ -210,15 +210,7 @@ body {
   position: relative;
   white-space: nowrap;
   padding: 10px 20px; }
-
-.rightNav {
-  height: 100%;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center; }
-  .rightNav .welcome {
-    font-weight: bold; }
-  .rightNav p {
+  #header p {
     margin: 0;
     height: 100%;
     display: -webkit-box;
@@ -229,15 +221,25 @@ body {
     align-items: center;
     border-bottom: 2px solid transparent;
     padding: 0 4px;
-    cursor: pointer; }
-    .rightNav p:hover {
+    cursor: pointer;
+    font-size: 20px; }
+    #header p:hover {
       color: #a103fc; }
-    .rightNav p:hover a {
+    #header p:hover a {
       color: #a103fc; }
-  .rightNav a {
+  #header a {
     text-decoration: none;
     color: black;
     padding: 0 5px; }
+
+.rightNav {
+  height: 100%;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .rightNav .welcome {
+    font-weight: bold;
+    font-size: 20px; }
 
 .menu a {
   text-decoration: none;
@@ -428,13 +430,11 @@ body {
 #apartmentBox {
   min-height: calc(100vh - 140px);
   -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  margin-top: 15px; }
   @media (min-width: 560px) {
     #apartmentBox {
       padding: 0 50px; } }
-  #apartmentBox a {
-    text-decoration: none;
-    color: black; }
 
 #container {
   padding-bottom: 30px; }
@@ -464,8 +464,7 @@ body {
   .infoBox p {
     padding: 0 10px;
     margin: 0; }
-  .infoBox a {
-    text-decoration: none;
+  .infoBox .info {
     color: black; }
   .infoBox .bold {
     font-weight: bold; }
@@ -533,11 +532,30 @@ body {
   to {
     opacity: 1; } }
 
-.cityBox {
-  padding-top: 15px; }
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center; }
+  .pagination .page-item {
+    border: 1px solid #a103fc;
+    margin: 0 6px;
+    padding: 5px 8px;
+    font-size: 20px;
+    border-radius: 4px;
+    color: #a103fc;
+    cursor: pointer; }
+    .pagination .page-item:hover {
+      border: 1px solid darkgoldenrod;
+      color: darkgoldenrod; }
 
 .filters {
   white-space: nowrap; }
+  @media (min-width: 560px) {
+    .filters {
+      padding: 0 50px; } }
 
 .citySearch input {
   border: 1px solid grey;
@@ -672,9 +690,22 @@ body {
   height: 80px;
   overflow: hidden;
   cursor: pointer; }
+  @media (max-width: 780px) {
+    .extraImg {
+      width: 100px;
+      height: 100px; } }
   .extraImg img {
     width: 100%;
     height: 100%; }
+
+@media (max-width: 780px) {
+  .moreImgs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; } }
 
 .singleApt {
   -webkit-box-sizing: border-box;
@@ -824,7 +855,8 @@ body {
 
 .adminMenu {
   border-right: 1px solid black;
-  height: 100vh; }
+  height: 100vh;
+  min-width: 150px; }
   .adminMenu h5 {
     color: grey; }
   .adminMenu .current {
