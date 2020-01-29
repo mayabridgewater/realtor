@@ -74,7 +74,7 @@ export default class UserProfile extends React.Component {
                     </div>
                     :
                     <div className='row' style={{boxSizing: 'border-box'}}>
-                        <div className='col-3 userMenu' style={{height: '100vh', borderRight: '1px solid'}}>
+                        <div className='col-3 col-lg-2 userMenu' style={{height: '100vh', borderRight: '1px solid'}}>
                             <h4>Your Apartments</h4>
                             <h5 id='approved' onClick={this.changeStatus} className={this.state.showing === 'approved' ? 'current' : ''}>Active: {this.state.approved_apartments.length}</h5>
                             <h5 id='removed' onClick={this.changeStatus} className={this.state.showing === 'removed' ? 'current' : ''}>Sold/Deleted: {this.state.removed_apartments.length}</h5>
@@ -85,7 +85,7 @@ export default class UserProfile extends React.Component {
                                 <Link to='/addapartment'><h4>Add Apartment</h4></Link>
                             </div>
                         </div>
-                        <div className='col-9 showResults'>
+                        <div className='col showResults'>
                             <div className='row' style={{margin: '0'}}>
                                 {this.state.showing === 'approved' && this.state.approved_apartments.map((apt, a) => <ApprovedApt apartment={apt} key={a}/>)}
                                 {this.state.showing === 'removed' && this.state.removed_apartments.map((apt, a) => (
