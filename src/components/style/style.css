@@ -962,7 +962,9 @@ h5 {
 .updateApt {
   border: 2px solid #c287ff;
   padding: 5px;
-  width: 100%; }
+  z-index: 9999;
+  background: white;
+  width: 500px; }
 
 .inputArea {
   display: -webkit-box;
