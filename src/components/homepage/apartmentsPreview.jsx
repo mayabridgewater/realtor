@@ -23,7 +23,7 @@ export default class ApartmentsPreview extends React.Component {
         return (
             <div>
                 <div className='container'>
-                    <h2>Newest Updates</h2>
+                    <h2>Newest Properties</h2>
                 </div>
                 <div className='slideMain'>
                     <div className='slider'>

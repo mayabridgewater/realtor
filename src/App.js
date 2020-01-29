@@ -27,7 +27,9 @@ class App extends React.Component {
             loading: true,
             favorites: [],
             loggedIn: false,
-            numOfAvail: ''
+            numOfAvail: '',
+            defaultQuery: {availability: 'available', status: 'approved', size: 9},
+            searchQuery: {availability: 'available', status: 'approved', size: 9}
         }
         this.filterApartments = this.filterApartments.bind(this);
         this.login = this.login.bind(this);
@@ -36,7 +38,7 @@ class App extends React.Component {
         this.nextPage = this.nextPage.bind(this);
     }
     async componentDidMount() {
-        const data = await getApartmentsFromServer('availability=available&status=approved&size=9');
+        const data = await getApartmentsFromServer(this.state.defaultQuery);
         this.setState({
             apartments: data.apartments,
             filteredApartments: data.apartments,
@@ -46,23 +48,33 @@ class App extends React.Component {
     };
 
     async nextPage(page) {
-        const data = await getApartmentsFromServer(`page=${page}&availability=available&status=approved&size=9`);
+        let query = {...this.state.searchQuery};
+        query.page = page;
+        const data = await getApartmentsFromServer(query);
         this.setState({
             filteredApartments: data.apartments
         })
     }
 
     async filterApartments(query) {
-        const apartments = await getApartmentsFromServer(query);
+        let search = {...this.state.searchQuery};
+        for (let prop in query) {
+            search[prop] = query[prop]
+        }
+        const apartments = await getApartmentsFromServer(search);
         this.setState({
-            filteredApartments: apartments.apartments
+            filteredApartments: apartments.apartments,
+            count: apartments.amount[0].count,
+            searchQuery: search
         })
     }
 
     async reset() {
-        const data = await getApartmentsFromServer('availability=available&status=approved');
+        const data = await getApartmentsFromServer(this.state.defaultQuery);
         this.setState({
-            filteredApartments: data.apartments
+            filteredApartments: data.apartments,
+            count: data.amount[0].count,
+            searchQuery: this.state.defaultQuery
         })
     }
 
@@ -107,7 +119,7 @@ class App extends React.Component {
                             <Footer/>
                         </Route>
                         <Route path={'/'}>
-                            <Homepage numOfAvail={this.state.count}/>
+                            <Homepage/>
                             <Footer/>
                         </Route>
                     </Switch>

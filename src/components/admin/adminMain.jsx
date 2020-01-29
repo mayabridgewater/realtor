@@ -108,7 +108,7 @@ export default class AdminMain extends React.Component {
                                 <h5 onClick={() => this.showUsers('active')} className={this.state.current === 'active' && 'current'}>Active: {this.state.active_users.length}</h5>
                                 <h5 onClick={() => this.showUsers('inactive')} className={this.state.current === 'inactive' && 'current'}>Blocked: {this.state.inactive_users.length}</h5>
                             </div>
-                            <div className='col-4 col-md-9 stats'>
+                            <div className='col stats'>
                                 {this.state.showApartments ?
                                     <ShowAptStats apartments= {this.state.showCurrent} status={this.state.current}/>
                                     :

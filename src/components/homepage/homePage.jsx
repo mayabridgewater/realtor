@@ -11,7 +11,7 @@ class Homepage extends React.Component {
             <div>
                 <Main/>
                 <ApartmentsPreview/>
-                <WhatsHappening numOfAvail={this.props.numOfAvail}/>
+                <WhatsHappening/>
             </div>
         )
     }

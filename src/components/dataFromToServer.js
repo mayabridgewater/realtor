@@ -3,9 +3,13 @@ import fetcher from '../api/fetcher';
 
 
 async function getApartmentsFromServer(data) {
-    
+    let query = '';
+    for (let prop in data) {
+        query += `${prop}=${data[prop]}&`
+    }
     try {
-        const result = await fetcher.get(`/apartments?${data}`);
+        const result = await fetcher.get(`/apartments?${query}`);
+        console.log(result.data)
         return result.data
     } catch(error) {
         return error
