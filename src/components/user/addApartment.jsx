@@ -1,7 +1,7 @@
 import React from 'react';
 import Cookies from 'js-cookie';
 
-import {getCountries, getCitiesByCountry, addApartment} from '../dataFromToServer';
+import {getCountries, getCitiesByCountry, addApartment} from '../../api/dataFromToServer';
 import validate from '../forms/validation';
 import InputErrors from '../forms/inputErrors';
 
@@ -12,6 +12,7 @@ class AddApartment extends React.Component {
             user: false,
             countries: [],
             cities: [],
+            valid: true,
             fields: {
                 address: {value:'', errors: [], validations: {required: true, minLength: 8}},
                 city: {value: '', errors: [], validations: {required: true}},
@@ -87,9 +88,14 @@ class AddApartment extends React.Component {
         }
         if (isValid) {
             const success = await addApartment(data);
-            if (!success) {
-                console.log('no')
+            if (success.error) {
+                this.setState({
+                    valid: false
+                })
             } else {
+                this.setState({
+                    valid: true
+                })
                 window.location.replace('/')
             }
         } else {
@@ -202,10 +208,14 @@ class AddApartment extends React.Component {
 
                                     <div className='inputArea file'>
                                         <label>Extra Pictures</label>
+                                        <small>(Maximum 10 photos)</small>
                                         <input type="file" id='multipleImages' name="images" multiple/>
                                     </div>
                                 </div>
                             </div>
+                            {!this.state.valid &&
+                                <p className='form-text text-danger'>Invalid input, please try again</p>
+                            }
                             <div className='submitWrap'>
                                 <input type='submit' className='submit'></input>
                             </div>

@@ -1,7 +1,6 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 
-import {getCountries, getCitiesByCountry, getApartmentsFromServer} from '../dataFromToServer';
+import {getCountries, getCitiesByCountry} from '../../api/dataFromToServer';
 
 class Search extends React.Component {
     constructor() {

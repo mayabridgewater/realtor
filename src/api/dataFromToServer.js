@@ -1,5 +1,5 @@
 
-import fetcher from '../api/fetcher';
+import fetcher from './fetcher';
 
 
 async function getApartmentsFromServer(data) {
@@ -9,7 +9,6 @@ async function getApartmentsFromServer(data) {
     }
     try {
         const result = await fetcher.get(`/apartments?${query}`);
-        console.log(result.data)
         return result.data
     } catch(error) {
         return error
@@ -17,17 +16,14 @@ async function getApartmentsFromServer(data) {
 };
 
 async function getApartmentById(id) {
-    try {
-        const result = await fetcher.get(`/apartments/${id}`);
-        return result.data
-    }catch(error) {
-        return error
-    }
+    const result = await fetcher.get(`/apartments/${id}`);
+    return result.data
 }
 
 async function registerUser(data) {
     try {
         const post = await fetcher.post('/signup', data);
+        return post.data
     } catch(error) {
         return error
     }
@@ -53,7 +49,6 @@ async function getCountries() {
 
 async function getCountryById(id) {
     const country = await fetcher.get(`/countries/${id}`);
-    console.log(country.data)
     return country.data
 }
 
@@ -72,17 +67,13 @@ async function getCityById(id) {
 }
 
 async function addApartment(data) {
-    try {
-        const success = await fetcher.post('/apartments', data);
-        return success
-    } catch(error) {
-        return false
-    }
+    const success = await fetcher.post('/apartments', data);
+    return success.data
 }
 
 async function updateApartment(data) {
     const success = await fetcher.put('/apartments', data);
-    console.log(success)
+    return success.data
     
 }
 
@@ -108,7 +99,7 @@ async function getUsers(param) {
 
 async function updateUser(status) {
     const success = await fetcher.put('/users', status);
-    console.log(success)
+    return success.data
 }
 
 async function getUserHistory(query) {

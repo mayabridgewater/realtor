@@ -7,7 +7,7 @@ class Header extends React.Component {
         return (
             <div className={`container-fluid d-flex justify-content-between`} id={'header'}>
                 <div className={'d-flex'}>
-                    <Link to={'/'}><img alt={'Realtor.com'} src={'../images/logo.png'} style={{width: '180px'}}/></Link>
+                    <Link to={'/'}><img alt={'Realtor.com'} src={'../images/logo.jpg'} style={{width: '122px'}}/></Link>
                     <Link to={'/apartments'}><p>Buy</p></Link>
 
 

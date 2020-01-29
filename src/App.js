@@ -11,7 +11,7 @@ import Header from "./components/header/header";
 import Search from "./components/filters/search";
 import Homepage from "./components/homepage/homePage";
 import Apartment from "./components/singleapartment/apartment";
-import {getApartmentsFromServer} from "./components/dataFromToServer";
+import {getApartmentsFromServer} from "./api/dataFromToServer";
 import Footer from "./components/footer/footer";
 import AddApartment from './components/user/addApartment';
 import AdminMain from './components/admin/adminMain';

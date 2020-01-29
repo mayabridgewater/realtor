@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getImages} from '../dataFromToServer';
+import {getImages} from '../../api/dataFromToServer';
 
 class Carousel extends React.Component {
     constructor() {

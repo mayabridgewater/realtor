@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getApartmentHistory, updateApartment} from '../dataFromToServer';
+import {getApartmentHistory, updateApartment} from '../../api/dataFromToServer';
 import ApartmentBox from '../gallery/apartmentBox';
 import UpdateApt from './updateApt';
 
@@ -18,7 +18,6 @@ export default class DeniedApt extends React.Component {
     async componentDidMount() {
         const aprtId = this.props.apartment.id;
         const denied = await getApartmentHistory(aprtId);
-        console.log(denied);
         this.setState({
             denied: denied[0]
         })
