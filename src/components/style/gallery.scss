@@ -77,29 +77,6 @@
     font-weight: bold;
   }
 }
-.icon {
-  font-size: 25px;
-  color: rgba(70, 10, 92, 0.62);
-  position: absolute;
-  top: $overImageTextPosition;
-  right: $overImageTextPosition + 10px;
-  cursor: grab;
-  &:hover {
-    color: rgba(70, 10, 92, 0.91);
-  }
-}
-.cityBtn {
-  text-align: center;
-  button {
-    border: none;
-    background: $purple-color;
-    color: white;
-    font-size: 18px;
-    padding: 5px 15px;
-    border-radius: 5px;
-
-  }
-}
   @keyframes imageHover {
     from {opacity: 0}
     to {opacity: 1}

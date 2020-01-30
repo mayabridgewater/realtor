@@ -43,7 +43,7 @@ class WhatsHappening extends React.Component {
     render() {
         return (
             <div className={'container cityInfo'}>
-                <h1>What's New</h1>
+                <h2>What's New</h2>
                 <div className={'row info'}>
                     <div className={'test col-6 col-md-4'}>
                         <p className={'statNum'}>{this.state.apartments_approved.length}</p>
