@@ -62,6 +62,7 @@ class App extends React.Component {
             search[prop] = query[prop]
         }
         const apartments = await getApartmentsFromServer(search);
+        console.log(apartments)
         this.setState({
             filteredApartments: apartments.apartments,
             count: apartments.amount[0].count,
