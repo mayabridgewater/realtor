@@ -85,26 +85,6 @@ body {
   .main h2 {
     font-size: 28px;
     padding: 10px; }
-  .main .navList {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    list-style: none;
-    padding-left: 5px;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center; }
-    @media (min-width: 850px) {
-      .main .navList {
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center; } }
-    .main .navList li {
-      padding: 0 20px;
-      font-weight: bold;
-      font-size: 20px;
-      color: #c287ff;
-      text-shadow: -1px 0 #a103fc, 0 1px #a103fc, 1px 0 #a103fc, 0 -1px #a103fc; }
   .main button {
     height: 50px;
     width: 90px;
@@ -141,8 +121,8 @@ body {
 
 .cityInfo {
   padding: 40px 0; }
-  .cityInfo h1 {
-    font-size: 30px; }
+  .cityInfo h2 {
+    padding-left: 20px; }
   .cityInfo .info {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -154,7 +134,11 @@ body {
     -ms-flex-align: center;
     align-items: center;
     margin-top: 30px;
-    padding: 20px 0; }
+    padding: 20px 0;
+    margin: 0 auto; }
+    @media (max-width: 500px) {
+      .cityInfo .info {
+        max-width: 467px; } }
     .cityInfo .info:hover {
       -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75);
       box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75); }
@@ -175,31 +159,6 @@ body {
       .cityInfo .info .test .statNum {
         font-size: 30px;
         color: darkgoldenrod; }
-
-.trends {
-  padding: 200px 0;
-  text-align: center;
-  color: white; }
-  .trends p {
-    font-size: 25px; }
-  .trends button {
-    margin-top: 20px;
-    background: transparent;
-    border: 2px solid white;
-    border-radius: 20px;
-    color: white;
-    font-size: 18px;
-    padding: 10px 15px; }
-
-.title {
-  font-size: 14px;
-  white-space: normal;
-  padding-top: 5px;
-  padding-left: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border: 1px solid lightgrey;
-  border-top: none; }
 
 body {
   position: relative;
@@ -501,27 +460,6 @@ body {
     font-size: 22px;
     font-weight: bold; }
 
-.icon {
-  font-size: 25px;
-  color: rgba(70, 10, 92, 0.62);
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  cursor: -webkit-grab;
-  cursor: grab; }
-  .icon:hover {
-    color: rgba(70, 10, 92, 0.91); }
-
-.cityBtn {
-  text-align: center; }
-  .cityBtn button {
-    border: none;
-    background: #a103fc;
-    color: white;
-    font-size: 18px;
-    padding: 5px 15px;
-    border-radius: 5px; }
-
 @-webkit-keyframes imageHover {
   from {
     opacity: 0; }
@@ -735,33 +673,6 @@ body {
     border: 1px solid grey;
     padding: 4px 0; }
 
-.aptForm {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  background-color: #bfbfbf;
-  padding: 15px;
-  border-radius: 5px;
-  width: 265px; }
-  .aptForm p {
-    text-align: center;
-    font-size: 17px; }
-  .aptForm input {
-    padding: 4px 3px;
-    padding-right: 25px;
-    margin-bottom: 8px; }
-  .aptForm textarea {
-    padding-bottom: 20px; }
-  .aptForm button {
-    border: none;
-    background-color: #a103fc;
-    border-radius: 20px;
-    color: white;
-    padding: 5px 0;
-    margin-top: 5px; }
-  .aptForm span {
-    font-size: 9px; }
-
 .customContainer {
   margin-right: 2%;
   margin-left: 2%; }
@@ -784,40 +695,6 @@ body {
   .details img {
     width: 180px;
     margin-right: 80px; }
-  .details .commute p {
-    padding: 0;
-    color: dodgerblue; }
-  .details a {
-    text-decoration: none; }
-
-.extraDetails {
-  padding-top: 20px;
-  white-space: nowrap; }
-  .extraDetails .divideLine {
-    height: 30px;
-    width: 2px;
-    background: grey; }
-  .extraDetails p, .extraDetails span {
-    font-size: 15px; }
-  .extraDetails span {
-    overflow: hidden; }
-  .extraDetails .btns {
-    text-align: center;
-    padding: 10px 0; }
-    .extraDetails .btns button {
-      margin: 0 5px;
-      border-radius: 20px;
-      padding: 7px 13px; }
-      .extraDetails .btns button:focus {
-        outline: none; }
-    .extraDetails .btns .btn1 {
-      background: #c287ff;
-      border: none;
-      color: white; }
-    .extraDetails .btns .btn2 {
-      background: transparent;
-      border: 2px solid #c287ff;
-      color: #c287ff; }
 
 #dropDown {
   margin-bottom: 70px; }
@@ -825,8 +702,6 @@ body {
     padding: 20px 0;
     font-size: 15px;
     margin: 0; }
-  #dropDown a:hover {
-    text-decoration: underline; }
   #dropDown img {
     width: 30px;
     margin: 0;
@@ -842,21 +717,6 @@ body {
       padding-left: 40px; }
       #dropDown .section .inner p {
         color: black; }
-      #dropDown .section .inner button {
-        border: none;
-        border-radius: 20px;
-        padding: 8px 15px;
-        background: #a103fc;
-        color: white; }
-        #dropDown .section .inner button:hover {
-          background: darkgoldenrod; }
-
-.favorites {
-  min-height: calc(100vh - 263px);
-  margin: 20px 0; }
-  .favorites a {
-    color: black;
-    text-decoration: none; }
 
 .adminMenu {
   border-right: 1px solid black;

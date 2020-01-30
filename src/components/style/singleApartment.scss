@@ -57,39 +57,6 @@
   }
 }
 
-.aptForm {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  background-color: #bfbfbf;
-  padding: 15px;
-  border-radius: 5px;
-  width: 265px;
-  p {
-    text-align: center;
-    font-size: 17px;
-  }
-  input {
-    padding: 4px 3px;
-    padding-right: 25px;
-    margin-bottom: 8px;
-  }
-  textarea {
-    padding-bottom: 20px;
-  }
-  button {
-    border: none;
-    background-color: $purple-color;
-    border-radius: 20px;
-    color: white;
-    padding: 5px 0;
-    margin-top: 5px;
-  }
-  span {
-    font-size: 9px;
-  }
-}
-
 .customContainer {
   margin-right: 2%;
   margin-left: 2%;
@@ -115,63 +82,14 @@
     width: 180px;
     margin-right: 80px;
   }
-  .commute {
-    p {
-      padding: 0;
-      color: dodgerblue;
-    }
-  }
-  a {
-    text-decoration: none;
-  }
 }
 
-.extraDetails {
-  padding-top: 20px;
-  white-space: nowrap;
-  .divideLine {
-    height: 30px;
-    width: 2px;
-    background: grey;
-  }
-  p, span {
-    font-size: 15px;
-  }
-  span {
-    overflow: hidden;
-  }
-  .btns {
-    text-align: center;
-    padding: 10px 0;
-    button {
-      margin: 0 5px;
-      border-radius: 20px;
-      padding: 7px 13px;
-      &:focus {
-        outline: none
-      }
-    }
-    .btn1 {
-      background: $overImageTextBgrnd;
-      border: none;
-      color: white;
-    }
-    .btn2 {
-      background: transparent;
-      border: 2px solid $overImageTextBgrnd;
-      color: $overImageTextBgrnd;
-    }
-  }
-}
 #dropDown {
   margin-bottom: 70px;
   p {
     padding: 20px 0;
     font-size: 15px;
     margin: 0;
-  }
-  a:hover {
-    text-decoration: underline;
   }
   img {
     width: 30px;
@@ -191,16 +109,6 @@
       padding-left: 40px;
       p{
         color: black;
-      }
-      button {
-        border: none;
-        border-radius: 20px;
-        padding: 8px 15px;
-        background: $purple-color;
-        color: white;
-        &:hover {
-          background: $darkGold;
-        }
       }
     }
   }
