@@ -85,6 +85,7 @@ class Signup extends React.Component {
                 {this.state.signup ?
                     <div style={{height: '300px'}}>
                         <h3>Welcome to Realtor.com!</h3>
+                        <h2>Please log in to start</h2>
                     </div>
                         :
                     <div>

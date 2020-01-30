@@ -58,9 +58,6 @@ class Search extends React.Component {
     };
 
     inputChange = ({target: {name, value}}) => {
-        if (name === 'property_type') {
-
-        }
         this.setState({
             search: {
                 ...this.state.search,
@@ -71,16 +68,23 @@ class Search extends React.Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        let query = {};
-        for (let prop in this.state.search) {
-            if (this.state.search[prop]) {
-                query[prop] = this.state.search[prop]
-            }
-        }
-        this.props.filterApartments(query);
         this.setState({
-            reset: true,
-            display: -1
+            search: {
+                ...this.state.search,
+                [e.target.name]: e.target.value
+            }
+        }, () => {
+            let query = {};
+            for (let prop in this.state.search) {
+                if (this.state.search[prop]) {
+                    query[prop] = this.state.search[prop]
+                }
+            }
+            this.props.filterApartments(query);
+            this.setState({
+                reset: true,
+                display: -1
+            })
         })
     };
 
@@ -122,35 +126,35 @@ class Search extends React.Component {
                                         <input type='text' name='min_price' onBlur={this.inputChange} placeholder={'Min Price'} value={this.state.minprice} style={{margin:0}} onFocus={() => this.changePrice(false)}/>
                                         {this.state.displayPrice && <div>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={0} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={0} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$0</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={200000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={200000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$200K</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={400000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={400000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$400K</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={600000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={600000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$600K</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={800000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={800000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$800K</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={1000000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={1000000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$1M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={1200000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={1200000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$1.2M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'min_price'} value={1400000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'min_price'} value={1400000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$1.4M</p>
                                             </label>
                                         </div>}
@@ -160,35 +164,35 @@ class Search extends React.Component {
                                         <input type='text' name='max_price' onBlur={this.inputChange} placeholder={'Max Price'} value={this.state.maxprice} style={{margin:0}} onFocus={() => this.changePrice(true)}/>
                                         {!this.state.displayPrice && <div>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={350000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={350000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$350K</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={700000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={700000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$700K</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={1000000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={1000000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$1M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={1400000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={1400000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$1.4M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={1800000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={1800000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$1.8M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={2200000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={2200000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$2.2M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={2400000} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={2400000} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>$2.4M</p>
                                             </label>
                                             <label>
-                                                <input type={'radio'} name={'max_price'} value={undefined} onBlur={this.inputChange} className={'radiobtn'}/>
+                                                <input type={'radio'} name={'max_price'} value={undefined} onClick={this.handleSubmit} className={'radiobtn'}/>
                                                 <p>Any Price</p>
                                             </label>
                                         </div>}
@@ -202,19 +206,19 @@ class Search extends React.Component {
                                     <h3>Property Type</h3>
                                     <div className={'row container-fluid propertyTypes'}>
                                         <label className={'col-6'}>
-                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='house' onBlur={this.inputChange}/>
+                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='house' onClick={this.handleSubmit}/>
                                             <img src={'./images/filters/single.png'} alt={''}/><span>House</span>
                                         </label>
                                         <label className={'col-6'}>
-                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='condo' onBlur={this.inputChange}/>
+                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='condo' onClick={this.handleSubmit}/>
                                             <img src={'./images/filters/condo.png'} alt={''}/><span>Condo</span>
                                         </label>
                                         <label className={'col-6'}>
-                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='ranch' onBlur={this.inputChange}/>
+                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='ranch' onClick={this.handleSubmit}/>
                                             <img src={'./images/filters/farm.png'} alt={''}/><span>Ranch</span>
                                         </label>
                                         <label className={'col-6'}>
-                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='land' onBlur={this.inputChange}/>
+                                            <input type='radio' name='property_type' className={'prop-type-cb radiobtn'} value='land' onClick={this.handleSubmit}/>
                                             <img src={'./images/filters/land.png'} alt={''}/><span>Land</span>
                                         </label>
                                     </div>
@@ -227,27 +231,27 @@ class Search extends React.Component {
                                 <h3>Bedrooms</h3>
                                 <div className={'d-flex pt-3'}>
                                     <label>
-                                        <input type="radio" name="number_of_room" value="0" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_room" value="0" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>Any</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_room" value="1" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_room" value="1" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>1+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_room" value="2" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_room" value="2" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>2+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_room" value="3" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_room" value="3" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>3+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_room" value="4" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_room" value="4" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>4+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_room" value="5" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_room" value="5" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>5+</p>
                                     </label>
                                 </div>
@@ -259,27 +263,27 @@ class Search extends React.Component {
                                 <h3>Bathrooms</h3>
                                 <div className={'d-flex pt-3'}>
                                     <label>
-                                        <input type="radio" name="number_of_bath" value="0" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_bath" value="0" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>Any</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_bath" value="1" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_bath" value="1" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>1+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_bath" value="2" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_bath" value="2" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>2+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_bath" value="3" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_bath" value="3" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>3+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_bath" value="4" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_bath" value="4" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>4+</p>
                                     </label>
                                     <label>
-                                        <input type="radio" name="number_of_bath" value="5" onBlur={this.inputChange} className={'radiobtn'}/>
+                                        <input type="radio" name="number_of_bath" value="5" onClick={this.handleSubmit} className={'radiobtn'}/>
                                         <p>5+</p>
                                     </label>
                                 </div>
@@ -291,15 +295,15 @@ class Search extends React.Component {
                                     <h3>Sale Type</h3>
                                     <div className={'row container-fluid propertyTypes'}>
                                         <label className={'col-6'}>
-                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='sale' onBlur={this.inputChange}/>
+                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='sale' onClick={this.handleSubmit}/>
                                             <img src={'./images/filters/for-sale.png'} alt={''}/><span>For Sale</span>
                                         </label>
                                         <label className={'col-6'}>
-                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='rent' onBlur={this.inputChange}/>
+                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='rent' onClick={this.handleSubmit}/>
                                             <img src={'./images/filters/for-rent.png'} alt={''}/><span>For Rent</span>
                                         </label>
                                         <label className={'col-6'}>
-                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='both' onBlur={this.inputChange}/>
+                                            <input type='radio' name='sale_status' className={'prop-type-cb radiobtn'} value='both' onClick={this.handleSubmit}/>
                                             <img src={'./images/filters/both.png'} alt={''}/><span>Both</span>
                                         </label>
                                     </div>
