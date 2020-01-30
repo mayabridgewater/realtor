@@ -12,6 +12,7 @@ class Search extends React.Component {
             cities: [],
             reset: false,
             search: {
+                country: '',
                 city: '',
                 min_price: '',
                 max_price: '',
@@ -106,13 +107,13 @@ class Search extends React.Component {
             <div className={'container-fluid filters'}>
                 <div className={'d-flex pt-3 justify-content-between align-center'}>
                     <form onSubmit={this.handleSubmit} className={'d-flex'} autoComplete={"off"}>
-                        <select id="inputState" className="form-control" onChange={this.getCities}>
+                        <select id="inputState" className="form-control" name='country' onChange={this.getCities} onBlur={this.handleSubmit}>
                             <option>Country</option>
                             {this.state.countries.map((country, c) => (
                                 <option key={c} value={country.id}>{country.name}</option>
                             ))}
                         </select>
-                        <select id="inputCity" className="form-control" name='city' onBlur={this.inputChange}>
+                        <select id="inputCity" className="form-control" name='city' onBlur={this.handleSubmit}>
                             {this.state.cities.map((city, i) => (
                                 <option key={i} value={city.id}>{city.city_name}</option>
                             ))}
